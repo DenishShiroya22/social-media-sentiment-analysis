@@ -3,9 +3,9 @@
   "experiment_id": "exp04",
   "feature": "combined",
   "model": "logistic_regression",
-  "validation_macro_f1": 0.6645630158401729,
-  "validation_accuracy": 0.705,
-  "artifact_sha256": "2a04d37cfe4f6776aa88ebab78b114d503e7a64db717d095821b0c3322c733a3",
-  "artifact_bytes": 4358950,
+  "validation_macro_f1": 0.6579620027888405,
+  "validation_accuracy": 0.7,
+  "artifact_sha256": "01522167d0d857890cca736d23d6a06f7230551243405d72242d4257893f92b1",
+  "artifact_bytes": 4329464,
   "reload_predictions_match": true
 }

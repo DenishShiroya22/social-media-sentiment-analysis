@@ -1,4 +1,4 @@
-"""Run the complete Phase 1 pipeline with reproducible reports."""
+"""Run the complete data foundation pipeline with reproducible reports."""
 import argparse
 from dataclasses import asdict
 import importlib.metadata
@@ -14,6 +14,18 @@ from .data_validation import validate_dataframe, require_valid, cross_split_dupl
 from .eda import analyze_train, descriptive_summary, plot_cleaning_lengths
 from .preprocessing import DEFAULT_CONFIG, preprocess_dataframe
 
+
+def _locked_test_check(frame: pd.DataFrame, required: set[str]) -> dict:
+    """Check TEST columns/count/split without exploratory text or label analysis."""
+    missing = sorted(required - set(frame.columns))
+    if missing:
+        raise ValueError(f'Locked TEST missing columns: {missing}')
+    if frame.empty or not frame['split'].eq('test').all():
+        raise ValueError('Locked TEST row count or split membership invalid')
+    return {'rows': len(frame), 'columns': list(frame.columns),
+            'split_valid': True, 'schema_valid': True}
+
+
 def run_phase1(root: Path = PROJECT_ROOT) -> dict:
     """Validate before publishing outputs; no row filtering or fitting is performed."""
     root = Path(root)
@@ -22,16 +34,24 @@ def run_phase1(root: Path = PROJECT_ROOT) -> dict:
     reports.mkdir(parents=True, exist_ok=True)
     paths = ensure_dataset_available(root / 'data' / 'raw')
     frames = {name: load_csv(path) for name, path in paths.items()}
-    quality = {name: validate_dataframe(frame, name) for name, frame in frames.items()}
+    development_splits = ('train', 'validation')
+    quality = {name: validate_dataframe(frames[name], name) for name in development_splits}
+    test_raw_check = _locked_test_check(frames['test'], {'text', 'sentiment', 'split'})
     for result in quality.values():
         require_valid(result)
     train_eda = analyze_train(frames['train'], figures)
     processed = {name: preprocess_dataframe(frame) for name, frame in frames.items()}
-    clean_quality = {name: validate_dataframe(frame, name, text_column='clean_text') for name, frame in processed.items()}
-    # Persist diagnostics even if cleaning exposes unusable rows. Never silently drop them.
+    clean_quality = {name: validate_dataframe(processed[name], name, text_column='clean_text')
+                     for name in development_splits}
+    test_processed_check = _locked_test_check(
+        processed['test'], {'text', 'clean_text', 'sentiment', 'split'})
+    # TEST receives mechanical checks only; no duplicate or text exploration.
     audit = {'raw': quality, 'processed': clean_quality,
-             'cross_split_exact_text': cross_split_duplicates(frames),
-             'cross_split_clean_text': cross_split_duplicates(processed, 'clean_text')}
+             'test_integrity_only': {'raw': test_raw_check, 'processed': test_processed_check},
+             'cross_split_exact_text': cross_split_duplicates(
+                 {name: frames[name] for name in development_splits}),
+             'cross_split_clean_text': cross_split_duplicates(
+                 {name: processed[name] for name in development_splits}, 'clean_text')}
     (reports / 'data_quality.json').write_text(json.dumps(audit, indent=2), encoding='utf-8')
     for result in clean_quality.values():
         require_valid(result)
@@ -43,7 +63,8 @@ def run_phase1(root: Path = PROJECT_ROOT) -> dict:
         pd.testing.assert_frame_equal(load_csv(path), frame)
         files[name] = {'path': path.relative_to(root).as_posix(), 'rows': len(frame),
                        'sha256': sha256(path), 'removed_rows': 0,
-                       'changed_rows': int(frame.text.ne(frame.clean_text).sum())}
+                       'changed_rows': (int(frame.text.ne(frame.clean_text).sum())
+                                        if name != 'test' else None)}
     plot_cleaning_lengths(processed['train'], figures)
     manifest = json.loads((root / 'data' / 'raw' / 'manifest.json').read_text(encoding='utf-8'))
     result = {'dataset': manifest['dataset'], 'revision': manifest['revision'],
@@ -55,13 +76,13 @@ def run_phase1(root: Path = PROJECT_ROOT) -> dict:
     (reports / 'phase1_metrics.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
     (root / 'data' / 'processed' / 'manifest.json').write_text(json.dumps({k: result[k] for k in ['dataset', 'revision', 'preprocessing', 'outputs', 'environment']}, indent=2), encoding='utf-8')
     (reports / 'phase1_summary.md').write_text(render_summary(result), encoding='utf-8')
-    logging.getLogger(__name__).info('Phase 1 passed: %s', {k: v['rows'] for k, v in files.items()})
+    logging.getLogger(__name__).info('Data foundation passed: %s', {k: v['rows'] for k, v in files.items()})
     return result
 
 def render_summary(result: dict) -> str:
     """Render only measured values; suppress test class distributions/examples."""
     eda, quality = result['train_eda'], result['quality']
-    lines = ['# Phase 1 executed summary', '',
+    lines = ['# Data foundation executed summary', '',
              f"Dataset: `{result['dataset']}`, configuration `sentiment`.",
              'Source: https://huggingface.co/datasets/cardiffnlp/tweet_eval',
              f"Immutable revision: `{result['revision']}`.", '',
@@ -69,7 +90,10 @@ def render_summary(result: dict) -> str:
              '| Split | Raw rows | Processed rows | Changed text | Removed |',
              '|---|---:|---:|---:|---:|']
     for name, output in result['outputs'].items():
-        lines.append(f"| {name} | {quality['raw'][name]['counts']['rows']} | {output['rows']} | {output['changed_rows']} | {output['removed_rows']} |")
+        raw_rows = (quality['raw'][name]['counts']['rows'] if name != 'test'
+                    else quality['test_integrity_only']['raw']['rows'])
+        changed = str(output['changed_rows']) if name != 'test' else 'not explored'
+        lines.append(f"| {name} | {raw_rows} | {output['rows']} | {changed} | {output['removed_rows']} |")
     lines += ['', 'Raw columns: text, sentiment, split. Processed columns add clean_text.',
               'All saved CSVs were reloaded and compared with in-memory data. Original text, order, labels and split membership are unchanged.',
               '', '## Quality findings', '',
@@ -79,7 +103,7 @@ def render_summary(result: dict) -> str:
             lines.append(f"- {stage}/{name}: errors `{audit['critical_errors']}`; warnings `{audit['warnings']}`; missing cells `{sum(audit['counts']['missing_values'].values())}`; blank text `{audit['counts']['blank_text']}`.")
     lines += ['', f"Exact raw text overlap: `{quality['cross_split_exact_text']}`.",
               f"Cleaned text overlap: `{quality['cross_split_clean_text']}`.",
-              'Official duplicates are preserved. No deduplication or rebalancing was performed.',
+              'TEST receives only schema, row-count, split-membership and checksum checks. Official duplicates are preserved. No deduplication or rebalancing was performed.',
               '', '## TRAIN findings', '', '| Sentiment | Rows | Percent |', '|---|---:|---:|']
     for label, count in eda['class_counts'].items():
         lines.append(f"| {label} | {count} | {eda['class_percentages'][label]} |")
@@ -90,15 +114,15 @@ def render_summary(result: dict) -> str:
               f"Top training bigrams: `{eda['top_bigrams'][:10]}`.",
               f"Suspiciously short TRAIN examples (<3 characters): `{eda['short_examples']}`.",
               f"Suspiciously long TRAIN examples (>500 characters): `{eda['long_examples']}`.",
-              'Class imbalance means Phase 2 should report macro-F1 and per-class precision/recall alongside accuracy. Frequent tokens are descriptive counts, not fitted modeling features.',
+              'Class imbalance motivates macro-F1 and per-class precision/recall alongside accuracy. Frequent tokens are descriptive counts, not fitted modeling features.',
               'See phase1_metrics.json for validation summary, full training statistics and tokens by sentiment; figures/ contains five training charts.',
               '', '## Fixed preprocessing decisions', '',
               'NFC Unicode and curly-apostrophe normalization; HTML tags removed and entities decoded; lowercase; URLs and mentions removed; hashtag words retained. Unicode emojis, contractions, negation, punctuation and repeated characters retained. Whitespace collapsed. No stopword removal, stemming or lemmatization. Optional mention tokens, demojizing and repeat reduction are available but unused in primary outputs.',
               'No rows removed. Missing or cleaning-empty text is reported as a critical error and blocks publication instead of silently filtering benchmark rows.',
-              '', '## Risks and Phase 2 handoff', '',
+              '', '## Risks and modeling handoff', '',
               'Historical English tweets are not representative of all customers or contemporary brand discourse. Sarcasm, context, annotation ambiguity and platform/demographic bias remain. Exact duplicate auditing does not detect paraphrases. Lowercasing loses capitalization intensity, but raw text is retained.',
-              'Default word-based TF-IDF tokenization may discard emoji and punctuation and fragment contractions: Phase 2 must explicitly design its tokenizer using TRAIN only and validate choices on VALIDATION. No tokenizer or feature extractor was fit here.',
-              'Consume data/processed/{train,validation,test}_clean.csv with text, clean_text, sentiment, split. Fit features and models only on TRAIN; tune/select on VALIDATION; use TEST only for final evaluation. Test class distributions/examples are intentionally absent.',
+              'Default word-based TF-IDF tokenization may discard emoji and punctuation and fragment contractions. Fit future feature extractors on TRAIN only and validate choices on VALIDATION.',
+              'Consume data/processed/{train,validation,test}_clean.csv with text, clean_text, sentiment, split. Fit features and models only on TRAIN; tune with TRAIN cross-validation; use VALIDATION for development confirmation and TEST only for final evaluation. Test class distributions/examples are intentionally absent.',
               '', '## Reproducibility', '',
               'Run `python -m src.pipeline`. Raw and processed manifests record SHA-256 checksums, source revision, configuration and runtime versions. Run `python -m pytest -q` and `python scripts/execute_notebooks.py` for verification.', '']
     if result['dataset'] != 'cardiffnlp/tweet_eval':

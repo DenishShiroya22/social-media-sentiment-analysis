@@ -19,27 +19,27 @@ Models: Logistic Regression (C=1, lbfgs, max_iter=350), LinearSVC (C=1, max_iter
 
 | ID | Features | Model | Accuracy | Macro precision | Macro recall | Macro-F1 | Weighted-F1 | Fit seconds |
 |---|---|---|---:|---:|---:|---:|---:|---:|
-| exp04 | combined | logistic_regression | 0.7050 | 0.6895 | 0.6515 | 0.6646 | 0.7012 | 15.94 |
-| exp07 | combined | linear_svm | 0.6905 | 0.6726 | 0.6560 | 0.6631 | 0.6893 | 6.84 |
-| exp03 | character | logistic_regression | 0.6920 | 0.6835 | 0.6349 | 0.6500 | 0.6871 | 12.73 |
-| exp06 | character | linear_svm | 0.6745 | 0.6530 | 0.6304 | 0.6393 | 0.6723 | 4.86 |
-| exp02 | word_bigram | logistic_regression | 0.6805 | 0.6762 | 0.6203 | 0.6363 | 0.6745 | 4.23 |
-| exp05 | word_bigram | linear_svm | 0.6700 | 0.6511 | 0.6268 | 0.6362 | 0.6677 | 1.66 |
-| exp01 | word_unigram | logistic_regression | 0.6725 | 0.6631 | 0.6086 | 0.6236 | 0.6657 | 1.35 |
-| exp08 | word_bigram | naive_bayes | 0.6255 | 0.7025 | 0.4964 | 0.4627 | 0.5771 | 0.09 |
-| exp09 | word_bigram | random_forest | 0.5270 | 0.4269 | 0.4097 | 0.3520 | 0.4483 | 1.16 |
+| exp04 | combined | logistic_regression | 0.7000 | 0.6820 | 0.6455 | 0.6580 | 0.6961 | 29.43 |
+| exp07 | combined | linear_svm | 0.6830 | 0.6617 | 0.6475 | 0.6536 | 0.6819 | 8.12 |
+| exp03 | character | logistic_regression | 0.6900 | 0.6736 | 0.6333 | 0.6463 | 0.6856 | 11.53 |
+| exp06 | character | linear_svm | 0.6705 | 0.6506 | 0.6299 | 0.6382 | 0.6687 | 6.24 |
+| exp02 | word_bigram | logistic_regression | 0.6810 | 0.6770 | 0.6207 | 0.6367 | 0.6750 | 4.90 |
+| exp05 | word_bigram | linear_svm | 0.6680 | 0.6486 | 0.6244 | 0.6337 | 0.6658 | 1.28 |
+| exp01 | word_unigram | logistic_regression | 0.6730 | 0.6619 | 0.6084 | 0.6230 | 0.6660 | 1.62 |
+| exp08 | word_bigram | naive_bayes | 0.6260 | 0.7580 | 0.4955 | 0.4592 | 0.5760 | 0.09 |
+| exp09 | word_bigram | random_forest | 0.5405 | 0.4392 | 0.4206 | 0.3651 | 0.4646 | 1.14 |
 
 ## Leading models
 
-- logistic_regression: exp04 combined; macro-F1 0.6646; accuracy 0.7050; negative/neutral/positive F1 0.5251/0.7160/0.7525; fit 15.94s.
-- linear_svm: exp07 combined; macro-F1 0.6631; accuracy 0.6905; negative/neutral/positive F1 0.5626/0.6923/0.7344; fit 6.84s.
-- random_forest: exp09 word_bigram; macro-F1 0.3520; accuracy 0.5270; negative/neutral/positive F1 0.0000/0.6375/0.4184; fit 1.16s.
-- naive_bayes: exp08 word_bigram; macro-F1 0.4627; accuracy 0.6255; negative/neutral/positive F1 0.0314/0.6660/0.6905; fit 0.09s.
+- logistic_regression: exp04 combined; macro-F1 0.6580; accuracy 0.7000; negative/neutral/positive F1 0.5130/0.7128/0.7481; fit 29.43s.
+- linear_svm: exp07 combined; macro-F1 0.6536; accuracy 0.6830; negative/neutral/positive F1 0.5451/0.6838/0.7320; fit 8.12s.
+- random_forest: exp09 word_bigram; macro-F1 0.3651; accuracy 0.5405; negative/neutral/positive F1 0.0000/0.6464/0.4488; fit 1.14s.
+- naive_bayes: exp08 word_bigram; macro-F1 0.4592; accuracy 0.6260; negative/neutral/positive F1 0.0190/0.6670/0.6917; fit 0.09s.
 
 ## Selected candidate and errors
 
-VALIDATION-SELECTED CANDIDATE: exp04 combined + logistic_regression. Macro-F1 0.6646; accuracy 0.7050. THIS IS NOT YET THE FINAL TEST-EVALUATED MODEL.
-Winner VALIDATION confusion rows (negative, neutral, positive): [[141, 135, 36], [59, 667, 143], [25, 192, 602]]. Off-diagonal cells count misclassifications; see error_analysis.md for controlled examples and cue counts.
+VALIDATION-SELECTED CANDIDATE: exp04 combined + logistic_regression. Macro-F1 0.6580; accuracy 0.7000. THIS IS NOT YET THE FINAL TEST-EVALUATED MODEL.
+Winner VALIDATION confusion rows (negative, neutral, positive): [[138, 136, 38], [62, 665, 142], [26, 196, 597]]. Off-diagonal cells count misclassifications; see error_analysis.md for controlled examples and cue counts.
 The top learned linear coefficients in model_metrics.json are TRAIN-fitted feature associations, not causal explanations. Positive coefficients favor the corresponding class relative to alternatives.
 Random Forest used all TRAIN rows with bounded depth and 80 trees. See its negative recall and fit time above; the constrained configuration is not a full-capacity forest.
 

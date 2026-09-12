@@ -1,4 +1,4 @@
-# Phase 1 executed summary
+# Data foundation executed summary
 
 Dataset: `cardiffnlp/tweet_eval`, configuration `sentiment`.
 Source: https://huggingface.co/datasets/cardiffnlp/tweet_eval
@@ -8,9 +8,9 @@ Immutable revision: `b3a375baf0f409c77e6bc7aa35102b7b3534f8be`.
 
 | Split | Raw rows | Processed rows | Changed text | Removed |
 |---|---:|---:|---:|---:|
-| train | 45615 | 45615 | 45120 | 0 |
+| train | 45615 | 45615 | 45150 | 0 |
 | validation | 2000 | 2000 | 1984 | 0 |
-| test | 12284 | 12284 | 12076 | 0 |
+| test | 12284 | 12284 | not explored | 0 |
 
 Raw columns: text, sentiment, split. Processed columns add clean_text.
 All saved CSVs were reloaded and compared with in-memory data. Original text, order, labels and split membership are unchanged.
@@ -21,14 +21,12 @@ Counts below are mechanical integrity checks, not exploratory test-label analysi
 
 - raw/train: errors `{}`; warnings `{'duplicate_rows': 26, 'duplicate_text': 29}`; missing cells `0`; blank text `0`.
 - raw/validation: errors `{}`; warnings `{}`; missing cells `0`; blank text `0`.
-- raw/test: errors `{}`; warnings `{}`; missing cells `0`; blank text `0`.
-- processed/train: errors `{}`; warnings `{'duplicate_rows': 26, 'duplicate_text': 41}`; missing cells `0`; blank text `0`.
+- processed/train: errors `{}`; warnings `{'duplicate_rows': 26, 'duplicate_text': 43}`; missing cells `0`; blank text `0`.
 - processed/validation: errors `{}`; warnings `{}`; missing cells `0`; blank text `0`.
-- processed/test: errors `{}`; warnings `{'duplicate_text': 4}`; missing cells `0`; blank text `0`.
 
-Exact raw text overlap: `{'train__validation': 0, 'train__test': 0, 'validation__test': 0}`.
-Cleaned text overlap: `{'train__validation': 0, 'train__test': 0, 'validation__test': 0}`.
-Official duplicates are preserved. No deduplication or rebalancing was performed.
+Exact raw text overlap: `{'train__validation': 0}`.
+Cleaned text overlap: `{'train__validation': 0}`.
+TEST receives only schema, row-count, split-membership and checksum checks. Official duplicates are preserved. No deduplication or rebalancing was performed.
 
 ## TRAIN findings
 
@@ -45,7 +43,7 @@ Top training tokens (stopwords included): `[('the', 38002), ('to', 20952), ('use
 Top training bigrams: `[('in the', 3589), ('user user', 2678), ('of the', 2566), ('on the', 2365), ('for the', 2350), ('going to', 2223), ('at the', 1974), ('to the', 1840), ('may be', 1497), ('will be', 1283)]`.
 Suspiciously short TRAIN examples (<3 characters): `[]`.
 Suspiciously long TRAIN examples (>500 characters): `[]`.
-Class imbalance means Phase 2 should report macro-F1 and per-class precision/recall alongside accuracy. Frequent tokens are descriptive counts, not fitted modeling features.
+Class imbalance motivates macro-F1 and per-class precision/recall alongside accuracy. Frequent tokens are descriptive counts, not fitted modeling features.
 See phase1_metrics.json for validation summary, full training statistics and tokens by sentiment; figures/ contains five training charts.
 
 ## Fixed preprocessing decisions
@@ -53,11 +51,11 @@ See phase1_metrics.json for validation summary, full training statistics and tok
 NFC Unicode and curly-apostrophe normalization; HTML tags removed and entities decoded; lowercase; URLs and mentions removed; hashtag words retained. Unicode emojis, contractions, negation, punctuation and repeated characters retained. Whitespace collapsed. No stopword removal, stemming or lemmatization. Optional mention tokens, demojizing and repeat reduction are available but unused in primary outputs.
 No rows removed. Missing or cleaning-empty text is reported as a critical error and blocks publication instead of silently filtering benchmark rows.
 
-## Risks and Phase 2 handoff
+## Risks and modeling handoff
 
 Historical English tweets are not representative of all customers or contemporary brand discourse. Sarcasm, context, annotation ambiguity and platform/demographic bias remain. Exact duplicate auditing does not detect paraphrases. Lowercasing loses capitalization intensity, but raw text is retained.
-Default word-based TF-IDF tokenization may discard emoji and punctuation and fragment contractions: Phase 2 must explicitly design its tokenizer using TRAIN only and validate choices on VALIDATION. No tokenizer or feature extractor was fit here.
-Consume data/processed/{train,validation,test}_clean.csv with text, clean_text, sentiment, split. Fit features and models only on TRAIN; tune/select on VALIDATION; use TEST only for final evaluation. Test class distributions/examples are intentionally absent.
+Default word-based TF-IDF tokenization may discard emoji and punctuation and fragment contractions. Fit future feature extractors on TRAIN only and validate choices on VALIDATION.
+Consume data/processed/{train,validation,test}_clean.csv with text, clean_text, sentiment, split. Fit features and models only on TRAIN; tune with TRAIN cross-validation; use VALIDATION for development confirmation and TEST only for final evaluation. Test class distributions/examples are intentionally absent.
 
 ## Reproducibility
 

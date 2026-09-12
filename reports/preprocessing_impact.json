@@ -1,0 +1,165 @@
+{
+  "source": "executed pre-correction validation comparison at commit 3f8e1eb",
+  "before": {
+    "exp04": {
+      "macro_f1": 0.6645630158401729,
+      "accuracy": 0.705,
+      "negative_f1": 0.5251396648044693
+    },
+    "exp07": {
+      "macro_f1": 0.6631190956863192,
+      "accuracy": 0.6905,
+      "negative_f1": 0.5626072041166381
+    },
+    "exp03": {
+      "macro_f1": 0.65002901779309,
+      "accuracy": 0.692,
+      "negative_f1": 0.5096525096525096
+    },
+    "exp06": {
+      "macro_f1": 0.6392501218747636,
+      "accuracy": 0.6745,
+      "negative_f1": 0.5132743362831859
+    },
+    "exp02": {
+      "macro_f1": 0.6362992736026337,
+      "accuracy": 0.6805,
+      "negative_f1": 0.492063492063492
+    },
+    "exp05": {
+      "macro_f1": 0.6362372026411416,
+      "accuracy": 0.67,
+      "negative_f1": 0.5160142348754448
+    },
+    "exp01": {
+      "macro_f1": 0.6235541347942362,
+      "accuracy": 0.6725,
+      "negative_f1": 0.464
+    },
+    "exp08": {
+      "macro_f1": 0.4626722072106909,
+      "accuracy": 0.6255,
+      "negative_f1": 0.0314465408805031
+    },
+    "exp09": {
+      "macro_f1": 0.351950442949009,
+      "accuracy": 0.527,
+      "negative_f1": 0.0
+    }
+  },
+  "affected_raw_rows": {
+    "train": 5111,
+    "validation": 206
+  },
+  "literal_escape_occurrences": {
+    "train": {
+      "u002c": 4664,
+      "u2019": 4408
+    },
+    "validation": {
+      "u002c": 179,
+      "u2019": 181
+    }
+  },
+  "after": [
+    {
+      "experiment_id": "exp04",
+      "old_macro_f1": 0.6645630158401729,
+      "new_macro_f1": 0.6579620027888405,
+      "delta_macro_f1": -0.006601013051332316,
+      "new_accuracy": 0.7,
+      "old_negative_f1": 0.5251396648044693,
+      "new_negative_f1": 0.5130111524163569,
+      "delta_negative_f1": -0.012128512388112411
+    },
+    {
+      "experiment_id": "exp07",
+      "old_macro_f1": 0.6631190956863192,
+      "new_macro_f1": 0.6536405018747081,
+      "delta_macro_f1": -0.009478593811611091,
+      "new_accuracy": 0.683,
+      "old_negative_f1": 0.5626072041166381,
+      "new_negative_f1": 0.545144804088586,
+      "delta_negative_f1": -0.017462400028052105
+    },
+    {
+      "experiment_id": "exp03",
+      "old_macro_f1": 0.65002901779309,
+      "new_macro_f1": 0.6462933646373962,
+      "delta_macro_f1": -0.0037356531556937966,
+      "new_accuracy": 0.69,
+      "old_negative_f1": 0.5096525096525096,
+      "new_negative_f1": 0.4971751412429379,
+      "delta_negative_f1": -0.012477368409571754
+    },
+    {
+      "experiment_id": "exp06",
+      "old_macro_f1": 0.6392501218747636,
+      "new_macro_f1": 0.6382143280744274,
+      "delta_macro_f1": -0.0010357938003362488,
+      "new_accuracy": 0.6705,
+      "old_negative_f1": 0.5132743362831859,
+      "new_negative_f1": 0.521891418563923,
+      "delta_negative_f1": 0.008617082280737098
+    },
+    {
+      "experiment_id": "exp02",
+      "old_macro_f1": 0.6362992736026337,
+      "new_macro_f1": 0.636719573469787,
+      "delta_macro_f1": 0.00042029986715330647,
+      "new_accuracy": 0.681,
+      "old_negative_f1": 0.492063492063492,
+      "new_negative_f1": 0.492063492063492,
+      "delta_negative_f1": 0.0
+    },
+    {
+      "experiment_id": "exp05",
+      "old_macro_f1": 0.6362372026411416,
+      "new_macro_f1": 0.6337478188240391,
+      "delta_macro_f1": -0.0024893838171025084,
+      "new_accuracy": 0.668,
+      "old_negative_f1": 0.5160142348754448,
+      "new_negative_f1": 0.5115452930728241,
+      "delta_negative_f1": -0.004468941802620696
+    },
+    {
+      "experiment_id": "exp01",
+      "old_macro_f1": 0.6235541347942362,
+      "new_macro_f1": 0.6229723292392461,
+      "delta_macro_f1": -0.0005818055549901002,
+      "new_accuracy": 0.673,
+      "old_negative_f1": 0.464,
+      "new_negative_f1": 0.46,
+      "delta_negative_f1": -0.0040000000000000036
+    },
+    {
+      "experiment_id": "exp08",
+      "old_macro_f1": 0.4626722072106909,
+      "new_macro_f1": 0.4592434060006876,
+      "delta_macro_f1": -0.0034288012100033294,
+      "new_accuracy": 0.626,
+      "old_negative_f1": 0.0314465408805031,
+      "new_negative_f1": 0.019047619047619,
+      "delta_negative_f1": -0.012398921832884102
+    },
+    {
+      "experiment_id": "exp09",
+      "old_macro_f1": 0.351950442949009,
+      "new_macro_f1": 0.3650638750168518,
+      "delta_macro_f1": 0.013113432067842767,
+      "new_accuracy": 0.5405,
+      "old_negative_f1": 0.0,
+      "new_negative_f1": 0.0,
+      "delta_negative_f1": 0.0
+    }
+  ],
+  "learned_features": {
+    "artifact_count": 0,
+    "artifact_examples": [],
+    "contractions": {
+      "don't": true,
+      "can't wait": true,
+      "isn't": true
+    }
+  }
+}

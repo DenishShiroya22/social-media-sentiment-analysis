@@ -21,8 +21,22 @@ class PreprocessingConfig:
 
 DEFAULT_CONFIG = PreprocessingConfig()
 
+ESCAPED_PUNCTUATION = {
+    r'\u002c': ',', r'\u0027': "'",
+    r'\u2018': "'", r'\u2019': "'",
+    r'\u201c': '"', r'\u201d': '"',
+}
+ESCAPED_PUNCTUATION_PATTERN = re.compile(
+    r'\\u(?:002c|0027|2018|2019|201c|201d)', re.IGNORECASE
+)
+
 def normalize_unicode(text: str) -> str:
-    return unicodedata.normalize('NFC', text).replace('\u2019', "'").replace('\u2018', "'")
+    """Decode only known escaped punctuation, then normalize actual Unicode."""
+    text = ESCAPED_PUNCTUATION_PATTERN.sub(
+        lambda match: ESCAPED_PUNCTUATION[match.group().lower()], text)
+    return (unicodedata.normalize('NFC', text)
+            .replace('\u2019', "'").replace('\u2018', "'")
+            .replace('\u201c', '"').replace('\u201d', '"'))
 
 def handle_html(text: str) -> str:
     # Strip actual tags before unescaping so encoded literal comparisons survive.

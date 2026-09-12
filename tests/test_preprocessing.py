@@ -25,3 +25,18 @@ def test_bad_type():
 def test_bad_configuration(config):
     with pytest.raises(ValueError):
         clean_text('hello', config)
+
+@pytest.mark.parametrize('raw,expected', [
+    (r"I don\u2019t like this", "i don't like this"),
+    (r"She said \u201cgood\u201d", 'she said "good"'),
+    (r"I can\u2018t", "i can't"),
+    (r"I don\u0027t", "i don't"),
+    (r"red\u002c blue", "red, blue"),
+    (r"I CAN\u2019T", "i can't"),
+    ("I can’t 😡 café", "i can't 😡 café"),
+    ("I don't like this", "i don't like this"),
+    (r"C:\users\docs", r"c:\users\docs"),
+    (r"keep \u1234 untouched", r"keep \u1234 untouched"),
+])
+def test_targeted_unicode_escape_normalization(raw, expected):
+    assert clean_text(raw) == expected
