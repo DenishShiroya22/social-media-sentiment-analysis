@@ -12,3 +12,4 @@ data/processed/*.csv
 *.tmp
 reports/.mpl_cache/
 reports/pytest_results.xml
+.pytest_tmp/

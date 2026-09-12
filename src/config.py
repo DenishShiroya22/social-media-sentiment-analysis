@@ -15,3 +15,4 @@ SPLITS = ('train', 'validation', 'test')
 LABEL_MAP = {0: 'negative', 1: 'neutral', 2: 'positive'}
 LABELS = tuple(LABEL_MAP.values())
 EXPECTED_ROWS = {'train': 45615, 'validation': 2000, 'test': 12284}
+RANDOM_STATE = 42
