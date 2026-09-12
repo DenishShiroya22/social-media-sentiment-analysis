@@ -1,0 +1,740 @@
+{
+  "dataset": "cardiffnlp/tweet_eval",
+  "revision": "b3a375baf0f409c77e6bc7aa35102b7b3534f8be",
+  "configuration": "sentiment",
+  "preprocessing": {
+    "lowercase": true,
+    "strip_urls": true,
+    "mention_strategy": "remove",
+    "preserve_hashtag_words": true,
+    "emoji_strategy": "preserve",
+    "reduce_repeats": false
+  },
+  "train_eda": {
+    "rows": 45615,
+    "columns": [
+      "text",
+      "sentiment",
+      "split"
+    ],
+    "missing_values": {
+      "text": 0,
+      "sentiment": 0,
+      "split": 0
+    },
+    "duplicate_rows": 26,
+    "duplicate_text": 29,
+    "class_counts": {
+      "negative": 7093,
+      "neutral": 20673,
+      "positive": 17849
+    },
+    "class_percentages": {
+      "negative": 15.55,
+      "neutral": 45.321,
+      "positive": 39.13
+    },
+    "split_counts": {
+      "train": 45615
+    },
+    "sentiment_by_split": {
+      "negative": {
+        "train": 7093
+      },
+      "neutral": {
+        "train": 20673
+      },
+      "positive": {
+        "train": 17849
+      }
+    },
+    "characters": {
+      "count": 45615.0,
+      "mean": 106.93285103584347,
+      "std": 26.251516803645902,
+      "min": 10.0,
+      "25%": 89.0,
+      "50%": 113.0,
+      "75%": 128.0,
+      "max": 200.0
+    },
+    "words": {
+      "count": 45615.0,
+      "mean": 19.23744382330374,
+      "std": 4.935989720220856,
+      "min": 1.0,
+      "25%": 16.0,
+      "50%": 20.0,
+      "75%": 23.0,
+      "max": 35.0
+    },
+    "artifacts": {
+      "url": {
+        "rows": 88,
+        "percent": 0.193
+      },
+      "mention": {
+        "rows": 13390,
+        "percent": 29.354
+      },
+      "hashtag": {
+        "rows": 8526,
+        "percent": 18.691
+      },
+      "emoji": {
+        "rows": 0,
+        "percent": 0.0
+      }
+    },
+    "top_tokens": [
+      [
+        "the",
+        38002
+      ],
+      [
+        "to",
+        20952
+      ],
+      [
+        "user",
+        16840
+      ],
+      [
+        "in",
+        13710
+      ],
+      [
+        "i",
+        13612
+      ],
+      [
+        "on",
+        13119
+      ],
+      [
+        "a",
+        13006
+      ],
+      [
+        "and",
+        12699
+      ],
+      [
+        "of",
+        10896
+      ],
+      [
+        "for",
+        9992
+      ],
+      [
+        "is",
+        9706
+      ],
+      [
+        "you",
+        8293
+      ],
+      [
+        "with",
+        7543
+      ],
+      [
+        "tomorrow",
+        7255
+      ],
+      [
+        "be",
+        7252
+      ],
+      [
+        "it",
+        7127
+      ],
+      [
+        "at",
+        7118
+      ],
+      [
+        "may",
+        6679
+      ],
+      [
+        "that",
+        4669
+      ],
+      [
+        "my",
+        4633
+      ]
+    ],
+    "top_bigrams": [
+      [
+        "in the",
+        3589
+      ],
+      [
+        "user user",
+        2678
+      ],
+      [
+        "of the",
+        2566
+      ],
+      [
+        "on the",
+        2365
+      ],
+      [
+        "for the",
+        2350
+      ],
+      [
+        "going to",
+        2223
+      ],
+      [
+        "at the",
+        1974
+      ],
+      [
+        "to the",
+        1840
+      ],
+      [
+        "may be",
+        1497
+      ],
+      [
+        "will be",
+        1283
+      ],
+      [
+        "to see",
+        1283
+      ],
+      [
+        "to be",
+        1224
+      ],
+      [
+        "is the",
+        982
+      ],
+      [
+        "may have",
+        981
+      ],
+      [
+        "user i",
+        958
+      ],
+      [
+        "the 1st",
+        946
+      ],
+      [
+        "want to",
+        770
+      ],
+      [
+        "and the",
+        742
+      ],
+      [
+        "i may",
+        728
+      ],
+      [
+        "be the",
+        719
+      ]
+    ],
+    "tokens_by_sentiment": {
+      "negative": [
+        [
+          "the",
+          5800
+        ],
+        [
+          "to",
+          3250
+        ],
+        [
+          "i",
+          2691
+        ],
+        [
+          "user",
+          2597
+        ],
+        [
+          "a",
+          2341
+        ],
+        [
+          "in",
+          2013
+        ],
+        [
+          "and",
+          1971
+        ],
+        [
+          "is",
+          1898
+        ],
+        [
+          "of",
+          1849
+        ],
+        [
+          "on",
+          1782
+        ],
+        [
+          "may",
+          1570
+        ],
+        [
+          "be",
+          1351
+        ],
+        [
+          "it",
+          1346
+        ],
+        [
+          "for",
+          1320
+        ],
+        [
+          "you",
+          1203
+        ],
+        [
+          "that",
+          1062
+        ],
+        [
+          "with",
+          957
+        ],
+        [
+          "not",
+          946
+        ],
+        [
+          "tomorrow",
+          919
+        ],
+        [
+          "but",
+          906
+        ]
+      ],
+      "neutral": [
+        [
+          "the",
+          17865
+        ],
+        [
+          "to",
+          9219
+        ],
+        [
+          "user",
+          7483
+        ],
+        [
+          "in",
+          6584
+        ],
+        [
+          "on",
+          6319
+        ],
+        [
+          "a",
+          5505
+        ],
+        [
+          "and",
+          5419
+        ],
+        [
+          "of",
+          4929
+        ],
+        [
+          "i",
+          4929
+        ],
+        [
+          "for",
+          4429
+        ],
+        [
+          "is",
+          3840
+        ],
+        [
+          "at",
+          3603
+        ],
+        [
+          "with",
+          3552
+        ],
+        [
+          "you",
+          3312
+        ],
+        [
+          "be",
+          2997
+        ],
+        [
+          "may",
+          2902
+        ],
+        [
+          "tomorrow",
+          2880
+        ],
+        [
+          "it",
+          2805
+        ],
+        [
+          "u002c",
+          2245
+        ],
+        [
+          "that",
+          2003
+        ]
+      ],
+      "positive": [
+        [
+          "the",
+          14337
+        ],
+        [
+          "to",
+          8483
+        ],
+        [
+          "user",
+          6760
+        ],
+        [
+          "i",
+          5992
+        ],
+        [
+          "and",
+          5309
+        ],
+        [
+          "a",
+          5160
+        ],
+        [
+          "in",
+          5113
+        ],
+        [
+          "on",
+          5018
+        ],
+        [
+          "for",
+          4243
+        ],
+        [
+          "of",
+          4118
+        ],
+        [
+          "is",
+          3968
+        ],
+        [
+          "you",
+          3778
+        ],
+        [
+          "tomorrow",
+          3456
+        ],
+        [
+          "with",
+          3034
+        ],
+        [
+          "it",
+          2976
+        ],
+        [
+          "be",
+          2904
+        ],
+        [
+          "at",
+          2851
+        ],
+        [
+          "my",
+          2419
+        ],
+        [
+          "may",
+          2207
+        ],
+        [
+          "day",
+          2107
+        ]
+      ]
+    },
+    "short_examples": [],
+    "long_examples": []
+  },
+  "validation_summary": {
+    "rows": 2000,
+    "columns": [
+      "text",
+      "sentiment",
+      "split"
+    ],
+    "missing_values": {
+      "text": 0,
+      "sentiment": 0,
+      "split": 0
+    },
+    "duplicate_rows": 0,
+    "duplicate_text": 0,
+    "class_counts": {
+      "negative": 312,
+      "neutral": 869,
+      "positive": 819
+    },
+    "class_percentages": {
+      "negative": 15.6,
+      "neutral": 43.45,
+      "positive": 40.95
+    },
+    "split_counts": {
+      "validation": 2000
+    },
+    "sentiment_by_split": {
+      "negative": {
+        "validation": 312
+      },
+      "neutral": {
+        "validation": 869
+      },
+      "positive": {
+        "validation": 819
+      }
+    },
+    "characters": {
+      "count": 2000.0,
+      "mean": 107.542,
+      "std": 26.20220436827555,
+      "min": 28.0,
+      "25%": 91.0,
+      "50%": 113.0,
+      "75%": 128.0,
+      "max": 170.0
+    },
+    "words": {
+      "count": 2000.0,
+      "mean": 19.4445,
+      "std": 5.013031517205557,
+      "min": 4.0,
+      "25%": 16.0,
+      "50%": 20.0,
+      "75%": 23.0,
+      "max": 31.0
+    }
+  },
+  "quality": {
+    "raw": {
+      "train": {
+        "critical_errors": {},
+        "warnings": {
+          "duplicate_rows": 26,
+          "duplicate_text": 29
+        },
+        "counts": {
+          "rows": 45615,
+          "missing_values": {
+            "text": 0,
+            "sentiment": 0,
+            "split": 0
+          },
+          "duplicate_rows": 26,
+          "null_text": 0,
+          "non_string_text": 0,
+          "blank_text": 0,
+          "duplicate_text": 29,
+          "short_text": 0,
+          "long_text": 0
+        }
+      },
+      "validation": {
+        "critical_errors": {},
+        "warnings": {},
+        "counts": {
+          "rows": 2000,
+          "missing_values": {
+            "text": 0,
+            "sentiment": 0,
+            "split": 0
+          },
+          "duplicate_rows": 0,
+          "null_text": 0,
+          "non_string_text": 0,
+          "blank_text": 0,
+          "duplicate_text": 0,
+          "short_text": 0,
+          "long_text": 0
+        }
+      },
+      "test": {
+        "critical_errors": {},
+        "warnings": {},
+        "counts": {
+          "rows": 12284,
+          "missing_values": {
+            "text": 0,
+            "sentiment": 0,
+            "split": 0
+          },
+          "duplicate_rows": 0,
+          "null_text": 0,
+          "non_string_text": 0,
+          "blank_text": 0,
+          "duplicate_text": 0,
+          "short_text": 0,
+          "long_text": 0
+        }
+      }
+    },
+    "processed": {
+      "train": {
+        "critical_errors": {},
+        "warnings": {
+          "duplicate_rows": 26,
+          "duplicate_text": 41
+        },
+        "counts": {
+          "rows": 45615,
+          "missing_values": {
+            "text": 0,
+            "sentiment": 0,
+            "split": 0,
+            "clean_text": 0
+          },
+          "duplicate_rows": 26,
+          "null_text": 0,
+          "non_string_text": 0,
+          "blank_text": 0,
+          "duplicate_text": 41,
+          "short_text": 0,
+          "long_text": 0
+        }
+      },
+      "validation": {
+        "critical_errors": {},
+        "warnings": {},
+        "counts": {
+          "rows": 2000,
+          "missing_values": {
+            "text": 0,
+            "sentiment": 0,
+            "split": 0,
+            "clean_text": 0
+          },
+          "duplicate_rows": 0,
+          "null_text": 0,
+          "non_string_text": 0,
+          "blank_text": 0,
+          "duplicate_text": 0,
+          "short_text": 0,
+          "long_text": 0
+        }
+      },
+      "test": {
+        "critical_errors": {},
+        "warnings": {
+          "duplicate_text": 4
+        },
+        "counts": {
+          "rows": 12284,
+          "missing_values": {
+            "text": 0,
+            "sentiment": 0,
+            "split": 0,
+            "clean_text": 0
+          },
+          "duplicate_rows": 0,
+          "null_text": 0,
+          "non_string_text": 0,
+          "blank_text": 0,
+          "duplicate_text": 4,
+          "short_text": 0,
+          "long_text": 0
+        }
+      }
+    },
+    "cross_split_exact_text": {
+      "train__validation": 0,
+      "train__test": 0,
+      "validation__test": 0
+    },
+    "cross_split_clean_text": {
+      "train__validation": 0,
+      "train__test": 0,
+      "validation__test": 0
+    }
+  },
+  "outputs": {
+    "train": {
+      "path": "data/processed/train_clean.csv",
+      "rows": 45615,
+      "sha256": "6e9cb6b9293e41b8c59bce3dbaf4e05603f860f811ec2150993d2501391a55d3",
+      "removed_rows": 0,
+      "changed_rows": 45120
+    },
+    "validation": {
+      "path": "data/processed/validation_clean.csv",
+      "rows": 2000,
+      "sha256": "52bc0dd94d41d1c15fa52064a71b56fd002c452953dc668ea0d43788291bd166",
+      "removed_rows": 0,
+      "changed_rows": 1984
+    },
+    "test": {
+      "path": "data/processed/test_clean.csv",
+      "rows": 12284,
+      "sha256": "83825125e4f4d091e9781c557068710024a0b5e3791549709066a4a1a0d82ca5",
+      "removed_rows": 0,
+      "changed_rows": 12076
+    }
+  },
+  "environment": {
+    "python": "3.14.7",
+    "packages": {
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "datasets": "5.0.1",
+      "emoji": "2.15.0",
+      "pytest": "9.1.1",
+      "nbformat": "5.11.1",
+      "nbclient": "0.11.0",
+      "ipykernel": "7.3.0"
+    }
+  }
+}

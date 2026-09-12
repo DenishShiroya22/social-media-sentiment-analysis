@@ -1,0 +1,48 @@
+{
+  "dataset": "cardiffnlp/tweet_eval",
+  "revision": "b3a375baf0f409c77e6bc7aa35102b7b3534f8be",
+  "preprocessing": {
+    "lowercase": true,
+    "strip_urls": true,
+    "mention_strategy": "remove",
+    "preserve_hashtag_words": true,
+    "emoji_strategy": "preserve",
+    "reduce_repeats": false
+  },
+  "outputs": {
+    "train": {
+      "path": "data/processed/train_clean.csv",
+      "rows": 45615,
+      "sha256": "6e9cb6b9293e41b8c59bce3dbaf4e05603f860f811ec2150993d2501391a55d3",
+      "removed_rows": 0,
+      "changed_rows": 45120
+    },
+    "validation": {
+      "path": "data/processed/validation_clean.csv",
+      "rows": 2000,
+      "sha256": "52bc0dd94d41d1c15fa52064a71b56fd002c452953dc668ea0d43788291bd166",
+      "removed_rows": 0,
+      "changed_rows": 1984
+    },
+    "test": {
+      "path": "data/processed/test_clean.csv",
+      "rows": 12284,
+      "sha256": "83825125e4f4d091e9781c557068710024a0b5e3791549709066a4a1a0d82ca5",
+      "removed_rows": 0,
+      "changed_rows": 12076
+    }
+  },
+  "environment": {
+    "python": "3.14.7",
+    "packages": {
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "datasets": "5.0.1",
+      "emoji": "2.15.0",
+      "pytest": "9.1.1",
+      "nbformat": "5.11.1",
+      "nbclient": "0.11.0",
+      "ipykernel": "7.3.0"
+    }
+  }
+}

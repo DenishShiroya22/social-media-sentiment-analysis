@@ -1,0 +1,27 @@
+{
+  "dataset": "cardiffnlp/tweet_eval",
+  "configuration": "sentiment",
+  "revision": "b3a375baf0f409c77e6bc7aa35102b7b3534f8be",
+  "label_mapping": {
+    "0": "negative",
+    "1": "neutral",
+    "2": "positive"
+  },
+  "files": {
+    "train": {
+      "rows": 45615,
+      "sha256": "84c762f5497bccd71e1d7e567531acad8ef931b32c068999019544974f18a814",
+      "fingerprint": "10580a91284c8667"
+    },
+    "validation": {
+      "rows": 2000,
+      "sha256": "6d9e827f0d27796647fd39dcdf094607840d97a5250beffce9119191981ce5ee",
+      "fingerprint": "80892b0453684eb8"
+    },
+    "test": {
+      "rows": 12284,
+      "sha256": "8704540e2da3e55e5056bb1ba6e0a0c060729b6f79493336e7a35827b8843796",
+      "fingerprint": "efa7fc846faf923b"
+    }
+  }
+}

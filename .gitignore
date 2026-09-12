@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+venv/
+.env
+.DS_Store
+data/.hf_cache/
+data/raw/*.csv
+data/processed/*.csv
+*.tmp
+reports/.mpl_cache/
+reports/pytest_results.xml

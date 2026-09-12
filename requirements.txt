@@ -1,0 +1,9 @@
+pandas>=2.2,<4
+matplotlib>=3.9,<4
+datasets>=3,<6
+huggingface-hub>=0.25,<2
+emoji>=2.14,<3
+pytest>=8,<10
+nbformat>=5.10,<6
+nbclient>=0.10,<1
+ipykernel>=6.29,<8

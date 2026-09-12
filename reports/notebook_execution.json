@@ -1,0 +1,10 @@
+{
+  "01_data_understanding_eda.ipynb": {
+    "status": "passed",
+    "executed_code_cells": 5
+  },
+  "02_text_preprocessing.ipynb": {
+    "status": "passed",
+    "executed_code_cells": 5
+  }
+}
