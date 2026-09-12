@@ -56,13 +56,44 @@ Small, ordered validation error samples indicate hypotheses, not generalizable c
 code("""display(Markdown((root / 'reports' / 'error_analysis.md').read_text(encoding='utf-8')))
 for label, features in metrics['linear_features'][winner_id].items():
     display({label: [item['feature'] for item in features[:10]]})""")
-md("""## Selected candidate and next work
+md("""## Baseline candidate before focused tuning
 
-The winning artifact is a VALIDATION-SELECTED CANDIDATE, not a final test-evaluated model. It is persisted as a fitted sklearn Pipeline and its reloaded VALIDATION predictions were checked for exact equality. The bounded Random Forest remains a full-TRAIN baseline; the report records its runtime and weakness on the minority negative class. Next, test a small set of focused hypotheses on VALIDATION, freeze one procedure, and only then unlock final TEST evaluation. Historical English tweets, sarcasm, context loss and brand-domain shift remain limitations.""")
+The winning artifact is a VALIDATION-SELECTED CANDIDATE, not a final test-evaluated model. It is persisted as a fitted sklearn Pipeline and its reloaded VALIDATION predictions were checked for exact equality. The bounded Random Forest remains a full-TRAIN baseline; the report records its runtime and weakness on the minority negative class. The focused TRAIN-CV tuning and frozen development candidate appear below. Final TEST evaluation is a separate future task. Historical English tweets, sarcasm, context loss and brand-domain shift remain limitations.""")
 code("""metadata = json.loads((root / 'models' / 'candidates' / 'best_candidate_metadata.json').read_text(encoding='utf-8'))
 display(metadata)
 assert metadata['reload_predictions_match']
 assert 'test_accuracy' not in json.dumps(metrics).lower()""")
+
+md("""## Corrected escaped punctuation
+
+The source contains literal escaped punctuation in TRAIN and VALIDATION, notably the strings for a comma and curly apostrophe. The preprocessing step now maps only known punctuation escapes before NFC normalization. Existing Unicode, emoji, and unrelated backslashes are preserved. The full before/after baseline comparison is below; TEST content was not explored.""")
+code("""impact = json.loads((root / 'reports' / 'preprocessing_impact.json').read_text(encoding='utf-8'))
+display({'affected_rows': impact['affected_raw_rows'],
+         'learned_features': impact['learned_features']})
+display(pd.DataFrame(impact['after'])[['experiment_id','old_macro_f1','new_macro_f1','delta_macro_f1','new_accuracy']])""")
+md("""## Focused TRAIN-only cross-validation
+
+The corrected baseline retains combined TF-IDF Logistic Regression and LinearSVC as the two leading linear candidates. Each uses three stratified TRAIN folds, seed 42, and macro-F1 scoring. A sklearn Pipeline includes both FeatureUnion and classifier, so vocabulary and IDF are refitted within each fold. VALIDATION is excluded from the grid search; TEST is locked. Three folds and serial execution contain memory and runtime for sparse matrices with over 200,000 columns. The staged search covers five C values and two class weights per model, then five controlled feature settings near the best classifier configuration.""")
+code("""tuning = json.loads((root / 'reports' / 'tuning_metrics.json').read_text(encoding='utf-8'))
+search = pd.read_csv(root / 'reports' / 'tuning_results.csv')
+display(tuning['cv'])
+display(search.sort_values(['model','stage','rank_within_stage']).groupby(['model','stage']).head(3)[['model','stage','params','mean_cv_macro_f1','std_cv_macro_f1','mean_fit_seconds']])""")
+md("""## Final VALIDATION checkpoint and uncertainty
+
+Both finalists were fitted on all TRAIN after their CV configurations were fixed. They were then evaluated once on VALIDATION. A paired bootstrap resamples the same validation rows for both predictions and measures the macro-F1 difference. It describes sensitivity, not formal proof or external generalization.""")
+code("""display(Markdown((root / 'reports' / 'tuning_summary.md').read_text(encoding='utf-8')))
+display(Markdown((root / 'reports' / 'model_uncertainty.md').read_text(encoding='utf-8')))""")
+md("""## Errors, confidence, and frozen development candidate
+
+Error cues are descriptive. Logistic Regression's maximum probability and LinearSVC's top-versus-second decision margin have different scales. The selected candidate is frozen with its preprocessing and feature configuration, validation scores, artifact checksum and exact reload-prediction check. TEST has not been evaluated.""")
+code("""display(Markdown((root / 'reports' / 'error_analysis.md').read_text(encoding='utf-8')))
+display(Markdown((root / 'reports' / 'model_confidence.md').read_text(encoding='utf-8')))
+frozen = json.loads((root / 'models' / 'candidates' / 'frozen_candidate_metadata.json').read_text(encoding='utf-8'))
+display({'status':frozen['status'], 'selected_model':frozen['selected_model'],
+         'artifact_sha256':frozen['artifact_sha256'],
+         'reload_predictions_match':frozen['reload_predictions_match']})
+assert frozen['reload_predictions_match']
+assert 'TEST NOT EVALUATED' in frozen['status']""")
 
 notebook = nbf.v4.new_notebook(cells=cells)
 notebook.metadata.kernelspec = {'display_name':'Python 3', 'language':'python', 'name':'python3'}

@@ -1,82 +1,62 @@
 # Classical sentiment modeling
 
-## Objective and data contract
+## Contract and leakage boundary
 
-Compare TRAIN-fitted sparse TF-IDF representations and classical classifiers on the official TweetEval VALIDATION split. Primary selection metric: macro-F1, giving negative, neutral and positive equal weight. Secondary metrics: accuracy, macro precision/recall, weighted-F1, per-class precision/recall/F1, and confusion matrix. Input CSVs have text, clean_text, sentiment and split; clean_text is used for modeling.
+Official TweetEval sentiment TRAIN has 45,615 posts: negative 7,093, neutral 20,673, positive 17,849. VALIDATION has 2,000. TEST has 12,284 and is locked. Its only permitted checks are existence, schema, count, split membership and checksum. No TEST text or labels enter model development. Vocabulary, IDF and classifier fitting occur on TRAIN; CV refits the full sklearn Pipeline inside each TRAIN fold. Each tuned finalist is evaluated once on VALIDATION after its configuration is fixed by TRAIN CV. Earlier fixed baselines were also compared on VALIDATION.
 
-TRAIN has 45,615 rows (negative 7,093; neutral 20,673; positive 17,849); VALIDATION has 2,000. TEST has 12,284 rows and remains locked. No random splitting, oversampling, feature fitting on validation, or test-label analysis occurs. The test file is read only for header, split membership, row count and checksum; its labels and text are never passed to development functions.
+Macro-F1 is the primary metric because the negative class is less common. Accuracy, macro precision/recall, weighted F1 and per-class precision/recall/F1 are also recorded. Random seed: 42.
 
-## TF-IDF and n-grams
+## Corrected preprocessing and baselines
 
-TF-IDF combines term frequency in a post with inverse document frequency across the TRAIN corpus. A common term gets less weight than a discriminative term. Word unigrams for not good are not and good; the bigram not good retains phrase context. Character 3–5-grams can represent fragments of contractions, repeated letters, emoticons and punctuation that word tokenization may miss.
+Literal escaped punctuation affected 5,111 TRAIN rows and 206 VALIDATION rows. Explicit mappings fix escaped apostrophes, quotation marks and commas without blanket Unicode decoding. Corrected learned features contain zero u2019/u002c artifacts; don't, can't wait and isn't appear in the TRAIN-fitted vocabulary. The full audit and old/new deltas are in [preprocessing impact](reports/preprocessing_impact.md).
 
-Compared representations:
-
-| Name | Analyzer | N-grams | Minimum document frequency | Maximum document frequency | Feature cap |
+| Experiment | Features | Classifier | Accuracy | Macro-F1 | Negative F1 |
 |---|---|---|---:|---:|---:|
-| word_unigram | word | 1 | 2 | 0.95 | 100,000 |
-| word_bigram | word | 1–2 | 2 | 0.95 | 100,000 |
-| character | char_wb | 3–5 | 2 | 0.95 | 120,000 |
-| combined | FeatureUnion of word_bigram + character | as above | as above | as above | 220,000 maximum nominal |
+| exp04 | combined | logistic_regression | 0.7000 | 0.6580 | 0.5130 |
+| exp07 | combined | linear_svm | 0.6830 | 0.6536 | 0.5451 |
+| exp03 | character | logistic_regression | 0.6900 | 0.6463 | 0.4972 |
+| exp06 | character | linear_svm | 0.6705 | 0.6382 | 0.5219 |
+| exp02 | word_bigram | logistic_regression | 0.6810 | 0.6367 | 0.4921 |
+| exp05 | word_bigram | linear_svm | 0.6680 | 0.6337 | 0.5115 |
+| exp01 | word_unigram | logistic_regression | 0.6730 | 0.6230 | 0.4600 |
+| exp08 | word_bigram | naive_bayes | 0.6260 | 0.4592 | 0.0190 |
+| exp09 | word_bigram | random_forest | 0.5405 | 0.3651 | 0.0000 |
 
-All use sublinear TF, L2 normalization, float32, and lowercase=False because clean_text is already lowercased. Word token pattern retains apostrophe contractions. No custom tokenizer. Word trigrams are deferred because the controlled matrix already covers the main representation differences at reasonable resource cost.
+The corrected ranking retains combined word (1,2) plus character (3,5) TF-IDF Logistic Regression first and LinearSVC second. Character-only linear models follow. The bounded Random Forest and MultinomialNB are weak on negative F1 and were not tuned. These rankings compare specific configurations, not all possible algorithms.
 
-## Algorithms and experiment matrix
+## TRAIN-only focused search
 
-| ID | Features | Model |
-|---|---|---|
-| exp01 | word_unigram | Logistic Regression |
-| exp02 | word_bigram | Logistic Regression |
-| exp03 | character | Logistic Regression |
-| exp04 | combined | Logistic Regression |
-| exp05 | word_bigram | LinearSVC |
-| exp06 | character | LinearSVC |
-| exp07 | combined | LinearSVC |
-| exp08 | word_bigram | MultinomialNB |
-| exp09 | word_bigram | Random Forest |
+Three-fold StratifiedKFold, shuffled with seed 42, scores f1_macro. Three folds and serial execution bound runtime and memory for sparse combined matrices. Each classifier searched C = 0.25, 0.5, 1, 2, 4 and class_weight = None or balanced: 10 settings per model. A second stage compared five feature settings near the best classifier: equal weights, character weight 0.75 or 1.25, word min_df 3, or character n-grams (3,6). This is 30 configurations and 90 fold fits total. There is no exhaustive Cartesian feature search.
 
-Logistic Regression: C=1, lbfgs, max_iter=350. LinearSVC: C=1, max_iter=3000. Naive Bayes: alpha=1. Random Forest: 80 trees, depth 24, minimum leaf 2, sqrt feature sampling, two jobs. Applicable seeds use 42. These are baselines, not exhaustive hyperparameter tuning. Full TRAIN is used for every experiment, including Random Forest.
+| Model | Best TRAIN-CV configuration | Mean macro-F1 | CV std |
+|---|---|---:|---:|
+| logistic_regression | {'classifier__C': 1.0, 'classifier__class_weight': 'balanced', 'features__transformer_weights': {'character': 1.25, 'word': 1.0}} | 0.6545 | 0.0021 |
+| linear_svm | {'classifier__C': 0.25, 'classifier__class_weight': 'balanced'} | 0.6517 | 0.0016 |
 
-## Executed validation results
+All candidate parameters, ranks, fold scores and runtimes are in [tuning results](reports/tuning_results.csv). TF-IDF is inside each CV Pipeline, preventing feature fitting on a held-out fold. No validation or TEST row enters CV.
 
-| Experiment | Model | Features | Accuracy | Macro-F1 | Negative F1 | Neutral F1 | Positive F1 | Fit seconds |
-|---|---|---|---:|---:|---:|---:|---:|---:|
-| exp04 | logistic_regression | combined | 0.7050 | 0.6646 | 0.5251 | 0.7160 | 0.7525 | 15.94 |
-| exp07 | linear_svm | combined | 0.6905 | 0.6631 | 0.5626 | 0.6923 | 0.7344 | 6.84 |
-| exp03 | logistic_regression | character | 0.6920 | 0.6500 | 0.5097 | 0.7076 | 0.7329 | 12.73 |
-| exp06 | linear_svm | character | 0.6745 | 0.6393 | 0.5133 | 0.6824 | 0.7221 | 4.86 |
-| exp02 | logistic_regression | word_bigram | 0.6805 | 0.6363 | 0.4921 | 0.7002 | 0.7166 | 4.23 |
-| exp05 | linear_svm | word_bigram | 0.6700 | 0.6362 | 0.5160 | 0.6776 | 0.7151 | 1.66 |
-| exp01 | logistic_regression | word_unigram | 0.6725 | 0.6236 | 0.4640 | 0.6921 | 0.7146 | 1.35 |
-| exp08 | naive_bayes | word_bigram | 0.6255 | 0.4627 | 0.0314 | 0.6660 | 0.6905 | 0.09 |
-| exp09 | random_forest | word_bigram | 0.5270 | 0.3520 | 0.0000 | 0.6375 | 0.4184 | 1.16 |
+## Finalist VALIDATION checkpoint
 
-These numbers were produced by the executed full-data run; reports/model_comparison.csv and reports/model_metrics.json contain unrounded values, all requested metrics, parameters and environment versions. In this run, combined features improved both leading linear models over their word-only variants. Random Forest was fast under the bounded configuration but missed every negative validation example, so its macro-F1 was poor. Naive Bayes was also weak on negative recall (0.0160). This is a comparison of these fixed configurations only, not a general ranking of algorithms.
+| Model | Accuracy | Macro precision | Macro recall | Macro-F1 | Negative F1 | Neutral F1 | Positive F1 | Fit s | Predict s |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| logistic_regression | 0.6925 | 0.6642 | 0.6891 | 0.6728 | 0.5850 | 0.6861 | 0.7475 | 31.2 | 0.480 |
+| linear_svm | 0.6975 | 0.6693 | 0.6771 | 0.6726 | 0.5710 | 0.6994 | 0.7473 | 16.9 | 0.508 |
 
-## Validation-selected candidate and interpretation
+Full per-class precision and recall, confusion matrices and version details are in [tuning metrics](reports/tuning_metrics.json).
+LR minus SVM macro-F1 is +0.0003; a 2,000-draw paired row bootstrap gives a 95% percentile interval [-0.0117, +0.0128]. It crosses zero, so this validation sample does not distinguish the two reliably. It is a sensitivity diagnostic, not formal proof. See [uncertainty analysis](reports/model_uncertainty.md).
 
-exp04, combined TF-IDF plus Logistic Regression, is selected by VALIDATION macro-F1 0.664563 (accuracy 0.7050). The saved models/candidates/best_candidate.joblib is a fitted sklearn Pipeline. Metadata includes SHA-256 and confirms predictions after reload exactly matched pre-save VALIDATION predictions. This is not the final test-evaluated model.
+The frozen development candidate is **logistic_regression** by validation macro-F1, with CV stability, negative-class F1 and runtime considered as secondary evidence. Its validation macro-F1 is 0.6728; negative recall is 0.6731. The small LR advantage should not be interpreted as a firm generalization advantage. **TEST HAS NOT BEEN EVALUATED.**
 
-Winner VALIDATION confusion matrix, rows true and columns predicted in negative, neutral, positive order:
+## Error and confidence review
 
-    [[141, 135, 36],
-     [ 59, 667, 143],
-     [ 25, 192, 602]]
+Both finalists have all six off-diagonal confusion counts and descriptive validation cue error rates in [error analysis](reports/error_analysis.md). LR gets more actual negative posts correct but also calls more neutral posts negative; SVM has slightly higher accuracy and neutral F1. Negation error rates are equal in this descriptive cue grouping; contraction and emoticon groups slightly favor SVM. Four posts have five words or fewer, too few for a meaningful short-text comparison.
+The [confidence report](reports/model_confidence.md) uses LR maximum probability and SVM top-versus-second decision margin separately. Incorrect predictions have lower median values for each. Neither measure guarantees calibration, and some high-value predictions are wrong. No SVM probability calibration was added.
 
-The largest off-diagonal counts are positive→neutral (192), neutral→positive (143) and negative→neutral (135). Negative recall is 0.4519, so minority-class performance needs focused attention. Validation error_analysis.md gives controlled examples. Negative examples include negative affect and negation within event/price context; neutral/positive boundaries can depend on unstated attitude or future expectations. Samples are illustrative, not proof of causes. The error report counts 102 misclassified posts with explicit negation tokens and 178 with exclamation/question marks.
+## Frozen artifact and reproducibility
 
-TRAIN-learned Logistic Regression coefficients associate negative with sad, not, worst and :( fragments; positive with can't wait, happy, good, great and :) fragments. Neutral top coefficients include do you and last day. These are associations in fitted TRAIN features, not causal explanations; some weights reflect dataset topics or annotation patterns.
+Artifact: models/candidates/frozen_candidate.joblib (4,329,149 bytes; SHA-256 ef5e641c7368cacc2d17938fc2d05eaad86f45df538417c800c6a9afe1c8af0b). Reloaded VALIDATION predictions exactly match the pre-save predictions. [Machine-readable metadata](models/candidates/frozen_candidate_metadata.json) fixes preprocessing, word/character TF-IDF, feature weights, classifier, CV strategy, selection rule, versions and validation metrics.
+Run python -m src.data_acquisition, python -m src.pipeline, python -m src.model_pipeline and python -m src.tuning_pipeline in that order from the repository root; then python -m pytest -q and python scripts/execute_notebooks.py. The tuning search is intentionally CPU intensive.
 
-## Artifacts, execution and limitations
+## Limits and next work
 
-Run from repository root:
-
-    python -m src.data_acquisition
-    python -m src.pipeline
-    python -m src.model_pipeline
-    python -m pytest -q
-    python scripts/execute_notebooks.py
-
-Outputs: reports/model_comparison.csv; reports/model_metrics.json; reports/model_summary.md; reports/error_analysis.md; modeling figures under reports/figures/modeling; models/candidates/best_candidate.joblib and metadata; notebooks/03_model_development.ipynb. The 4.4 MB artifact is checked into this repository. Only load trusted joblib files; regenerate with the modeling command if library versions change.
-
-Historical English tweets differ from contemporary brand comments. Sarcasm, context, short messages, domain drift and annotation ambiguity remain. Macro-F1 improves class balance awareness but negative recall remains modest. A validation-selected winner may still disappoint on untouched data. Next work: focused tuning of the leading linear candidates, evaluate minority-class tradeoffs on VALIDATION, freeze the full procedure, then run one final locked TEST evaluation. Do not refit on TRAIN+VALIDATION or compute TEST metrics during the current development iteration.
+These are development results on historical English tweets. Brand-domain shift, sarcasm, absent context, ambiguous labels and class imbalance remain. Selection on a single validation split can be optimistic. Raw and processed dataset CSVs are excluded from Git; upstream rights need review before redistribution. Next: review the frozen methodology, decide whether to refit on TRAIN+VALIDATION, and perform exactly one locked TEST evaluation in a separate task. No TEST predictive result exists in this work.

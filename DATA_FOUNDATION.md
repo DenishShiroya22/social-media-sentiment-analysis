@@ -1,10 +1,10 @@
-# Phase 1: Data and NLP foundation
+# Data and NLP foundation
 
 ## Objective and scope
 Prepare clean, reproducible official TweetEval sentiment splits for future classical sentiment modeling. Acquisition, integrity checks, descriptive analysis, conservative cleaning, notebooks, tests and reports are included. Model fitting, TF-IDF, tuning, APIs, collection integrations, dashboards and deployment are excluded.
 
 ## Architecture and responsibilities
-Hugging Face → acquisition → normalized official raw splits → validation → TRAIN EDA → stateless preprocessing → validated processed splits → Phase 2.
+Hugging Face → acquisition → normalized official raw splits → validation → TRAIN EDA → stateless preprocessing → validated processed splits → classical modeling.
 
 | Module | Responsibility |
 |---|---|
@@ -41,8 +41,8 @@ python scripts/execute_notebooks.py
 ```
 See README.md for virtual environments and exact revision download commands. Outputs: three raw CSVs; raw provenance manifest; three processed CSVs; processed checksum/config/environment manifest; reports/data_quality.json; reports/phase1_metrics.json; reports/phase1_summary.md; five PNG figures; two executed notebooks; notebook execution record. Data CSVs/caches are excluded from Git for size/privacy; manifests and reproducible code remain. The generated summary and JSON provide actual counts, including changed/removed rows.
 
-## Leakage prevention and exact Phase 2 handoff
-Consume `data/processed/train_clean.csv` and `validation_clean.csv`; reserve `test_clean.csv`. Use clean_text as the initial model input and sentiment as the target. Fit vocabulary/IDF and models on TRAIN only; apply fitted transforms to VALIDATION. Choose methods/settings using VALIDATION. Access TEST performance only after final selection. Do not concatenate splits or deduplicate across boundaries. Preserve original text for traceability. Phase 2 must consider negation-aware tokenization and explicitly include preserved emoji/punctuation if desired; no such learned or fitted transformation exists here.
+## Leakage prevention and modeling handoff
+Consume `data/processed/train_clean.csv` and `validation_clean.csv`; reserve `test_clean.csv`. Use clean_text as the initial model input and sentiment as the target. Fit vocabulary/IDF and models on TRAIN only; apply fitted transforms to VALIDATION. Choose methods/settings using VALIDATION. Access TEST performance only after final selection. Do not concatenate splits or deduplicate across boundaries. Preserve original text for traceability. Modeling should consider negation-aware tokenization and explicitly include preserved emoji/punctuation if desired; no such learned or fitted transformation exists here.
 
 ## Known limitations
 Historical English benchmark, generic sentiment rather than aspect labels, class imbalance, sarcasm/context difficulty, demographic/platform bias, imperfect annotation and exact-only duplicate checks. Lowercasing loses capitalization signals. The observed zero emoji prevalence limits empirical assessment of emoji handling on this snapshot. Network is needed for initial acquisition, not verified local reruns. Multi-file publication is not transactional, but the processed manifest is written last and records each output hash; rerun after an interrupted pipeline. See README ethics/privacy and source terms before redistribution or future collection.

@@ -1,66 +1,47 @@
 # Social Media Sentiment Analysis
 
-## Problem and objective
+This public project builds a reproducible sentiment-modeling foundation for future brand and product monitoring. It acquires the official Cardiff NLP TweetEval sentiment splits, validates and conservatively cleans them, compares nine classical TF-IDF baselines, and tunes the two leading linear pipelines using TRAIN-only cross-validation. Live collection, analytics and a dashboard remain future work.
 
-Build a reproducible sentiment-analysis foundation for future brand/product monitoring. Public social-media language is noisy and context-dependent; a benchmark classifier helps establish measurable behavior before any live collection is attempted. This repository acquires Cardiff NLP TweetEval sentiment, validates the official splits, cleans text conservatively, and compares classical classifiers on the official validation set.
+## Current development result
 
-The intended product flow is Brand/Product → Public Social Media → Collection → Cleaning → Sentiment Model → Negative / Neutral / Positive → Analytics → Dashboard. Collection, analytics, dashboard and deployment are future work.
+The **frozen development candidate** is combined word-and-character TF-IDF with Logistic Regression. On the official VALIDATION split it reached macro-F1 **0.6728** and accuracy **0.6925**; negative-class F1 was **0.5850**. Its configuration was selected after stratified CV within TRAIN. The LinearSVC finalist reached macro-F1 0.6726. Their paired-bootstrap difference is small and uncertain. **TEST HAS NOT BEEN EVALUATED.** No TEST predictions, predictive metrics, confusion matrices or error analysis were generated.
 
-## Current status and result
+The corrected nine-baseline comparison is in [model comparison](reports/model_comparison.csv). The [preprocessing impact](reports/preprocessing_impact.md), [tuning summary](reports/tuning_summary.md), [uncertainty](reports/model_uncertainty.md), [errors](reports/error_analysis.md), and [confidence/margins](reports/model_confidence.md) provide the evidence behind selection. These are historical tweet-validation results, not a performance claim for current brand data.
 
-Nine controlled full-TRAIN experiments have run with word and character TF-IDF. Combined word (1,2) + character (3,5) TF-IDF with Logistic Regression is the current VALIDATION-SELECTED CANDIDATE: macro-F1 0.6646, accuracy 0.7050. It is not final test performance. TEST remains locked; there are no test predictions or test metrics. Full comparison, per-class results, confusion matrices and limitations are in reports/model_summary.md and MODELING.md.
+## Data and workflow
 
-## Dataset and ethics
+Source: [Cardiff NLP TweetEval](https://huggingface.co/datasets/cardiffnlp/tweet_eval), sentiment configuration, immutable revision recorded in [the acquisition manifest](data/raw/manifest.json). Citation: Francesco Barbieri, Jose Camacho-Collados, Luis Espinosa Anke and Leonardo Neves (2020), [TweetEval: Unified Benchmark and Comparative Evaluation for Tweet Classification](https://aclanthology.org/2020.findings-emnlp.148/). The source card lists the dataset license as unknown; review upstream terms before redistribution. Raw and processed dataset CSVs are deliberately excluded from Git and can be regenerated.
 
-Dataset: [Cardiff NLP TweetEval](https://huggingface.co/datasets/cardiffnlp/tweet_eval), configuration sentiment. The recorded source revision and hashes are in data/raw/manifest.json. Official splits: TRAIN 45,615; VALIDATION 2,000; TEST 12,284. Labels: 0 negative, 1 neutral, 2 positive. No random resplit or class rebalancing.
+Official split sizes: TRAIN 45,615; VALIDATION 2,000; TEST 12,284. Labels are negative, neutral and positive. No resplitting or oversampling occurs. The pipeline preserves original text, labels, order and split membership. It normalizes only known escaped punctuation such as literal backslash-u2019 and backslash-u002c, plus actual Unicode punctuation, while retaining contractions, emoji, hashtags and sentiment punctuation. See [data foundation](DATA_FOUNDATION.md).
 
-Citation: Francesco Barbieri, Jose Camacho-Collados, Luis Espinosa Anke, Leonardo Neves (2020), [TweetEval: Unified Benchmark and Comparative Evaluation for Tweet Classification](https://aclanthology.org/2020.findings-emnlp.148/), Findings of EMNLP. The upstream dataset card lists the license as unknown; review original terms before redistribution.
+The sequence is data foundation → preprocessing → classical modeling → focused TRAIN CV tuning → VALIDATION checkpoint → frozen development candidate. A final methodology review and one locked TEST evaluation are future work; live social-media integration and analytics come after that.
 
-Future collection should use public content only and respect platform terms. Usernames are unnecessary for sentiment modeling. Predictions are fallible, especially with sarcasm and missing context; social-media users do not represent all customers. Labels are not objective psychological facts. Avoid storing unnecessary personally identifiable information.
+## Reproduce
 
-## Repository layout
-
-    src/                  acquisition, validation, preprocessing, TF-IDF, models, evaluation, pipelines
-    tests/                offline unit and fixture integration tests
-    notebooks/            data understanding, preprocessing, model development
-    data/raw/             official split CSVs and provenance manifest
-    data/processed/       clean split CSVs and processing manifest
-    models/candidates/    saved validation-selected candidate and metadata
-    reports/              executed quality and modeling results
-    reports/figures/      TRAIN EDA and VALIDATION model plots
-    scripts/              notebook generation and execution
-
-Large datasets and Hugging Face caches are excluded from Git. The 4.4 MB candidate artifact is included with checksum metadata so the pushed repository contains an inspectable result; regenerate it from source if needed. Only load joblib artifacts from trusted repositories.
-
-## Installation
-
-Python 3.11 or newer. From the repository root on Windows PowerShell:
+Use Python 3.11 or newer. From the repository root:
 
     python -m venv .venv
     .\.venv\Scripts\python -m pip install -r requirements.txt
-
-For Linux/macOS, activate a virtual environment with source .venv/bin/activate and use python in the commands below. requirements-lock.txt records the tested Windows/Python 3.14 package set; requirements.txt is the portable dependency specification.
-
-## Reproduce data and models
-
     .\.venv\Scripts\python -m src.data_acquisition
     .\.venv\Scripts\python -m src.pipeline
     .\.venv\Scripts\python -m src.model_pipeline
+    .\.venv\Scripts\python -m src.tuning_pipeline
     .\.venv\Scripts\python -m pytest -q
+    .\.venv\Scripts\python scripts\create_notebooks.py
+    .\.venv\Scripts\python scripts\create_model_notebook.py
     .\.venv\Scripts\python scripts\execute_notebooks.py
 
-Acquisition reuses checksum-verified local files and otherwise downloads the configured immutable source revision. To refresh deliberately, use python -m src.data_acquisition --force --revision with a reviewed commit hash. If download fails, the command raises an error; no unrelated dataset is substituted.
+On Linux/macOS, use .venv/bin/python instead. The acquisition command reuses checksum-verified local files or downloads the pinned source revision. The test suite uses offline fixtures; [GitHub Actions](.github/workflows/tests.yml) runs it on pushes and pull requests without downloading TweetEval. requirements-lock.txt records the tested local package set, while requirements.txt specifies portable ranges.
 
-The modeling command requires processed TRAIN, VALIDATION and TEST files. It loads TRAIN and VALIDATION labels, mechanically checks TEST existence/schema/split/count/checksum, fits TF-IDF and classifiers on TRAIN only, ranks by VALIDATION macro-F1, writes reports and plots, then saves and reload-verifies the candidate. It never computes TEST predictions. Re-running is deterministic apart from recorded wall-clock times.
+The saved [frozen candidate metadata](models/candidates/frozen_candidate_metadata.json) records preprocessing, TF-IDF, weights, classifier, CV, versions, validation metrics and artifact SHA-256. The fitted joblib artifact contains vectorizer state and classifier coefficients, not training-row arrays. Load joblib only from trusted sources; regenerate it if library versions differ. There is no software LICENSE yet; public visibility does not itself grant reuse rights.
 
-## Data contract and modeling choices
+## Repository map and limits
 
-Processed files data/processed/train_clean.csv, validation_clean.csv and test_clean.csv contain unchanged original text, clean_text, standardized sentiment and official split membership. Optional metadata is preserved. Cleaning lowercases, normalizes Unicode/HTML/whitespace, removes URLs and mentions, and retains hashtag words. Emoji, negation, contractions, punctuation and repeated letters remain. Stopword filtering, stemming and lemmatization are disabled.
+- src/: acquisition, validation, cleaning, feature extraction, modeling, tuning and evaluation.
+- data/raw and data/processed: ignored split CSVs plus tracked provenance manifests.
+- notebooks/: executed data, preprocessing and model-development notebooks.
+- reports/: executed data quality, baseline, tuning, uncertainty and error results.
+- models/candidates/: fitted development artifacts and metadata.
+- tests/: offline behavior and leakage-boundary checks.
 
-Word TF-IDF uses a contraction-preserving token pattern; character TF-IDF can capture punctuation and noisy spelling. The compared algorithms are Logistic Regression, LinearSVC, MultinomialNB and a bounded Random Forest. Macro-F1 is primary because negative is the minority class. See MODELING.md for exact parameters and the controlled experiment matrix.
-
-## Leakage policy and limitations
-
-Vocabulary, IDF and classifier weights are fitted only on TRAIN. VALIDATION supports model comparison and error analysis. TEST is reserved for one final evaluation after procedure freeze; neither refitting on TRAIN+VALIDATION nor final TEST evaluation is implemented here. The dataset is historical English Twitter text, not brand-specific current customer data. The winner is a development candidate, and validation performance may overestimate future-domain performance. Exact duplicate checks do not detect paraphrases, and tokenization choices may still omit some Unicode emoji cues.
-
-See [data-foundation technical record](PHASE1.md) and [modeling methodology](MODELING.md) for implementation details.
+Historical English tweets may differ sharply from present-day brand comments. Sarcasm, missing conversational context, annotation ambiguity, class imbalance and domain shift remain. Usernames are unnecessary for sentiment modeling; future collection should respect platform terms and avoid unnecessary personal data. Predictions are fallible and should not be treated as objective psychological facts.
