@@ -1,0 +1,303 @@
+{
+  "status": "FROZEN DEVELOPMENT CANDIDATE \u2014 TEST NOT EVALUATED",
+  "selected_model": "logistic_regression",
+  "finalists": {
+    "logistic_regression": {
+      "cv": {
+        "model": "logistic_regression",
+        "stage": "features",
+        "params": "{\"classifier__C\": 1.0, \"classifier__class_weight\": \"balanced\", \"features__transformer_weights\": {\"character\": 1.25, \"word\": 1.0}}",
+        "mean_cv_macro_f1": 0.654461997478872,
+        "std_cv_macro_f1": 0.002081632413306979,
+        "rank_within_stage": 1,
+        "mean_fit_seconds": 27.850745995839436,
+        "mean_score_seconds": 3.6359822750091553,
+        "fold_scores": "[0.6573521074045712, 0.653501956659349, 0.6525319283726959]"
+      },
+      "params": {
+        "classifier__C": 1.0,
+        "classifier__class_weight": "balanced",
+        "features__transformer_weights": {
+          "character": 1.25,
+          "word": 1.0
+        }
+      },
+      "validation": {
+        "accuracy": 0.6925,
+        "macro_precision": 0.6642144985624875,
+        "macro_recall": 0.6890724137559582,
+        "macro_f1": 0.6728487359192367,
+        "weighted_f1": 0.6954599637609757,
+        "per_class": {
+          "negative": {
+            "precision": 0.5172413793103449,
+            "recall": 0.6730769230769231,
+            "f1": 0.584958217270195
+          },
+          "neutral": {
+            "precision": 0.7097170971709718,
+            "recall": 0.663981588032221,
+            "f1": 0.6860879904875149
+          },
+          "positive": {
+            "precision": 0.765685019206146,
+            "recall": 0.7301587301587301,
+            "f1": 0.7475
+          }
+        },
+        "confusion_matrix": [
+          [
+            210,
+            72,
+            30
+          ],
+          [
+            139,
+            577,
+            153
+          ],
+          [
+            57,
+            164,
+            598
+          ]
+        ],
+        "classification_report": {
+          "negative": {
+            "precision": 0.5172413793103449,
+            "recall": 0.6730769230769231,
+            "f1-score": 0.584958217270195,
+            "support": 312.0
+          },
+          "neutral": {
+            "precision": 0.7097170971709718,
+            "recall": 0.663981588032221,
+            "f1-score": 0.6860879904875149,
+            "support": 869.0
+          },
+          "positive": {
+            "precision": 0.765685019206146,
+            "recall": 0.7301587301587301,
+            "f1-score": 0.7475,
+            "support": 819.0
+          },
+          "accuracy": 0.6925,
+          "macro avg": {
+            "precision": 0.6642144985624875,
+            "recall": 0.6890724137559582,
+            "f1-score": 0.6728487359192367,
+            "support": 2000.0
+          },
+          "weighted avg": {
+            "precision": 0.7026097492581177,
+            "recall": 0.6925,
+            "f1-score": 0.6954599637609757,
+            "support": 2000.0
+          }
+        }
+      },
+      "fit_seconds": 31.21534309996059,
+      "prediction_seconds": 0.47984420001739636,
+      "error_cues": {
+        "negation": {
+          "rows": 330,
+          "errors": 123,
+          "error_rate": 0.37272727272727274
+        },
+        "contraction": {
+          "rows": 767,
+          "errors": 256,
+          "error_rate": 0.33376792698826596
+        },
+        "emoticon": {
+          "rows": 52,
+          "errors": 11,
+          "error_rate": 0.21153846153846154
+        },
+        "punctuation": {
+          "rows": 619,
+          "errors": 184,
+          "error_rate": 0.2972536348949919
+        },
+        "short_5_words": {
+          "rows": 4,
+          "errors": 0,
+          "error_rate": 0.0
+        }
+      },
+      "confidence_or_margin": {
+        "measure": "maximum predicted probability",
+        "median_correct": 0.7327831387519836,
+        "median_incorrect": 0.5864080786705017,
+        "median_all": 0.6795189380645752,
+        "error_rate_below_median": 0.442,
+        "error_rate_at_or_above_median": 0.173,
+        "incorrect_above_median": 173
+      }
+    },
+    "linear_svm": {
+      "cv": {
+        "model": "linear_svm",
+        "stage": "classifier",
+        "params": "{\"classifier__C\": 0.25, \"classifier__class_weight\": \"balanced\"}",
+        "mean_cv_macro_f1": 0.6517380521482719,
+        "std_cv_macro_f1": 0.0016456785983268243,
+        "rank_within_stage": 1,
+        "mean_fit_seconds": 4.188012599945068,
+        "mean_score_seconds": 3.5095141728719077,
+        "fold_scores": "[0.6511701532554418, 0.6500673903266522, 0.6539766128627216]"
+      },
+      "params": {
+        "classifier__C": 0.25,
+        "classifier__class_weight": "balanced"
+      },
+      "validation": {
+        "accuracy": 0.6975,
+        "macro_precision": 0.6692986315738466,
+        "macro_recall": 0.6771111565415363,
+        "macro_f1": 0.6725854536794258,
+        "weighted_f1": 0.6990103792453927,
+        "per_class": {
+          "negative": {
+            "precision": 0.5451895043731778,
+            "recall": 0.5993589743589743,
+            "f1": 0.5709923664122137
+          },
+          "neutral": {
+            "precision": 0.6946651532349603,
+            "recall": 0.7042577675489068,
+            "f1": 0.6994285714285714
+          },
+          "positive": {
+            "precision": 0.7680412371134021,
+            "recall": 0.7277167277167277,
+            "f1": 0.7473354231974921
+          }
+        },
+        "confusion_matrix": [
+          [
+            187,
+            93,
+            32
+          ],
+          [
+            109,
+            612,
+            148
+          ],
+          [
+            47,
+            176,
+            596
+          ]
+        ],
+        "classification_report": {
+          "negative": {
+            "precision": 0.5451895043731778,
+            "recall": 0.5993589743589743,
+            "f1-score": 0.5709923664122137,
+            "support": 312.0
+          },
+          "neutral": {
+            "precision": 0.6946651532349603,
+            "recall": 0.7042577675489068,
+            "f1-score": 0.6994285714285714,
+            "support": 869.0
+          },
+          "positive": {
+            "precision": 0.7680412371134021,
+            "recall": 0.7277167277167277,
+            "f1-score": 0.7473354231974921,
+            "support": 819.0
+          },
+          "accuracy": 0.6975,
+          "macro avg": {
+            "precision": 0.6692986315738466,
+            "recall": 0.6771111565415363,
+            "f1-score": 0.6725854536794258,
+            "support": 2000.0
+          },
+          "weighted avg": {
+            "precision": 0.7013944583607441,
+            "recall": 0.6975,
+            "f1-score": 0.6990103792453927,
+            "support": 2000.0
+          }
+        }
+      },
+      "fit_seconds": 16.906593099993188,
+      "prediction_seconds": 0.507967000012286,
+      "error_cues": {
+        "negation": {
+          "rows": 330,
+          "errors": 123,
+          "error_rate": 0.37272727272727274
+        },
+        "contraction": {
+          "rows": 767,
+          "errors": 245,
+          "error_rate": 0.3194263363754889
+        },
+        "emoticon": {
+          "rows": 52,
+          "errors": 10,
+          "error_rate": 0.19230769230769232
+        },
+        "punctuation": {
+          "rows": 619,
+          "errors": 185,
+          "error_rate": 0.2988691437802908
+        },
+        "short_5_words": {
+          "rows": 4,
+          "errors": 0,
+          "error_rate": 0.0
+        }
+      },
+      "confidence_or_margin": {
+        "measure": "top-versus-second decision margin",
+        "median_correct": 0.8144835882231047,
+        "median_incorrect": 0.37592728967993944,
+        "median_all": 0.6589273324122049,
+        "error_rate_below_median": 0.442,
+        "error_rate_at_or_above_median": 0.163,
+        "incorrect_above_median": 163
+      }
+    }
+  },
+  "paired_bootstrap_lr_minus_svm": {
+    "point_difference": 0.0002632822398108692,
+    "ci_95_percentile": [
+      -0.011684601703753832,
+      0.012799037519338752
+    ],
+    "bootstrap_probability_lr_higher": 0.5175,
+    "draws": 2000,
+    "seed": 42
+  },
+  "test_integrity_only": {
+    "exists": true,
+    "schema_valid": true,
+    "split_valid": true,
+    "rows": 12284,
+    "checksum_valid": true
+  },
+  "cv": {
+    "type": "StratifiedKFold",
+    "n_splits": 3,
+    "shuffle": true,
+    "random_state": 42,
+    "scoring": "f1_macro",
+    "rows": "TRAIN only",
+    "feature_fitting": "inside each Pipeline fold",
+    "configurations": 30
+  },
+  "environment": {
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "python_version": "3.14.7"
+}

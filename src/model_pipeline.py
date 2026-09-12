@@ -224,7 +224,7 @@ def _summary(records, diagnostics, test_integrity, winner, train_counts, synthet
               'Random Forest used all TRAIN rows with bounded depth and 80 trees. See its negative recall and fit time above; the constrained configuration is not a full-capacity forest.',
               '', '## Limits and next work', '',
               'Historical English tweets, class imbalance, sarcasm, context loss and benchmark annotation ambiguity remain. Lowercased clean text loses case cues. Default word vectorization omits emoji, while character features may represent them indirectly. No brand-specific or prospective evaluation is claimed.',
-              'Next: focused validation-guided tuning of the strongest candidates and tokenizer checks, freeze the procedure, then perform one locked TEST evaluation. Do not call this artifact production-ready.',
+              'These are corrected-preprocessing baselines. Focused TRAIN-only CV and the frozen development candidate are reported in tuning_summary.md. TEST remains locked for a separate final methodology review and one future evaluation.',
               'Full per-class precision/recall/F1, confusion matrices, feature/model parameters, versions and times are in model_metrics.json. Model artifact regeneration: python -m src.model_pipeline.', '']
     if synthetic:
         lines.insert(1, 'WARNING: Synthetic fixture results are for pipeline testing only, NOT FOR MODEL EVALUATION.')

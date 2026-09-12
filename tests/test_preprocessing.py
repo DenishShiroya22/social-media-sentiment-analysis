@@ -35,7 +35,7 @@ def test_bad_configuration(config):
     (r"I CAN\u2019T", "i can't"),
     ("I can’t 😡 café", "i can't 😡 café"),
     ("I don't like this", "i don't like this"),
-    (r"C:\users\docs", r"c:\users\docs"),
+    (r"folder\users\docs", r"folder\users\docs"),
     (r"keep \u1234 untouched", r"keep \u1234 untouched"),
 ])
 def test_targeted_unicode_escape_normalization(raw, expected):

@@ -1,0 +1,159 @@
+{
+  "status": "FROZEN DEVELOPMENT CANDIDATE \u2014 TEST NOT EVALUATED",
+  "selected_model": "logistic_regression",
+  "preprocessing": {
+    "lowercase": true,
+    "strip_urls": true,
+    "mention_strategy": "remove",
+    "preserve_hashtag_words": true,
+    "emoji_strategy": "preserve",
+    "reduce_repeats": false
+  },
+  "features": {
+    "word": {
+      "analyzer": "word",
+      "ngram_range": [
+        1,
+        2
+      ],
+      "min_df": 2,
+      "max_df": 0.95,
+      "max_features": 100000,
+      "sublinear_tf": true,
+      "norm": "l2",
+      "lowercase": false,
+      "token_pattern": "(?u)\\b\\w+(?:['\u2019]\\w+)*\\b"
+    },
+    "character": {
+      "analyzer": "char_wb",
+      "ngram_range": [
+        3,
+        5
+      ],
+      "min_df": 2,
+      "max_df": 0.95,
+      "max_features": 120000,
+      "sublinear_tf": true,
+      "norm": "l2",
+      "lowercase": false,
+      "token_pattern": "(?u)\\b\\w\\w+\\b"
+    }
+  },
+  "feature_weights": {
+    "character": 1.25,
+    "word": 1.0
+  },
+  "classifier_parameters": {
+    "C": 1.0,
+    "class_weight": "balanced",
+    "dual": false,
+    "fit_intercept": true,
+    "intercept_scaling": 1,
+    "l1_ratio": 0.0,
+    "max_iter": 350,
+    "n_jobs": null,
+    "penalty": "deprecated",
+    "random_state": 42,
+    "solver": "lbfgs",
+    "tol": 0.0001,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "selection_metric": "validation macro-F1 after TRAIN-only CV",
+  "cv": {
+    "type": "StratifiedKFold",
+    "n_splits": 3,
+    "shuffle": true,
+    "random_state": 42,
+    "scoring": "f1_macro",
+    "rows": "TRAIN only",
+    "feature_fitting": "inside each Pipeline fold",
+    "configurations": 30
+  },
+  "random_state": 42,
+  "validation_metrics": {
+    "accuracy": 0.6925,
+    "macro_precision": 0.6642144985624875,
+    "macro_recall": 0.6890724137559582,
+    "macro_f1": 0.6728487359192367,
+    "weighted_f1": 0.6954599637609757,
+    "per_class": {
+      "negative": {
+        "precision": 0.5172413793103449,
+        "recall": 0.6730769230769231,
+        "f1": 0.584958217270195
+      },
+      "neutral": {
+        "precision": 0.7097170971709718,
+        "recall": 0.663981588032221,
+        "f1": 0.6860879904875149
+      },
+      "positive": {
+        "precision": 0.765685019206146,
+        "recall": 0.7301587301587301,
+        "f1": 0.7475
+      }
+    },
+    "confusion_matrix": [
+      [
+        210,
+        72,
+        30
+      ],
+      [
+        139,
+        577,
+        153
+      ],
+      [
+        57,
+        164,
+        598
+      ]
+    ],
+    "classification_report": {
+      "negative": {
+        "precision": 0.5172413793103449,
+        "recall": 0.6730769230769231,
+        "f1-score": 0.584958217270195,
+        "support": 312.0
+      },
+      "neutral": {
+        "precision": 0.7097170971709718,
+        "recall": 0.663981588032221,
+        "f1-score": 0.6860879904875149,
+        "support": 869.0
+      },
+      "positive": {
+        "precision": 0.765685019206146,
+        "recall": 0.7301587301587301,
+        "f1-score": 0.7475,
+        "support": 819.0
+      },
+      "accuracy": 0.6925,
+      "macro avg": {
+        "precision": 0.6642144985624875,
+        "recall": 0.6890724137559582,
+        "f1-score": 0.6728487359192367,
+        "support": 2000.0
+      },
+      "weighted avg": {
+        "precision": 0.7026097492581177,
+        "recall": 0.6925,
+        "f1-score": 0.6954599637609757,
+        "support": 2000.0
+      }
+    }
+  },
+  "artifact_sha256": "ef5e641c7368cacc2d17938fc2d05eaad86f45df538417c800c6a9afe1c8af0b",
+  "artifact_bytes": 4329149,
+  "reload_predictions_match": true,
+  "environment": {
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "python_version": "3.14.7"
+}
