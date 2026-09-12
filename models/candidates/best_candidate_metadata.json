@@ -1,0 +1,11 @@
+{
+  "status": "VALIDATION-SELECTED CANDIDATE — NOT FINAL TEST-EVALUATED MODEL",
+  "experiment_id": "exp04",
+  "feature": "combined",
+  "model": "logistic_regression",
+  "validation_macro_f1": 0.6645630158401729,
+  "validation_accuracy": 0.705,
+  "artifact_sha256": "2a04d37cfe4f6776aa88ebab78b114d503e7a64db717d095821b0c3322c733a3",
+  "artifact_bytes": 4358950,
+  "reload_predictions_match": true
+}

@@ -6,5 +6,9 @@
   "02_text_preprocessing.ipynb": {
     "status": "passed",
     "executed_code_cells": 5
+  },
+  "03_model_development.ipynb": {
+    "status": "passed",
+    "executed_code_cells": 5
   }
 }

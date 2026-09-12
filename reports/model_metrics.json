@@ -1,0 +1,2370 @@
+{
+  "selection_metric": "validation_macro_f1",
+  "test_integrity_only": {
+    "exists": true,
+    "schema_valid": true,
+    "split_valid": true,
+    "rows": 12284,
+    "checksum_valid": true
+  },
+  "train_class_counts": {
+    "negative": 7093,
+    "neutral": 20673,
+    "positive": 17849
+  },
+  "experiments": [
+    {
+      "experiment_id": "exp01",
+      "feature": "word_unigram",
+      "feature_params": {
+        "analyzer": "word",
+        "ngram_range": [
+          1,
+          1
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "max_features": 100000,
+        "sublinear_tf": true,
+        "norm": "l2",
+        "lowercase": false,
+        "token_pattern": "(?u)\\b\\w+(?:['’]\\w+)*\\b"
+      },
+      "model": "logistic_regression",
+      "model_params": {
+        "C": 1.0,
+        "class_weight": null,
+        "dual": false,
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "l1_ratio": 0.0,
+        "max_iter": 350,
+        "n_jobs": null,
+        "penalty": "deprecated",
+        "random_state": 42,
+        "solver": "lbfgs",
+        "tol": 0.0001,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "random_state": 42,
+      "train_rows": 45615,
+      "validation_rows": 2000,
+      "feature_dimensions": 19608,
+      "feature_fit_seconds": 0.6209,
+      "fit_seconds": 1.3524,
+      "prediction_seconds": 0.0005,
+      "validation_accuracy": 0.6725,
+      "validation_macro_precision": 0.663134047817994,
+      "validation_macro_recall": 0.6086325769870073,
+      "validation_macro_f1": 0.6235541347942362,
+      "validation_weighted_f1": 0.6657149205644003,
+      "negative_precision": 0.6170212765957447,
+      "negative_recall": 0.3717948717948718,
+      "negative_f1": 0.464,
+      "neutral_precision": 0.6340996168582376,
+      "neutral_recall": 0.761795166858458,
+      "neutral_f1": 0.6921066387872452,
+      "positive_precision": 0.73828125,
+      "positive_recall": 0.6923076923076923,
+      "positive_f1": 0.7145557655954632
+    },
+    {
+      "experiment_id": "exp02",
+      "feature": "word_bigram",
+      "feature_params": {
+        "analyzer": "word",
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "max_features": 100000,
+        "sublinear_tf": true,
+        "norm": "l2",
+        "lowercase": false,
+        "token_pattern": "(?u)\\b\\w+(?:['’]\\w+)*\\b"
+      },
+      "model": "logistic_regression",
+      "model_params": {
+        "C": 1.0,
+        "class_weight": null,
+        "dual": false,
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "l1_ratio": 0.0,
+        "max_iter": 350,
+        "n_jobs": null,
+        "penalty": "deprecated",
+        "random_state": 42,
+        "solver": "lbfgs",
+        "tol": 0.0001,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "random_state": 42,
+      "train_rows": 45615,
+      "validation_rows": 2000,
+      "feature_dimensions": 97174,
+      "feature_fit_seconds": 2.3073,
+      "fit_seconds": 4.2278,
+      "prediction_seconds": 0.001,
+      "validation_accuracy": 0.6805,
+      "validation_macro_precision": 0.6762270667351419,
+      "validation_macro_recall": 0.6202950823203988,
+      "validation_macro_f1": 0.6362992736026337,
+      "validation_weighted_f1": 0.6744608034728871,
+      "negative_precision": 0.6458333333333334,
+      "negative_recall": 0.3974358974358974,
+      "negative_f1": 0.49206349206349204,
+      "neutral_precision": 0.6429258902791145,
+      "neutral_recall": 0.7686996547756041,
+      "neutral_f1": 0.70020964360587,
+      "positive_precision": 0.7399219765929779,
+      "positive_recall": 0.6947496947496947,
+      "positive_f1": 0.716624685138539
+    },
+    {
+      "experiment_id": "exp05",
+      "feature": "word_bigram",
+      "feature_params": {
+        "analyzer": "word",
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "max_features": 100000,
+        "sublinear_tf": true,
+        "norm": "l2",
+        "lowercase": false,
+        "token_pattern": "(?u)\\b\\w+(?:['’]\\w+)*\\b"
+      },
+      "model": "linear_svm",
+      "model_params": {
+        "C": 1.0,
+        "class_weight": null,
+        "dual": "auto",
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "loss": "squared_hinge",
+        "max_iter": 3000,
+        "multi_class": "ovr",
+        "penalty": "l2",
+        "random_state": 42,
+        "tol": 0.0001,
+        "verbose": 0
+      },
+      "random_state": 42,
+      "train_rows": 45615,
+      "validation_rows": 2000,
+      "feature_dimensions": 97174,
+      "feature_fit_seconds": 2.3073,
+      "fit_seconds": 1.6632,
+      "prediction_seconds": 0.0014,
+      "validation_accuracy": 0.67,
+      "validation_macro_precision": 0.6511368381096982,
+      "validation_macro_recall": 0.626784432164179,
+      "validation_macro_f1": 0.6362372026411416,
+      "validation_weighted_f1": 0.6677481342578496,
+      "negative_precision": 0.58,
+      "negative_recall": 0.46474358974358976,
+      "negative_f1": 0.5160142348754448,
+      "neutral_precision": 0.6461377870563675,
+      "neutral_recall": 0.7123130034522439,
+      "neutral_f1": 0.6776135741652983,
+      "positive_precision": 0.7272727272727273,
+      "positive_recall": 0.7032967032967034,
+      "positive_f1": 0.7150837988826816
+    },
+    {
+      "experiment_id": "exp08",
+      "feature": "word_bigram",
+      "feature_params": {
+        "analyzer": "word",
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "max_features": 100000,
+        "sublinear_tf": true,
+        "norm": "l2",
+        "lowercase": false,
+        "token_pattern": "(?u)\\b\\w+(?:['’]\\w+)*\\b"
+      },
+      "model": "naive_bayes",
+      "model_params": {
+        "alpha": 1.0,
+        "class_prior": null,
+        "fit_prior": true,
+        "force_alpha": true
+      },
+      "random_state": 42,
+      "train_rows": 45615,
+      "validation_rows": 2000,
+      "feature_dimensions": 97174,
+      "feature_fit_seconds": 2.3073,
+      "fit_seconds": 0.0865,
+      "prediction_seconds": 0.0024,
+      "validation_accuracy": 0.6255,
+      "validation_macro_precision": 0.7024867392518147,
+      "validation_macro_recall": 0.49637639669285244,
+      "validation_macro_f1": 0.46267220721069097,
+      "validation_weighted_f1": 0.5770716174126493,
+      "negative_precision": 0.8333333333333334,
+      "negative_recall": 0.016025641025641024,
+      "negative_f1": 0.031446540880503145,
+      "neutral_precision": 0.5753768844221105,
+      "neutral_recall": 0.7905638665132336,
+      "neutral_f1": 0.666020358700921,
+      "positive_precision": 0.69875,
+      "positive_recall": 0.6825396825396826,
+      "positive_f1": 0.6905497220506486
+    },
+    {
+      "experiment_id": "exp09",
+      "feature": "word_bigram",
+      "feature_params": {
+        "analyzer": "word",
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "max_features": 100000,
+        "sublinear_tf": true,
+        "norm": "l2",
+        "lowercase": false,
+        "token_pattern": "(?u)\\b\\w+(?:['’]\\w+)*\\b"
+      },
+      "model": "random_forest",
+      "model_params": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "class_weight": null,
+        "criterion": "gini",
+        "max_depth": 24,
+        "max_features": "sqrt",
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 2,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 80,
+        "n_jobs": 2,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "random_state": 42,
+      "train_rows": 45615,
+      "validation_rows": 2000,
+      "feature_dimensions": 97174,
+      "feature_fit_seconds": 2.3073,
+      "fit_seconds": 1.1557,
+      "prediction_seconds": 0.0239,
+      "validation_accuracy": 0.527,
+      "validation_macro_precision": 0.4269005847953216,
+      "validation_macro_recall": 0.409729042640435,
+      "validation_macro_f1": 0.35195044294900907,
+      "validation_weighted_f1": 0.44830752862388906,
+      "negative_precision": 0.0,
+      "negative_recall": 0.0,
+      "negative_f1": 0.0,
+      "neutral_precision": 0.4807017543859649,
+      "neutral_recall": 0.9459148446490219,
+      "neutral_f1": 0.6374563784412564,
+      "positive_precision": 0.8,
+      "positive_recall": 0.28327228327228327,
+      "positive_f1": 0.41839495040577096
+    },
+    {
+      "experiment_id": "exp03",
+      "feature": "character",
+      "feature_params": {
+        "analyzer": "char_wb",
+        "ngram_range": [
+          3,
+          5
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "max_features": 120000,
+        "sublinear_tf": true,
+        "norm": "l2",
+        "lowercase": false,
+        "token_pattern": "(?u)\\b\\w\\w+\\b"
+      },
+      "model": "logistic_regression",
+      "model_params": {
+        "C": 1.0,
+        "class_weight": null,
+        "dual": false,
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "l1_ratio": 0.0,
+        "max_iter": 350,
+        "n_jobs": null,
+        "penalty": "deprecated",
+        "random_state": 42,
+        "solver": "lbfgs",
+        "tol": 0.0001,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "random_state": 42,
+      "train_rows": 45615,
+      "validation_rows": 2000,
+      "feature_dimensions": 120000,
+      "feature_fit_seconds": 6.2495,
+      "fit_seconds": 12.7325,
+      "prediction_seconds": 0.0029,
+      "validation_accuracy": 0.692,
+      "validation_macro_precision": 0.6835189573370294,
+      "validation_macro_recall": 0.6349236792274767,
+      "validation_macro_f1": 0.65002901779309,
+      "validation_weighted_f1": 0.6870527905727936,
+      "negative_precision": 0.6407766990291263,
+      "negative_recall": 0.4230769230769231,
+      "negative_f1": 0.5096525096525096,
+      "neutral_precision": 0.6545988258317026,
+      "neutral_recall": 0.7698504027617952,
+      "neutral_f1": 0.7075621364357483,
+      "positive_precision": 0.7551813471502591,
+      "positive_recall": 0.7118437118437119,
+      "positive_f1": 0.732872407291012
+    },
+    {
+      "experiment_id": "exp06",
+      "feature": "character",
+      "feature_params": {
+        "analyzer": "char_wb",
+        "ngram_range": [
+          3,
+          5
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "max_features": 120000,
+        "sublinear_tf": true,
+        "norm": "l2",
+        "lowercase": false,
+        "token_pattern": "(?u)\\b\\w\\w+\\b"
+      },
+      "model": "linear_svm",
+      "model_params": {
+        "C": 1.0,
+        "class_weight": null,
+        "dual": "auto",
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "loss": "squared_hinge",
+        "max_iter": 3000,
+        "multi_class": "ovr",
+        "penalty": "l2",
+        "random_state": 42,
+        "tol": 0.0001,
+        "verbose": 0
+      },
+      "random_state": 42,
+      "train_rows": 45615,
+      "validation_rows": 2000,
+      "feature_dimensions": 120000,
+      "feature_fit_seconds": 6.2495,
+      "fit_seconds": 4.8643,
+      "prediction_seconds": 0.0042,
+      "validation_accuracy": 0.6745,
+      "validation_macro_precision": 0.6530119865963544,
+      "validation_macro_recall": 0.6303771825923725,
+      "validation_macro_f1": 0.6392501218747636,
+      "validation_weighted_f1": 0.6722635220277454,
+      "negative_precision": 0.5731225296442688,
+      "negative_recall": 0.46474358974358976,
+      "negative_f1": 0.5132743362831859,
+      "neutral_precision": 0.6519916142557652,
+      "neutral_recall": 0.715765247410817,
+      "neutral_f1": 0.6823916620954471,
+      "positive_precision": 0.733921815889029,
+      "positive_recall": 0.7106227106227107,
+      "positive_f1": 0.7220843672456576
+    },
+    {
+      "experiment_id": "exp04",
+      "feature": "combined",
+      "feature_params": {
+        "word": {
+          "analyzer": "word",
+          "ngram_range": [
+            1,
+            2
+          ],
+          "min_df": 2,
+          "max_df": 0.95,
+          "max_features": 100000,
+          "sublinear_tf": true,
+          "norm": "l2",
+          "lowercase": false,
+          "token_pattern": "(?u)\\b\\w+(?:['’]\\w+)*\\b"
+        },
+        "character": {
+          "analyzer": "char_wb",
+          "ngram_range": [
+            3,
+            5
+          ],
+          "min_df": 2,
+          "max_df": 0.95,
+          "max_features": 120000,
+          "sublinear_tf": true,
+          "norm": "l2",
+          "lowercase": false,
+          "token_pattern": "(?u)\\b\\w\\w+\\b"
+        }
+      },
+      "model": "logistic_regression",
+      "model_params": {
+        "C": 1.0,
+        "class_weight": null,
+        "dual": false,
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "l1_ratio": 0.0,
+        "max_iter": 350,
+        "n_jobs": null,
+        "penalty": "deprecated",
+        "random_state": 42,
+        "solver": "lbfgs",
+        "tol": 0.0001,
+        "verbose": 0,
+        "warm_start": false
+      },
+      "random_state": 42,
+      "train_rows": 45615,
+      "validation_rows": 2000,
+      "feature_dimensions": 217174,
+      "feature_fit_seconds": 8.2475,
+      "fit_seconds": 15.9381,
+      "prediction_seconds": 0.0033,
+      "validation_accuracy": 0.705,
+      "validation_macro_precision": 0.6894998272463062,
+      "validation_macro_recall": 0.6515049062517417,
+      "validation_macro_f1": 0.6645630158401729,
+      "validation_weighted_f1": 0.7011939944996206,
+      "negative_precision": 0.6266666666666667,
+      "negative_recall": 0.4519230769230769,
+      "negative_f1": 0.5251396648044693,
+      "neutral_precision": 0.6710261569416499,
+      "neutral_recall": 0.7675489067894131,
+      "neutral_f1": 0.7160493827160493,
+      "positive_precision": 0.7708066581306018,
+      "positive_recall": 0.7350427350427351,
+      "positive_f1": 0.7525
+    },
+    {
+      "experiment_id": "exp07",
+      "feature": "combined",
+      "feature_params": {
+        "word": {
+          "analyzer": "word",
+          "ngram_range": [
+            1,
+            2
+          ],
+          "min_df": 2,
+          "max_df": 0.95,
+          "max_features": 100000,
+          "sublinear_tf": true,
+          "norm": "l2",
+          "lowercase": false,
+          "token_pattern": "(?u)\\b\\w+(?:['’]\\w+)*\\b"
+        },
+        "character": {
+          "analyzer": "char_wb",
+          "ngram_range": [
+            3,
+            5
+          ],
+          "min_df": 2,
+          "max_df": 0.95,
+          "max_features": 120000,
+          "sublinear_tf": true,
+          "norm": "l2",
+          "lowercase": false,
+          "token_pattern": "(?u)\\b\\w\\w+\\b"
+        }
+      },
+      "model": "linear_svm",
+      "model_params": {
+        "C": 1.0,
+        "class_weight": null,
+        "dual": "auto",
+        "fit_intercept": true,
+        "intercept_scaling": 1,
+        "loss": "squared_hinge",
+        "max_iter": 3000,
+        "multi_class": "ovr",
+        "penalty": "l2",
+        "random_state": 42,
+        "tol": 0.0001,
+        "verbose": 0
+      },
+      "random_state": 42,
+      "train_rows": 45615,
+      "validation_rows": 2000,
+      "feature_dimensions": 217174,
+      "feature_fit_seconds": 8.2475,
+      "fit_seconds": 6.8364,
+      "prediction_seconds": 0.0059,
+      "validation_accuracy": 0.6905,
+      "validation_macro_precision": 0.6726036451167254,
+      "validation_macro_recall": 0.6559907509274598,
+      "validation_macro_f1": 0.6631190956863192,
+      "validation_weighted_f1": 0.6893285751147677,
+      "negative_precision": 0.6051660516605166,
+      "negative_recall": 0.5256410256410257,
+      "negative_f1": 0.5626072041166381,
+      "neutral_precision": 0.6713513513513514,
+      "neutral_recall": 0.714614499424626,
+      "neutral_f1": 0.6923076923076923,
+      "positive_precision": 0.7412935323383084,
+      "positive_recall": 0.7277167277167277,
+      "positive_f1": 0.7344423906346272
+    }
+  ],
+  "diagnostics": {
+    "exp01": {
+      "accuracy": 0.6725,
+      "macro_precision": 0.663134047817994,
+      "macro_recall": 0.6086325769870073,
+      "macro_f1": 0.6235541347942362,
+      "weighted_f1": 0.6657149205644003,
+      "per_class": {
+        "negative": {
+          "precision": 0.6170212765957447,
+          "recall": 0.3717948717948718,
+          "f1": 0.464
+        },
+        "neutral": {
+          "precision": 0.6340996168582376,
+          "recall": 0.761795166858458,
+          "f1": 0.6921066387872452
+        },
+        "positive": {
+          "precision": 0.73828125,
+          "recall": 0.6923076923076923,
+          "f1": 0.7145557655954632
+        }
+      },
+      "confusion_matrix": [
+        [
+          116,
+          151,
+          45
+        ],
+        [
+          51,
+          662,
+          156
+        ],
+        [
+          21,
+          231,
+          567
+        ]
+      ],
+      "classification_report": {
+        "negative": {
+          "precision": 0.6170212765957447,
+          "recall": 0.3717948717948718,
+          "f1-score": 0.464,
+          "support": 312.0
+        },
+        "neutral": {
+          "precision": 0.6340996168582376,
+          "recall": 0.761795166858458,
+          "f1-score": 0.6921066387872452,
+          "support": 869.0
+        },
+        "positive": {
+          "precision": 0.73828125,
+          "recall": 0.6923076923076923,
+          "f1-score": 0.7145557655954632,
+          "support": 819.0
+        },
+        "accuracy": 0.6725,
+        "macro avg": {
+          "precision": 0.663134047817994,
+          "recall": 0.6086325769870073,
+          "f1-score": 0.6235541347942362,
+          "support": 2000.0
+        },
+        "weighted avg": {
+          "precision": 0.6740977745488403,
+          "recall": 0.6725,
+          "f1-score": 0.6657149205644003,
+          "support": 2000.0
+        }
+      }
+    },
+    "exp02": {
+      "accuracy": 0.6805,
+      "macro_precision": 0.6762270667351419,
+      "macro_recall": 0.6202950823203988,
+      "macro_f1": 0.6362992736026337,
+      "weighted_f1": 0.6744608034728871,
+      "per_class": {
+        "negative": {
+          "precision": 0.6458333333333334,
+          "recall": 0.3974358974358974,
+          "f1": 0.49206349206349204
+        },
+        "neutral": {
+          "precision": 0.6429258902791145,
+          "recall": 0.7686996547756041,
+          "f1": 0.70020964360587
+        },
+        "positive": {
+          "precision": 0.7399219765929779,
+          "recall": 0.6947496947496947,
+          "f1": 0.716624685138539
+        }
+      },
+      "confusion_matrix": [
+        [
+          124,
+          145,
+          43
+        ],
+        [
+          44,
+          668,
+          157
+        ],
+        [
+          24,
+          226,
+          569
+        ]
+      ],
+      "classification_report": {
+        "negative": {
+          "precision": 0.6458333333333334,
+          "recall": 0.3974358974358974,
+          "f1-score": 0.49206349206349204,
+          "support": 312.0
+        },
+        "neutral": {
+          "precision": 0.6429258902791145,
+          "recall": 0.7686996547756041,
+          "f1-score": 0.70020964360587,
+          "support": 869.0
+        },
+        "positive": {
+          "precision": 0.7399219765929779,
+          "recall": 0.6947496947496947,
+          "f1-score": 0.716624685138539,
+          "support": 819.0
+        },
+        "accuracy": 0.6805,
+        "macro avg": {
+          "precision": 0.6762270667351419,
+          "recall": 0.6202950823203988,
+          "f1-score": 0.6362992736026337,
+          "support": 2000.0
+        },
+        "weighted avg": {
+          "precision": 0.6830993487410997,
+          "recall": 0.6805,
+          "f1-score": 0.6744608034728871,
+          "support": 2000.0
+        }
+      }
+    },
+    "exp05": {
+      "accuracy": 0.67,
+      "macro_precision": 0.6511368381096982,
+      "macro_recall": 0.626784432164179,
+      "macro_f1": 0.6362372026411416,
+      "weighted_f1": 0.6677481342578496,
+      "per_class": {
+        "negative": {
+          "precision": 0.58,
+          "recall": 0.46474358974358976,
+          "f1": 0.5160142348754448
+        },
+        "neutral": {
+          "precision": 0.6461377870563675,
+          "recall": 0.7123130034522439,
+          "f1": 0.6776135741652983
+        },
+        "positive": {
+          "precision": 0.7272727272727273,
+          "recall": 0.7032967032967034,
+          "f1": 0.7150837988826816
+        }
+      },
+      "confusion_matrix": [
+        [
+          145,
+          126,
+          41
+        ],
+        [
+          75,
+          619,
+          175
+        ],
+        [
+          30,
+          213,
+          576
+        ]
+      ],
+      "classification_report": {
+        "negative": {
+          "precision": 0.58,
+          "recall": 0.46474358974358976,
+          "f1-score": 0.5160142348754448,
+          "support": 312.0
+        },
+        "neutral": {
+          "precision": 0.6461377870563675,
+          "recall": 0.7123130034522439,
+          "f1-score": 0.6776135741652983,
+          "support": 869.0
+        },
+        "positive": {
+          "precision": 0.7272727272727273,
+          "recall": 0.7032967032967034,
+          "f1-score": 0.7150837988826816,
+          "support": 819.0
+        },
+        "accuracy": 0.67,
+        "macro avg": {
+          "precision": 0.6511368381096982,
+          "recall": 0.626784432164179,
+          "f1-score": 0.6362372026411416,
+          "support": 2000.0
+        },
+        "weighted avg": {
+          "precision": 0.6690450502941735,
+          "recall": 0.67,
+          "f1-score": 0.6677481342578496,
+          "support": 2000.0
+        }
+      }
+    },
+    "exp08": {
+      "accuracy": 0.6255,
+      "macro_precision": 0.7024867392518147,
+      "macro_recall": 0.49637639669285244,
+      "macro_f1": 0.46267220721069097,
+      "weighted_f1": 0.5770716174126493,
+      "per_class": {
+        "negative": {
+          "precision": 0.8333333333333334,
+          "recall": 0.016025641025641024,
+          "f1": 0.031446540880503145
+        },
+        "neutral": {
+          "precision": 0.5753768844221105,
+          "recall": 0.7905638665132336,
+          "f1": 0.666020358700921
+        },
+        "positive": {
+          "precision": 0.69875,
+          "recall": 0.6825396825396826,
+          "f1": 0.6905497220506486
+        }
+      },
+      "confusion_matrix": [
+        [
+          5,
+          248,
+          59
+        ],
+        [
+          0,
+          687,
+          182
+        ],
+        [
+          1,
+          259,
+          559
+        ]
+      ],
+      "classification_report": {
+        "negative": {
+          "precision": 0.8333333333333334,
+          "recall": 0.016025641025641024,
+          "f1-score": 0.031446540880503145,
+          "support": 312.0
+        },
+        "neutral": {
+          "precision": 0.5753768844221105,
+          "recall": 0.7905638665132336,
+          "f1-score": 0.666020358700921,
+          "support": 869.0
+        },
+        "positive": {
+          "precision": 0.69875,
+          "recall": 0.6825396825396826,
+          "f1-score": 0.6905497220506486,
+          "support": 819.0
+        },
+        "accuracy": 0.6255,
+        "macro avg": {
+          "precision": 0.7024867392518147,
+          "recall": 0.49637639669285244,
+          "f1-score": 0.46267220721069097,
+          "support": 2000.0
+        },
+        "weighted avg": {
+          "precision": 0.6661393812814069,
+          "recall": 0.6255,
+          "f1-score": 0.5770716174126493,
+          "support": 2000.0
+        }
+      }
+    },
+    "exp09": {
+      "accuracy": 0.527,
+      "macro_precision": 0.4269005847953216,
+      "macro_recall": 0.409729042640435,
+      "macro_f1": 0.35195044294900907,
+      "weighted_f1": 0.44830752862388906,
+      "per_class": {
+        "negative": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "neutral": {
+          "precision": 0.4807017543859649,
+          "recall": 0.9459148446490219,
+          "f1": 0.6374563784412564
+        },
+        "positive": {
+          "precision": 0.8,
+          "recall": 0.28327228327228327,
+          "f1": 0.41839495040577096
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          301,
+          11
+        ],
+        [
+          0,
+          822,
+          47
+        ],
+        [
+          0,
+          587,
+          232
+        ]
+      ],
+      "classification_report": {
+        "negative": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 312.0
+        },
+        "neutral": {
+          "precision": 0.4807017543859649,
+          "recall": 0.9459148446490219,
+          "f1-score": 0.6374563784412564,
+          "support": 869.0
+        },
+        "positive": {
+          "precision": 0.8,
+          "recall": 0.28327228327228327,
+          "f1-score": 0.41839495040577096,
+          "support": 819.0
+        },
+        "accuracy": 0.527,
+        "macro avg": {
+          "precision": 0.4269005847953216,
+          "recall": 0.409729042640435,
+          "f1-score": 0.35195044294900907,
+          "support": 2000.0
+        },
+        "weighted avg": {
+          "precision": 0.5364649122807018,
+          "recall": 0.527,
+          "f1-score": 0.44830752862388906,
+          "support": 2000.0
+        }
+      }
+    },
+    "exp03": {
+      "accuracy": 0.692,
+      "macro_precision": 0.6835189573370294,
+      "macro_recall": 0.6349236792274767,
+      "macro_f1": 0.65002901779309,
+      "weighted_f1": 0.6870527905727936,
+      "per_class": {
+        "negative": {
+          "precision": 0.6407766990291263,
+          "recall": 0.4230769230769231,
+          "f1": 0.5096525096525096
+        },
+        "neutral": {
+          "precision": 0.6545988258317026,
+          "recall": 0.7698504027617952,
+          "f1": 0.7075621364357483
+        },
+        "positive": {
+          "precision": 0.7551813471502591,
+          "recall": 0.7118437118437119,
+          "f1": 0.732872407291012
+        }
+      },
+      "confusion_matrix": [
+        [
+          132,
+          137,
+          43
+        ],
+        [
+          54,
+          669,
+          146
+        ],
+        [
+          20,
+          216,
+          583
+        ]
+      ],
+      "classification_report": {
+        "negative": {
+          "precision": 0.6407766990291263,
+          "recall": 0.4230769230769231,
+          "f1-score": 0.5096525096525096,
+          "support": 312.0
+        },
+        "neutral": {
+          "precision": 0.6545988258317026,
+          "recall": 0.7698504027617952,
+          "f1-score": 0.7075621364357483,
+          "support": 869.0
+        },
+        "positive": {
+          "precision": 0.7551813471502591,
+          "recall": 0.7118437118437119,
+          "f1-score": 0.732872407291012,
+          "support": 819.0
+        },
+        "accuracy": 0.692,
+        "macro avg": {
+          "precision": 0.6835189573370294,
+          "recall": 0.6349236792274767,
+          "f1-score": 0.65002901779309,
+          "support": 2000.0
+        },
+        "weighted avg": {
+          "precision": 0.6936311165304496,
+          "recall": 0.692,
+          "f1-score": 0.6870527905727936,
+          "support": 2000.0
+        }
+      }
+    },
+    "exp06": {
+      "accuracy": 0.6745,
+      "macro_precision": 0.6530119865963544,
+      "macro_recall": 0.6303771825923725,
+      "macro_f1": 0.6392501218747636,
+      "weighted_f1": 0.6722635220277454,
+      "per_class": {
+        "negative": {
+          "precision": 0.5731225296442688,
+          "recall": 0.46474358974358976,
+          "f1": 0.5132743362831859
+        },
+        "neutral": {
+          "precision": 0.6519916142557652,
+          "recall": 0.715765247410817,
+          "f1": 0.6823916620954471
+        },
+        "positive": {
+          "precision": 0.733921815889029,
+          "recall": 0.7106227106227107,
+          "f1": 0.7220843672456576
+        }
+      },
+      "confusion_matrix": [
+        [
+          145,
+          124,
+          43
+        ],
+        [
+          79,
+          622,
+          168
+        ],
+        [
+          29,
+          208,
+          582
+        ]
+      ],
+      "classification_report": {
+        "negative": {
+          "precision": 0.5731225296442688,
+          "recall": 0.46474358974358976,
+          "f1-score": 0.5132743362831859,
+          "support": 312.0
+        },
+        "neutral": {
+          "precision": 0.6519916142557652,
+          "recall": 0.715765247410817,
+          "f1-score": 0.6823916620954471,
+          "support": 869.0
+        },
+        "positive": {
+          "precision": 0.733921815889029,
+          "recall": 0.7106227106227107,
+          "f1-score": 0.7220843672456576,
+          "support": 819.0
+        },
+        "accuracy": 0.6745,
+        "macro avg": {
+          "precision": 0.6530119865963544,
+          "recall": 0.6303771825923725,
+          "f1-score": 0.6392501218747636,
+          "support": 2000.0
+        },
+        "weighted avg": {
+          "precision": 0.6732384546251933,
+          "recall": 0.6745,
+          "f1-score": 0.6722635220277454,
+          "support": 2000.0
+        }
+      }
+    },
+    "exp04": {
+      "accuracy": 0.705,
+      "macro_precision": 0.6894998272463062,
+      "macro_recall": 0.6515049062517417,
+      "macro_f1": 0.6645630158401729,
+      "weighted_f1": 0.7011939944996206,
+      "per_class": {
+        "negative": {
+          "precision": 0.6266666666666667,
+          "recall": 0.4519230769230769,
+          "f1": 0.5251396648044693
+        },
+        "neutral": {
+          "precision": 0.6710261569416499,
+          "recall": 0.7675489067894131,
+          "f1": 0.7160493827160493
+        },
+        "positive": {
+          "precision": 0.7708066581306018,
+          "recall": 0.7350427350427351,
+          "f1": 0.7525
+        }
+      },
+      "confusion_matrix": [
+        [
+          141,
+          135,
+          36
+        ],
+        [
+          59,
+          667,
+          143
+        ],
+        [
+          25,
+          192,
+          602
+        ]
+      ],
+      "classification_report": {
+        "negative": {
+          "precision": 0.6266666666666667,
+          "recall": 0.4519230769230769,
+          "f1-score": 0.5251396648044693,
+          "support": 312.0
+        },
+        "neutral": {
+          "precision": 0.6710261569416499,
+          "recall": 0.7675489067894131,
+          "f1-score": 0.7160493827160493,
+          "support": 869.0
+        },
+        "positive": {
+          "precision": 0.7708066581306018,
+          "recall": 0.7350427350427351,
+          "f1-score": 0.7525,
+          "support": 819.0
+        },
+        "accuracy": 0.705,
+        "macro avg": {
+          "precision": 0.6894998272463062,
+          "recall": 0.6515049062517417,
+          "f1-score": 0.6645630158401729,
+          "support": 2000.0
+        },
+        "weighted avg": {
+          "precision": 0.7049661916956284,
+          "recall": 0.705,
+          "f1-score": 0.7011939944996206,
+          "support": 2000.0
+        }
+      }
+    },
+    "exp07": {
+      "accuracy": 0.6905,
+      "macro_precision": 0.6726036451167254,
+      "macro_recall": 0.6559907509274598,
+      "macro_f1": 0.6631190956863192,
+      "weighted_f1": 0.6893285751147677,
+      "per_class": {
+        "negative": {
+          "precision": 0.6051660516605166,
+          "recall": 0.5256410256410257,
+          "f1": 0.5626072041166381
+        },
+        "neutral": {
+          "precision": 0.6713513513513514,
+          "recall": 0.714614499424626,
+          "f1": 0.6923076923076923
+        },
+        "positive": {
+          "precision": 0.7412935323383084,
+          "recall": 0.7277167277167277,
+          "f1": 0.7344423906346272
+        }
+      },
+      "confusion_matrix": [
+        [
+          164,
+          111,
+          37
+        ],
+        [
+          77,
+          621,
+          171
+        ],
+        [
+          30,
+          193,
+          596
+        ]
+      ],
+      "classification_report": {
+        "negative": {
+          "precision": 0.6051660516605166,
+          "recall": 0.5256410256410257,
+          "f1-score": 0.5626072041166381,
+          "support": 312.0
+        },
+        "neutral": {
+          "precision": 0.6713513513513514,
+          "recall": 0.714614499424626,
+          "f1-score": 0.6923076923076923,
+          "support": 869.0
+        },
+        "positive": {
+          "precision": 0.7412935323383084,
+          "recall": 0.7277167277167277,
+          "f1-score": 0.7344423906346272,
+          "support": 819.0
+        },
+        "accuracy": 0.6905,
+        "macro avg": {
+          "precision": 0.6726036451167254,
+          "recall": 0.6559907509274598,
+          "f1-score": 0.6631190956863192,
+          "support": 2000.0
+        },
+        "weighted avg": {
+          "precision": 0.6896677677137399,
+          "recall": 0.6905,
+          "f1-score": 0.6893285751147677,
+          "support": 2000.0
+        }
+      }
+    }
+  },
+  "linear_features": {
+    "exp01": {
+      "negative": [
+        {
+          "feature": "worst",
+          "weight": 5.305915832519531
+        },
+        {
+          "feature": "fuck",
+          "weight": 4.743857383728027
+        },
+        {
+          "feature": "u2019t",
+          "weight": 4.227184295654297
+        },
+        {
+          "feature": "sad",
+          "weight": 3.9753592014312744
+        },
+        {
+          "feature": "stupid",
+          "weight": 3.810786724090576
+        },
+        {
+          "feature": "hate",
+          "weight": 3.7734622955322266
+        },
+        {
+          "feature": "shit",
+          "weight": 3.5899388790130615
+        },
+        {
+          "feature": "sucks",
+          "weight": 3.5627408027648926
+        },
+        {
+          "feature": "fucking",
+          "weight": 3.363515853881836
+        },
+        {
+          "feature": "worse",
+          "weight": 3.2192208766937256
+        },
+        {
+          "feature": "terrible",
+          "weight": 3.204658269882202
+        },
+        {
+          "feature": "disappointed",
+          "weight": 2.986166000366211
+        }
+      ],
+      "neutral": [
+        {
+          "feature": "gucci",
+          "weight": 2.3132002353668213
+        },
+        {
+          "feature": "shawn",
+          "weight": 1.9888640642166138
+        },
+        {
+          "feature": "madrid",
+          "weight": 1.7401609420776367
+        },
+        {
+          "feature": "kane",
+          "weight": 1.694872260093689
+        },
+        {
+          "feature": "sox",
+          "weight": 1.526069164276123
+        },
+        {
+          "feature": "question",
+          "weight": 1.5250056982040405
+        },
+        {
+          "feature": "kpop",
+          "weight": 1.5154170989990234
+        },
+        {
+          "feature": "or",
+          "weight": 1.4725017547607422
+        },
+        {
+          "feature": "nicki",
+          "weight": 1.4535244703292847
+        },
+        {
+          "feature": "nirvana",
+          "weight": 1.4397623538970947
+        },
+        {
+          "feature": "yakub",
+          "weight": 1.4359945058822632
+        },
+        {
+          "feature": "murray",
+          "weight": 1.4140585660934448
+        }
+      ],
+      "positive": [
+        {
+          "feature": "happy",
+          "weight": 6.420633792877197
+        },
+        {
+          "feature": "love",
+          "weight": 6.014624118804932
+        },
+        {
+          "feature": "great",
+          "weight": 5.868765830993652
+        },
+        {
+          "feature": "best",
+          "weight": 5.683714389801025
+        },
+        {
+          "feature": "excited",
+          "weight": 5.51540994644165
+        },
+        {
+          "feature": "good",
+          "weight": 5.270349502563477
+        },
+        {
+          "feature": "amazing",
+          "weight": 5.062206745147705
+        },
+        {
+          "feature": "awesome",
+          "weight": 4.489457130432129
+        },
+        {
+          "feature": "perfect",
+          "weight": 3.734811305999756
+        },
+        {
+          "feature": "nice",
+          "weight": 3.7242214679718018
+        },
+        {
+          "feature": "fun",
+          "weight": 3.703678846359253
+        },
+        {
+          "feature": "wait",
+          "weight": 3.677543878555298
+        }
+      ]
+    },
+    "exp02": {
+      "negative": [
+        {
+          "feature": "fuck",
+          "weight": 5.357633113861084
+        },
+        {
+          "feature": "u2019t",
+          "weight": 4.4705963134765625
+        },
+        {
+          "feature": "not",
+          "weight": 4.332200050354004
+        },
+        {
+          "feature": "worst",
+          "weight": 4.282155990600586
+        },
+        {
+          "feature": "shit",
+          "weight": 4.268050193786621
+        },
+        {
+          "feature": "sad",
+          "weight": 4.217616558074951
+        },
+        {
+          "feature": "fucking",
+          "weight": 3.7652535438537598
+        },
+        {
+          "feature": "hate",
+          "weight": 3.6213648319244385
+        },
+        {
+          "feature": "stupid",
+          "weight": 3.5108885765075684
+        },
+        {
+          "feature": "why",
+          "weight": 3.1903140544891357
+        },
+        {
+          "feature": "don't",
+          "weight": 3.1535091400146484
+        },
+        {
+          "feature": "sucks",
+          "weight": 3.144226312637329
+        }
+      ],
+      "neutral": [
+        {
+          "feature": "gucci",
+          "weight": 2.5495667457580566
+        },
+        {
+          "feature": "shawn",
+          "weight": 2.0323326587677
+        },
+        {
+          "feature": "do you",
+          "weight": 1.9445366859436035
+        },
+        {
+          "feature": "kane",
+          "weight": 1.782323956489563
+        },
+        {
+          "feature": "at",
+          "weight": 1.6981371641159058
+        },
+        {
+          "feature": "milan",
+          "weight": 1.6851096153259277
+        },
+        {
+          "feature": "murray",
+          "weight": 1.6377595663070679
+        },
+        {
+          "feature": "ps4",
+          "weight": 1.6376571655273438
+        },
+        {
+          "feature": "or",
+          "weight": 1.6170710325241089
+        },
+        {
+          "feature": "question",
+          "weight": 1.599509835243225
+        },
+        {
+          "feature": "nirvana",
+          "weight": 1.5187093019485474
+        },
+        {
+          "feature": "nicki",
+          "weight": 1.508095383644104
+        }
+      ],
+      "positive": [
+        {
+          "feature": "happy",
+          "weight": 7.502417087554932
+        },
+        {
+          "feature": "love",
+          "weight": 6.706979274749756
+        },
+        {
+          "feature": "good",
+          "weight": 6.668838024139404
+        },
+        {
+          "feature": "great",
+          "weight": 6.4849138259887695
+        },
+        {
+          "feature": "best",
+          "weight": 5.802955150604248
+        },
+        {
+          "feature": "excited",
+          "weight": 5.70993185043335
+        },
+        {
+          "feature": "amazing",
+          "weight": 5.060416221618652
+        },
+        {
+          "feature": "awesome",
+          "weight": 4.529834747314453
+        },
+        {
+          "feature": "fun",
+          "weight": 4.091185569763184
+        },
+        {
+          "feature": "nice",
+          "weight": 3.935821533203125
+        },
+        {
+          "feature": "can't wait",
+          "weight": 3.657259464263916
+        },
+        {
+          "feature": "perfect",
+          "weight": 3.5984883308410645
+        }
+      ]
+    },
+    "exp05": {
+      "negative": [
+        {
+          "feature": "fuck",
+          "weight": 4.327271131635881
+        },
+        {
+          "feature": "sucks",
+          "weight": 3.677658193462128
+        },
+        {
+          "feature": "stupid",
+          "weight": 3.6573985209442275
+        },
+        {
+          "feature": "sad",
+          "weight": 3.6131583135182996
+        },
+        {
+          "feature": "worst",
+          "weight": 3.4784428669726273
+        },
+        {
+          "feature": "fucking",
+          "weight": 3.279747488223967
+        },
+        {
+          "feature": "shit",
+          "weight": 3.2192249588727226
+        },
+        {
+          "feature": "terrible",
+          "weight": 3.1946613043275858
+        },
+        {
+          "feature": "u2019t",
+          "weight": 2.925592191493245
+        },
+        {
+          "feature": "hate",
+          "weight": 2.9167252210054966
+        },
+        {
+          "feature": "worse",
+          "weight": 2.8609464133380205
+        },
+        {
+          "feature": "bitch",
+          "weight": 2.69279293739024
+        }
+      ],
+      "neutral": [
+        {
+          "feature": "park for",
+          "weight": 2.1292410896164133
+        },
+        {
+          "feature": "i'll just",
+          "weight": 1.999733152428731
+        },
+        {
+          "feature": "out if",
+          "weight": 1.9299905478777388
+        },
+        {
+          "feature": "a dream",
+          "weight": 1.914742561428649
+        },
+        {
+          "feature": "gucci",
+          "weight": 1.9088013033995257
+        },
+        {
+          "feature": "bad blood",
+          "weight": 1.854528655701724
+        },
+        {
+          "feature": "so fucking",
+          "weight": 1.8362797430660622
+        },
+        {
+          "feature": "hopefully i",
+          "weight": 1.8220221738863769
+        },
+        {
+          "feature": "ps4",
+          "weight": 1.7488208280669928
+        },
+        {
+          "feature": "shawn",
+          "weight": 1.7451782918417227
+        },
+        {
+          "feature": "question",
+          "weight": 1.7370085457939435
+        },
+        {
+          "feature": "a love",
+          "weight": 1.725346862258327
+        }
+      ],
+      "positive": [
+        {
+          "feature": "happy",
+          "weight": 6.2194753423668585
+        },
+        {
+          "feature": "great",
+          "weight": 5.506548205331777
+        },
+        {
+          "feature": "good",
+          "weight": 5.307691688882968
+        },
+        {
+          "feature": "amazing",
+          "weight": 5.192381574732145
+        },
+        {
+          "feature": "excited",
+          "weight": 5.1423760092566075
+        },
+        {
+          "feature": "love",
+          "weight": 5.033658375328471
+        },
+        {
+          "feature": "awesome",
+          "weight": 4.855932871787487
+        },
+        {
+          "feature": "best",
+          "weight": 4.558889336051671
+        },
+        {
+          "feature": "can't wait",
+          "weight": 4.0488254430680435
+        },
+        {
+          "feature": "fun",
+          "weight": 3.8378210951033593
+        },
+        {
+          "feature": "nice",
+          "weight": 3.82542876778576
+        },
+        {
+          "feature": "perfect",
+          "weight": 3.8096084368114234
+        }
+      ]
+    },
+    "exp03": {
+      "negative": [
+        {
+          "feature": " :(",
+          "weight": 3.1563332080841064
+        },
+        {
+          "feature": ":( ",
+          "weight": 3.0948002338409424
+        },
+        {
+          "feature": "uck",
+          "weight": 3.0525264739990234
+        },
+        {
+          "feature": "sad",
+          "weight": 2.6545345783233643
+        },
+        {
+          "feature": " los",
+          "weight": 2.6445415019989014
+        },
+        {
+          "feature": " wors",
+          "weight": 2.6387147903442383
+        },
+        {
+          "feature": "wors",
+          "weight": 2.623587131500244
+        },
+        {
+          "feature": "fuc",
+          "weight": 2.5867652893066406
+        },
+        {
+          "feature": "shit",
+          "weight": 2.5833590030670166
+        },
+        {
+          "feature": "fuck",
+          "weight": 2.574737071990967
+        },
+        {
+          "feature": " :( ",
+          "weight": 2.536755084991455
+        },
+        {
+          "feature": " sad",
+          "weight": 2.52197527885437
+        }
+      ],
+      "neutral": [
+        {
+          "feature": " or",
+          "weight": 1.5913649797439575
+        },
+        {
+          "feature": "... ",
+          "weight": 1.4074963331222534
+        },
+        {
+          "feature": " or ",
+          "weight": 1.3778455257415771
+        },
+        {
+          "feature": " at ",
+          "weight": 1.3445879220962524
+        },
+        {
+          "feature": "do ",
+          "weight": 1.2351958751678467
+        },
+        {
+          "feature": " at",
+          "weight": 1.204820156097412
+        },
+        {
+          "feature": " ? ",
+          "weight": 1.1449946165084839
+        },
+        {
+          "feature": " ask",
+          "weight": 1.127233862876892
+        },
+        {
+          "feature": "e: ",
+          "weight": 1.0247278213500977
+        },
+        {
+          "feature": " do ",
+          "weight": 1.0203980207443237
+        },
+        {
+          "feature": "s: ",
+          "weight": 1.012177586555481
+        },
+        {
+          "feature": "or ",
+          "weight": 0.9813516139984131
+        }
+      ],
+      "positive": [
+        {
+          "feature": " :)",
+          "weight": 3.328246831893921
+        },
+        {
+          "feature": ":) ",
+          "weight": 3.0589675903320312
+        },
+        {
+          "feature": "lov",
+          "weight": 3.026179552078247
+        },
+        {
+          "feature": "!! ",
+          "weight": 2.9900405406951904
+        },
+        {
+          "feature": " lov",
+          "weight": 2.983285427093506
+        },
+        {
+          "feature": "best",
+          "weight": 2.9796106815338135
+        },
+        {
+          "feature": " best",
+          "weight": 2.93211030960083
+        },
+        {
+          "feature": "e! ",
+          "weight": 2.918610095977783
+        },
+        {
+          "feature": "love",
+          "weight": 2.895484209060669
+        },
+        {
+          "feature": " love",
+          "weight": 2.846914052963257
+        },
+        {
+          "feature": "s! ",
+          "weight": 2.8429958820343018
+        },
+        {
+          "feature": " bes",
+          "weight": 2.758406639099121
+        }
+      ]
+    },
+    "exp06": {
+      "negative": [
+        {
+          "feature": ":( ",
+          "weight": 2.929458489195558
+        },
+        {
+          "feature": " :(",
+          "weight": 2.550866830804125
+        },
+        {
+          "feature": "uck",
+          "weight": 2.3163623089280097
+        },
+        {
+          "feature": " hate",
+          "weight": 2.3060545579120286
+        },
+        {
+          "feature": "sad",
+          "weight": 2.2812502783489275
+        },
+        {
+          "feature": "wors",
+          "weight": 2.2667791843287746
+        },
+        {
+          "feature": " wors",
+          "weight": 2.2623235529376413
+        },
+        {
+          "feature": "shit",
+          "weight": 2.2128798366777667
+        },
+        {
+          "feature": " sad",
+          "weight": 2.188831143382836
+        },
+        {
+          "feature": "fuc",
+          "weight": 2.1229742984504507
+        },
+        {
+          "feature": "fuck",
+          "weight": 2.084049795990192
+        },
+        {
+          "feature": " los",
+          "weight": 2.0546826032152303
+        }
+      ],
+      "neutral": [
+        {
+          "feature": "pain ",
+          "weight": 1.6637647346286057
+        },
+        {
+          "feature": "lover",
+          "weight": 1.4917785198932512
+        },
+        {
+          "feature": " ? ",
+          "weight": 1.4538759902399776
+        },
+        {
+          "feature": " + ",
+          "weight": 1.4460277874807488
+        },
+        {
+          "feature": "tat ",
+          "weight": 1.4308347547497995
+        },
+        {
+          "feature": "rent.",
+          "weight": 1.3924191399506005
+        },
+        {
+          "feature": " c ",
+          "weight": 1.386429365092192
+        },
+        {
+          "feature": " ask",
+          "weight": 1.3736044431869052
+        },
+        {
+          "feature": "... ",
+          "weight": 1.3096648798140635
+        },
+        {
+          "feature": " tl",
+          "weight": 1.3080753202058073
+        },
+        {
+          "feature": "cr ",
+          "weight": 1.306144595295137
+        },
+        {
+          "feature": "ence,",
+          "weight": 1.301574816598494
+        }
+      ],
+      "positive": [
+        {
+          "feature": ":) ",
+          "weight": 3.0107182492691873
+        },
+        {
+          "feature": " :)",
+          "weight": 2.794282934301951
+        },
+        {
+          "feature": "!! ",
+          "weight": 2.7249326462390537
+        },
+        {
+          "feature": "s! ",
+          "weight": 2.6936154613300776
+        },
+        {
+          "feature": "best",
+          "weight": 2.593333344675936
+        },
+        {
+          "feature": "fun",
+          "weight": 2.5920947156063785
+        },
+        {
+          "feature": "nice",
+          "weight": 2.5046361958075325
+        },
+        {
+          "feature": "!\" ",
+          "weight": 2.5006010165882433
+        },
+        {
+          "feature": "e! ",
+          "weight": 2.477703282704274
+        },
+        {
+          "feature": " best",
+          "weight": 2.4175828420233203
+        },
+        {
+          "feature": "grea",
+          "weight": 2.3674222774655873
+        },
+        {
+          "feature": "great",
+          "weight": 2.2897214268037756
+        }
+      ]
+    },
+    "exp04": {
+      "negative": [
+        {
+          "feature": "character__ :(",
+          "weight": 2.8982737064361572
+        },
+        {
+          "feature": "character__:( ",
+          "weight": 2.8153188228607178
+        },
+        {
+          "feature": "character__uck",
+          "weight": 2.7404544353485107
+        },
+        {
+          "feature": "word__sad",
+          "weight": 2.579052209854126
+        },
+        {
+          "feature": "word__not",
+          "weight": 2.4833481311798096
+        },
+        {
+          "feature": "word__worst",
+          "weight": 2.4453094005584717
+        },
+        {
+          "feature": "character__ :( ",
+          "weight": 2.367328643798828
+        },
+        {
+          "feature": "word__fuck",
+          "weight": 2.2213003635406494
+        },
+        {
+          "feature": "word__ass",
+          "weight": 2.142000675201416
+        },
+        {
+          "feature": "word__no",
+          "weight": 2.1201987266540527
+        },
+        {
+          "feature": "character__fuc",
+          "weight": 2.114941120147705
+        },
+        {
+          "feature": "character__fuck",
+          "weight": 2.1032073497772217
+        }
+      ],
+      "neutral": [
+        {
+          "feature": "word__do you",
+          "weight": 1.5511085987091064
+        },
+        {
+          "feature": "word__last day",
+          "weight": 1.4264650344848633
+        },
+        {
+          "feature": "character__... ",
+          "weight": 1.2445216178894043
+        },
+        {
+          "feature": "word__bad blood",
+          "weight": 1.1952208280563354
+        },
+        {
+          "feature": "word__is there",
+          "weight": 1.1455134153366089
+        },
+        {
+          "feature": "word__i'll just",
+          "weight": 1.138578176498413
+        },
+        {
+          "feature": "word__what time",
+          "weight": 1.1319303512573242
+        },
+        {
+          "feature": "word__never know",
+          "weight": 1.1248165369033813
+        },
+        {
+          "feature": "word__are you",
+          "weight": 1.1097629070281982
+        },
+        {
+          "feature": "word__gucci",
+          "weight": 1.090761423110962
+        },
+        {
+          "feature": "word__this saturday",
+          "weight": 1.0746972560882568
+        },
+        {
+          "feature": "word__see if",
+          "weight": 1.0663251876831055
+        }
+      ],
+      "positive": [
+        {
+          "feature": "word__can't wait",
+          "weight": 3.302593946456909
+        },
+        {
+          "feature": "word__happy",
+          "weight": 3.27847957611084
+        },
+        {
+          "feature": "word__good",
+          "weight": 3.2094359397888184
+        },
+        {
+          "feature": "character__ :)",
+          "weight": 3.165522575378418
+        },
+        {
+          "feature": "word__great",
+          "weight": 3.0277669429779053
+        },
+        {
+          "feature": "character__!! ",
+          "weight": 2.9237289428710938
+        },
+        {
+          "feature": "word__best",
+          "weight": 2.922990322113037
+        },
+        {
+          "feature": "character__:) ",
+          "weight": 2.8647749423980713
+        },
+        {
+          "feature": "character__e! ",
+          "weight": 2.6632792949676514
+        },
+        {
+          "feature": "word__love",
+          "weight": 2.631343126296997
+        },
+        {
+          "feature": "character__s! ",
+          "weight": 2.574937343597412
+        },
+        {
+          "feature": "word__fun",
+          "weight": 2.443392038345337
+        }
+      ]
+    },
+    "exp07": {
+      "negative": [
+        {
+          "feature": "character__:( ",
+          "weight": 2.352210355300582
+        },
+        {
+          "feature": "character__ :(",
+          "weight": 2.2968494297671413
+        },
+        {
+          "feature": "character__uck",
+          "weight": 1.983806350402622
+        },
+        {
+          "feature": "word__sad",
+          "weight": 1.9209182204787592
+        },
+        {
+          "feature": "character__ :( ",
+          "weight": 1.6849978846153275
+        },
+        {
+          "feature": "word__i hate",
+          "weight": 1.657965181849436
+        },
+        {
+          "feature": "word__ass",
+          "weight": 1.6275005848985786
+        },
+        {
+          "feature": "word__the worst",
+          "weight": 1.6210461336174795
+        },
+        {
+          "feature": "word__worst",
+          "weight": 1.6084726619247756
+        },
+        {
+          "feature": "word__care about",
+          "weight": 1.5819169677882852
+        },
+        {
+          "feature": "word__not",
+          "weight": 1.5582287586222199
+        },
+        {
+          "feature": "character__shit",
+          "weight": 1.554058185198092
+        }
+      ],
+      "neutral": [
+        {
+          "feature": "word__park for",
+          "weight": 2.2770169364354533
+        },
+        {
+          "feature": "word__so fucking",
+          "weight": 1.9401613929195125
+        },
+        {
+          "feature": "word__hopefully i",
+          "weight": 1.840752100358921
+        },
+        {
+          "feature": "word__a dream",
+          "weight": 1.790910258357582
+        },
+        {
+          "feature": "word__i'll just",
+          "weight": 1.6945653313983782
+        },
+        {
+          "feature": "word__to george",
+          "weight": 1.6619402787657707
+        },
+        {
+          "feature": "word__time i've",
+          "weight": 1.6602402769020292
+        },
+        {
+          "feature": "word__fun of",
+          "weight": 1.6168330780525748
+        },
+        {
+          "feature": "word__a love",
+          "weight": 1.4691451629351653
+        },
+        {
+          "feature": "word__be working",
+          "weight": 1.4634944512591535
+        },
+        {
+          "feature": "word__me until",
+          "weight": 1.4593206277232773
+        },
+        {
+          "feature": "word__where is",
+          "weight": 1.4513745116514036
+        }
+      ],
+      "positive": [
+        {
+          "feature": "word__can't wait",
+          "weight": 3.5259888176011884
+        },
+        {
+          "feature": "character__ :)",
+          "weight": 2.72587684367319
+        },
+        {
+          "feature": "character__:) ",
+          "weight": 2.703675421575684
+        },
+        {
+          "feature": "character__!! ",
+          "weight": 2.6196952556429354
+        },
+        {
+          "feature": "word__happy",
+          "weight": 2.5461667031828035
+        },
+        {
+          "feature": "word__i like",
+          "weight": 2.4705521061826365
+        },
+        {
+          "feature": "word__good",
+          "weight": 2.462487397058108
+        },
+        {
+          "feature": "word__don't miss",
+          "weight": 2.3123693101922265
+        },
+        {
+          "feature": "word__great",
+          "weight": 2.3052482631732265
+        },
+        {
+          "feature": "word__u2019t wait",
+          "weight": 2.304529265664188
+        },
+        {
+          "feature": "character__s! ",
+          "weight": 2.2840697985163505
+        },
+        {
+          "feature": "character__e! ",
+          "weight": 2.2374129025475593
+        }
+      ]
+    }
+  },
+  "winner": {
+    "experiment_id": "exp04",
+    "feature": "combined",
+    "feature_params": {
+      "word": {
+        "analyzer": "word",
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "max_features": 100000,
+        "sublinear_tf": true,
+        "norm": "l2",
+        "lowercase": false,
+        "token_pattern": "(?u)\\b\\w+(?:['’]\\w+)*\\b"
+      },
+      "character": {
+        "analyzer": "char_wb",
+        "ngram_range": [
+          3,
+          5
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "max_features": 120000,
+        "sublinear_tf": true,
+        "norm": "l2",
+        "lowercase": false,
+        "token_pattern": "(?u)\\b\\w\\w+\\b"
+      }
+    },
+    "model": "logistic_regression",
+    "model_params": {
+      "C": 1.0,
+      "class_weight": null,
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": 0.0,
+      "max_iter": 350,
+      "n_jobs": null,
+      "penalty": "deprecated",
+      "random_state": 42,
+      "solver": "lbfgs",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "random_state": 42,
+    "train_rows": 45615,
+    "validation_rows": 2000,
+    "feature_dimensions": 217174,
+    "feature_fit_seconds": 8.2475,
+    "fit_seconds": 15.9381,
+    "prediction_seconds": 0.0033,
+    "validation_accuracy": 0.705,
+    "validation_macro_precision": 0.6894998272463062,
+    "validation_macro_recall": 0.6515049062517417,
+    "validation_macro_f1": 0.6645630158401729,
+    "validation_weighted_f1": 0.7011939944996206,
+    "negative_precision": 0.6266666666666667,
+    "negative_recall": 0.4519230769230769,
+    "negative_f1": 0.5251396648044693,
+    "neutral_precision": 0.6710261569416499,
+    "neutral_recall": 0.7675489067894131,
+    "neutral_f1": 0.7160493827160493,
+    "positive_precision": 0.7708066581306018,
+    "positive_recall": 0.7350427350427351,
+    "positive_f1": 0.7525
+  },
+  "candidate": {
+    "status": "VALIDATION-SELECTED CANDIDATE — NOT FINAL TEST-EVALUATED MODEL",
+    "experiment_id": "exp04",
+    "feature": "combined",
+    "model": "logistic_regression",
+    "validation_macro_f1": 0.6645630158401729,
+    "validation_accuracy": 0.705,
+    "artifact_sha256": "2a04d37cfe4f6776aa88ebab78b114d503e7a64db717d095821b0c3322c733a3",
+    "artifact_bytes": 4358950,
+    "reload_predictions_match": true
+  },
+  "environment": {
+    "python": "3.14.7",
+    "packages": {
+      "pandas": "3.0.5",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "joblib": "1.6.0",
+      "matplotlib": "3.11.1"
+    }
+  }
+}
