@@ -35,6 +35,10 @@ On Linux/macOS, use .venv/bin/python instead. The acquisition command reuses che
 
 The saved [frozen candidate metadata](models/candidates/frozen_candidate_metadata.json) records preprocessing, TF-IDF, weights, classifier, CV, versions, validation metrics and artifact SHA-256. The fitted joblib artifact contains vectorizer state and classifier coefficients, not training-row arrays. Load joblib only from trusted sources; regenerate it if library versions differ. There is no software LICENSE yet; public visibility does not itself grant reuse rights.
 
+## Frozen final evaluation protocol
+
+The [one-time final evaluation procedure](FINAL_EVALUATION_PROTOCOL.md) fits the frozen configuration on TRAIN+VALIDATION only after its code is committed, pushed and CI-passing. It requires an explicit unlock flag and pre-TEST commit SHA; a normal invocation does not evaluate TEST. No official TEST score is present in this pre-evaluation checkpoint.
+
 ## Repository map and limits
 
 - src/: acquisition, validation, cleaning, feature extraction, modeling, tuning and evaluation.

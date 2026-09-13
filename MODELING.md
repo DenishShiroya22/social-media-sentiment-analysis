@@ -60,3 +60,7 @@ Run python -m src.data_acquisition, python -m src.pipeline, python -m src.model_
 ## Limits and next work
 
 These are development results on historical English tweets. Brand-domain shift, sarcasm, absent context, ambiguous labels and class imbalance remain. Selection on a single validation split can be optimistic. Raw and processed dataset CSVs are excluded from Git; upstream rights need review before redistribution. Next: review the frozen methodology, decide whether to refit on TRAIN+VALIDATION, and perform exactly one locked TEST evaluation in a separate task. No TEST predictive result exists in this work.
+
+## Frozen one-time final evaluation protocol
+
+The pre-TEST [final evaluation protocol](FINAL_EVALUATION_PROTOCOL.md) is implemented in src/final_evaluation.py. It will fit the exact frozen Pipeline on TRAIN+VALIDATION (47,615 rows) and, only after this procedure is pushed and CI passes, evaluate untouched TEST once. The ordinary command is read-only; explicit unlock requires the pre-TEST commit SHA and a clean synchronized checkout. This checkpoint contains no official TEST metrics.
