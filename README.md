@@ -2,11 +2,19 @@
 
 This public project builds a reproducible sentiment-modeling foundation for future brand and product monitoring. It acquires the official Cardiff NLP TweetEval sentiment splits, validates and conservatively cleans them, compares nine classical TF-IDF baselines, and tunes the two leading linear pipelines using TRAIN-only cross-validation. Live collection, analytics and a dashboard remain future work.
 
-## Current development result
+## Official final benchmark result
 
-The **frozen development candidate** is combined word-and-character TF-IDF with Logistic Regression. On the official VALIDATION split it reached macro-F1 **0.6728** and accuracy **0.6925**; negative-class F1 was **0.5850**. Its configuration was selected after stratified CV within TRAIN. The LinearSVC finalist reached macro-F1 0.6726. Their paired-bootstrap difference is small and uncertain. **TEST HAS NOT BEEN EVALUATED.** No TEST predictions, predictive metrics, confusion matrices or error analysis were generated.
+The frozen combined word-and-character TF-IDF plus Logistic Regression procedure was committed and CI-passing before TEST was unlocked. It was then fitted once on TRAIN+VALIDATION (47,615 rows) and evaluated once on untouched TEST (12,284 rows). The primary **TEST macro-F1 is 0.6199**; accuracy is **0.6228**.
 
-The corrected nine-baseline comparison is in [model comparison](reports/model_comparison.csv). The [preprocessing impact](reports/preprocessing_impact.md), [tuning summary](reports/tuning_summary.md), [uncertainty](reports/model_uncertainty.md), [errors](reports/error_analysis.md), and [confidence/margins](reports/model_confidence.md) provide the evidence behind selection. These are historical tweet-validation results, not a performance claim for current brand data.
+| Class | Precision | Recall | F1 | Support |
+|---|---:|---:|---:|---:|
+| negative | 0.5945 | 0.6944 | 0.6406 | 3,972 |
+| neutral | 0.6710 | 0.5744 | 0.6189 | 5,937 |
+| positive | 0.5782 | 0.6240 | 0.6002 | 2,375 |
+
+Macro precision is 0.6146, macro recall 0.6309, and weighted F1 0.6223. The previous TRAIN-only candidate had VALIDATION macro-F1 0.6728; TEST macro-F1 is 0.0529 lower after the frozen configuration was refitted on TRAIN+VALIDATION. This is a descriptive difference, not a reason to retune. No SVM or alternate model received a TEST score.
+
+The [final evaluation summary](reports/final_evaluation_summary.md), [structured metrics](reports/final_test_metrics.json), [confusion matrix](reports/figures/final_test_confusion_matrix.png), [manifest](reports/final_evaluation_manifest.json), and [model card](models/final/MODEL_CARD.md) document the official result. Historical [baseline](reports/model_comparison.csv), [preprocessing](reports/preprocessing_impact.md), [tuning](reports/tuning_summary.md), and [uncertainty](reports/model_uncertainty.md) evidence remain available. These are historical tweet benchmark results, not guaranteed performance for current brand data.
 
 ## Data and workflow
 
@@ -14,7 +22,7 @@ Source: [Cardiff NLP TweetEval](https://huggingface.co/datasets/cardiffnlp/tweet
 
 Official split sizes: TRAIN 45,615; VALIDATION 2,000; TEST 12,284. Labels are negative, neutral and positive. No resplitting or oversampling occurs. The pipeline preserves original text, labels, order and split membership. It normalizes only known escaped punctuation such as literal backslash-u2019 and backslash-u002c, plus actual Unicode punctuation, while retaining contractions, emoji, hashtags and sentiment punctuation. See [data foundation](DATA_FOUNDATION.md).
 
-The sequence is data foundation → preprocessing → classical modeling → focused TRAIN CV tuning → VALIDATION checkpoint → frozen development candidate. A final methodology review and one locked TEST evaluation are future work; live social-media integration and analytics come after that.
+The completed sequence is data foundation → preprocessing → classical modeling → TRAIN-only CV tuning → VALIDATION selection → frozen procedure commit and CI → TRAIN+VALIDATION refit → one TEST evaluation. Next application work is a reusable inference service, responsible public social-media ingestion, aggregation, trend analysis and a dashboard.
 
 ## Reproduce
 
@@ -29,23 +37,27 @@ Use Python 3.11 or newer. From the repository root:
     .\.venv\Scripts\python -m pytest -q
     .\.venv\Scripts\python scripts\create_notebooks.py
     .\.venv\Scripts\python scripts\create_model_notebook.py
+    .\.venv\Scripts\python scripts\create_final_notebook.py
     .\.venv\Scripts\python scripts\execute_notebooks.py
+    .\.venv\Scripts\python -m src.final_evaluation
 
 On Linux/macOS, use .venv/bin/python instead. The acquisition command reuses checksum-verified local files or downloads the pinned source revision. The test suite uses offline fixtures; [GitHub Actions](.github/workflows/tests.yml) runs it on pushes and pull requests without downloading TweetEval. requirements-lock.txt records the tested local package set, while requirements.txt specifies portable ranges.
 
-The saved [frozen candidate metadata](models/candidates/frozen_candidate_metadata.json) records preprocessing, TF-IDF, weights, classifier, CV, versions, validation metrics and artifact SHA-256. The fitted joblib artifact contains vectorizer state and classifier coefficients, not training-row arrays. Load joblib only from trusted sources; regenerate it if library versions differ. There is no software LICENSE yet; public visibility does not itself grant reuse rights.
+The saved [frozen candidate metadata](models/candidates/frozen_candidate_metadata.json) records the development selection. The [final model metadata](models/final/final_model_metadata.json) records the 47,615-row refit and TEST result. Joblib artifacts contain vectorizer state and classifier coefficients, not training-row arrays; load them only from trusted sources. The local label-only prediction file is excluded from Git, as are raw and processed dataset CSVs. There is no software LICENSE yet; public visibility does not itself grant reuse rights.
 
-## Frozen final evaluation protocol
+## One-time final evaluation guard
 
-The [one-time final evaluation procedure](FINAL_EVALUATION_PROTOCOL.md) fits the frozen configuration on TRAIN+VALIDATION only after its code is committed, pushed and CI-passing. It requires an explicit unlock flag and pre-TEST commit SHA; a normal invocation does not evaluate TEST. No official TEST score is present in this pre-evaluation checkpoint.
+The [pre-TEST procedure](FINAL_EVALUATION_PROTOCOL.md) was frozen in commit 7922527d9599567887de2a5836e84a4e7e89458e, pushed and CI-passing before the one official evaluation. A normal invocation of src.final_evaluation only points to the saved result. Its explicit unlock requires that pre-TEST SHA, a clean synchronized checkout and no prior result. The completed manifest now prevents accidental repeated scoring. The explicit unlock command is recorded for audit in the protocol document; it is not a routine reproduction step.
+
+[GitHub Actions](.github/workflows/tests.yml) runs offline tests on pushes and pull requests. It never downloads TweetEval or recomputes official TEST metrics.
 
 ## Repository map and limits
 
 - src/: acquisition, validation, cleaning, feature extraction, modeling, tuning and evaluation.
 - data/raw and data/processed: ignored split CSVs plus tracked provenance manifests.
-- notebooks/: executed data, preprocessing and model-development notebooks.
-- reports/: executed data quality, baseline, tuning, uncertainty and error results.
-- models/candidates/: fitted development artifacts and metadata.
+- notebooks/: executed data, preprocessing, model-development and read-only final-results notebooks.
+- reports/: executed data quality, baseline, tuning and final evaluation results.
+- models/candidates and models/final: development and final fitted artifacts with metadata and a model card.
 - tests/: offline behavior and leakage-boundary checks.
 
 Historical English tweets may differ sharply from present-day brand comments. Sarcasm, missing conversational context, annotation ambiguity, class imbalance and domain shift remain. Usernames are unnecessary for sentiment modeling; future collection should respect platform terms and avoid unnecessary personal data. Predictions are fallible and should not be treated as objective psychological facts.

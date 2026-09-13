@@ -2,7 +2,7 @@
 
 ## Contract and leakage boundary
 
-Official TweetEval sentiment TRAIN has 45,615 posts: negative 7,093, neutral 20,673, positive 17,849. VALIDATION has 2,000. TEST has 12,284 and is locked. Its only permitted checks are existence, schema, count, split membership and checksum. No TEST text or labels enter model development. Vocabulary, IDF and classifier fitting occur on TRAIN; CV refits the full sklearn Pipeline inside each TRAIN fold. Each tuned finalist is evaluated once on VALIDATION after its configuration is fixed by TRAIN CV. Earlier fixed baselines were also compared on VALIDATION.
+Official TweetEval sentiment TRAIN has 45,615 posts: negative 7,093, neutral 20,673, positive 17,849. VALIDATION has 2,000. TEST has 12,284 rows. It remained locked throughout model development, with only existence, schema, count, split and checksum checks. After the modeling procedure was frozen, committed, pushed and CI-passing, it was evaluated once by the final procedure. No TEST text or labels influenced model development. Vocabulary, IDF and classifier fitting occur on TRAIN; CV refits the full sklearn Pipeline inside each TRAIN fold. Each tuned finalist is evaluated once on VALIDATION after its configuration is fixed by TRAIN CV. Earlier fixed baselines were also compared on VALIDATION.
 
 Macro-F1 is the primary metric because the negative class is less common. Accuracy, macro precision/recall, weighted F1 and per-class precision/recall/F1 are also recorded. Random seed: 42.
 
@@ -45,7 +45,7 @@ All candidate parameters, ranks, fold scores and runtimes are in [tuning results
 Full per-class precision and recall, confusion matrices and version details are in [tuning metrics](reports/tuning_metrics.json).
 LR minus SVM macro-F1 is +0.0003; a 2,000-draw paired row bootstrap gives a 95% percentile interval [-0.0117, +0.0128]. It crosses zero, so this validation sample does not distinguish the two reliably. It is a sensitivity diagnostic, not formal proof. See [uncertainty analysis](reports/model_uncertainty.md).
 
-The frozen development candidate is **logistic_regression** by validation macro-F1, with CV stability, negative-class F1 and runtime considered as secondary evidence. Its validation macro-F1 is 0.6728; negative recall is 0.6731. The small LR advantage should not be interpreted as a firm generalization advantage. **TEST HAS NOT BEEN EVALUATED.**
+The frozen development candidate is **logistic_regression** by validation macro-F1, with CV stability, negative-class F1 and runtime considered as secondary evidence. Its validation macro-F1 is 0.6728; negative recall is 0.6731. The small LR advantage should not be interpreted as a firm generalization advantage. At this development-selection checkpoint TEST was still locked; the later single official result is documented below.
 
 ## Error and confidence review
 
@@ -59,8 +59,22 @@ Run python -m src.data_acquisition, python -m src.pipeline, python -m src.model_
 
 ## Limits and next work
 
-These are development results on historical English tweets. Brand-domain shift, sarcasm, absent context, ambiguous labels and class imbalance remain. Selection on a single validation split can be optimistic. Raw and processed dataset CSVs are excluded from Git; upstream rights need review before redistribution. Next: review the frozen methodology, decide whether to refit on TRAIN+VALIDATION, and perform exactly one locked TEST evaluation in a separate task. No TEST predictive result exists in this work.
+These are development results on historical English tweets. Brand-domain shift, sarcasm, absent context, ambiguous labels and class imbalance remain. Selection on a single validation split can be optimistic. Raw and processed dataset CSVs are excluded from Git; upstream rights need review before redistribution. The frozen procedure was subsequently refitted on TRAIN+VALIDATION and evaluated once on TEST, as recorded below. No post-TEST modeling decision was made.
 
-## Frozen one-time final evaluation protocol
+## Frozen final fit and one official TEST evaluation
 
-The pre-TEST [final evaluation protocol](FINAL_EVALUATION_PROTOCOL.md) is implemented in src/final_evaluation.py. It will fit the exact frozen Pipeline on TRAIN+VALIDATION (47,615 rows) and, only after this procedure is pushed and CI passes, evaluate untouched TEST once. The ordinary command is read-only; explicit unlock requires the pre-TEST commit SHA and a clean synchronized checkout. This checkpoint contains no official TEST metrics.
+The [pre-TEST protocol](FINAL_EVALUATION_PROTOCOL.md) and code were committed at 7922527d9599567887de2a5836e84a4e7e89458e, pushed to main and passed CI before predictive TEST access. The original candidate artifact served as configuration evidence. A fresh Pipeline with exactly the frozen word (1,2), character (3,5), 1.0/1.25 weights and balanced Logistic Regression parameters was fitted on all 45,615 TRAIN plus 2,000 VALIDATION rows, preserving 47,615 rows. The processed TEST checksum matched its manifest; one official 12,284-row TEST prediction vector and one metric set followed.
+
+| Metric | VALIDATION candidate | Official TEST | TEST − VALIDATION |
+|---|---:|---:|---:|
+| Accuracy | 0.6925 | 0.6228 | −0.0697 |
+| Macro precision | 0.6642 | 0.6146 | −0.0496 |
+| Macro recall | 0.6891 | 0.6309 | −0.0582 |
+| Macro-F1 | 0.6728 | 0.6199 | −0.0529 |
+| Negative F1 | 0.5850 | 0.6406 | +0.0556 |
+| Neutral F1 | 0.6861 | 0.6189 | −0.0672 |
+| Positive F1 | 0.7475 | 0.6002 | −0.1473 |
+
+Official TEST weighted F1 is 0.6223. Per-class precision, recall, F1 and support, the 3×3 confusion matrix, timing, software versions, model checksum and pre-TEST SHA are in [final metrics](reports/final_test_metrics.json) and the [summary](reports/final_evaluation_summary.md). Validation metrics came from the TRAIN-only candidate, whereas TEST metrics came from the same frozen configuration refitted on TRAIN+VALIDATION; their gap is descriptive. The largest F1 decline is positive, while negative F1 improves. No parameter, preprocessing, threshold, feature weight or classifier changed after TEST.
+
+The [manifest](reports/final_evaluation_manifest.json) records the completed evaluation and blocks a repeat. Row-level label/index predictions remain local under ignored data/processed; public reports contain no raw TEST examples. The [final model card](models/final/MODEL_CARD.md) describes intended use and limitations. This historical benchmark does not establish performance on modern brand-specific comments. Next: build a reusable inference service and evaluate responsibly on real public social-media data before adding aggregation, trend analysis and a dashboard.

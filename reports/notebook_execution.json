@@ -10,5 +10,9 @@
   "03_model_development.ipynb": {
     "status": "passed",
     "executed_code_cells": 9
+  },
+  "04_final_evaluation.ipynb": {
+    "status": "passed",
+    "executed_code_cells": 4
   }
 }

@@ -1,0 +1,154 @@
+{
+  "pretest_commit_sha": "7922527d9599567887de2a5836e84a4e7e89458e",
+  "protocol_version": "1.0",
+  "training_rows": 47615,
+  "frozen_configuration": {
+    "preprocessing": {
+      "lowercase": true,
+      "strip_urls": true,
+      "mention_strategy": "remove",
+      "preserve_hashtag_words": true,
+      "emoji_strategy": "preserve",
+      "reduce_repeats": false
+    },
+    "features": {
+      "word": {
+        "analyzer": "word",
+        "ngram_range": [
+          1,
+          2
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "max_features": 100000,
+        "sublinear_tf": true,
+        "norm": "l2",
+        "lowercase": false,
+        "token_pattern": "(?u)\\b\\w+(?:['’]\\w+)*\\b"
+      },
+      "character": {
+        "analyzer": "char_wb",
+        "ngram_range": [
+          3,
+          5
+        ],
+        "min_df": 2,
+        "max_df": 0.95,
+        "max_features": 120000,
+        "sublinear_tf": true,
+        "norm": "l2",
+        "lowercase": false,
+        "token_pattern": "(?u)\\b\\w\\w+\\b"
+      }
+    },
+    "feature_weights": {
+      "character": 1.25,
+      "word": 1.0
+    },
+    "classifier_parameters": {
+      "C": 1.0,
+      "class_weight": "balanced",
+      "dual": false,
+      "fit_intercept": true,
+      "intercept_scaling": 1,
+      "l1_ratio": 0.0,
+      "max_iter": 350,
+      "n_jobs": null,
+      "penalty": "deprecated",
+      "random_state": 42,
+      "solver": "lbfgs",
+      "tol": 0.0001,
+      "verbose": 0,
+      "warm_start": false
+    },
+    "random_state": 42
+  },
+  "test_metrics": {
+    "accuracy": 0.6227613155323999,
+    "macro_precision": 0.6145829971178968,
+    "macro_recall": 0.6309082268824334,
+    "macro_f1": 0.6199166527565763,
+    "weighted_f1": 0.622316674864381,
+    "per_class": {
+      "negative": {
+        "precision": 0.5945246820435439,
+        "recall": 0.6943605236656596,
+        "f1": 0.640576007432354,
+        "support": 3972
+      },
+      "neutral": {
+        "precision": 0.670995670995671,
+        "recall": 0.5743641569816406,
+        "f1": 0.6189309374716399,
+        "support": 5937
+      },
+      "positive": {
+        "precision": 0.5782286383144752,
+        "recall": 0.624,
+        "f1": 0.6002430133657352,
+        "support": 2375
+      }
+    },
+    "confusion_matrix": [
+      [
+        2758,
+        1003,
+        211
+      ],
+      [
+        1657,
+        3410,
+        870
+      ],
+      [
+        224,
+        669,
+        1482
+      ]
+    ],
+    "classification_report": {
+      "negative": {
+        "precision": 0.5945246820435439,
+        "recall": 0.6943605236656596,
+        "f1-score": 0.640576007432354,
+        "support": 3972.0
+      },
+      "neutral": {
+        "precision": 0.670995670995671,
+        "recall": 0.5743641569816406,
+        "f1-score": 0.6189309374716399,
+        "support": 5937.0
+      },
+      "positive": {
+        "precision": 0.5782286383144752,
+        "recall": 0.624,
+        "f1-score": 0.6002430133657352,
+        "support": 2375.0
+      },
+      "accuracy": 0.6227613155323999,
+      "macro avg": {
+        "precision": 0.6145829971178968,
+        "recall": 0.6309082268824334,
+        "f1-score": 0.6199166527565763,
+        "support": 12284.0
+      },
+      "weighted avg": {
+        "precision": 0.6283333076990503,
+        "recall": 0.6227613155323999,
+        "f1-score": 0.622316674864381,
+        "support": 12284.0
+      }
+    }
+  },
+  "artifact_sha256": "a3e375cc0e75c68f2ac8de8a35d46369e566c3e0821d31c778018f4edc83451e",
+  "artifact_bytes": 4418974,
+  "reload_predictions_match": true,
+  "environment": {
+    "pandas": "3.0.5",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "python_version": "3.14.7"
+}

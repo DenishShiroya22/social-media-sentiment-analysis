@@ -1,0 +1,13 @@
+{
+  "evaluation_completed": true,
+  "protocol_version": "1.0",
+  "pretest_commit_sha": "7922527d9599567887de2a5836e84a4e7e89458e",
+  "frozen_artifact_sha256": "ef5e641c7368cacc2d17938fc2d05eaad86f45df538417c800c6a9afe1c8af0b",
+  "final_model_sha256": "a3e375cc0e75c68f2ac8de8a35d46369e566c3e0821d31c778018f4edc83451e",
+  "final_metrics_sha256": "a9fd8daf5ee4d6cffa3f80e13c221b4597e066321c8eceefcd4e290e5846aa0c",
+  "processed_test_sha256": "0860dbcb23d9cb6404b03d3f0f487892de4de247e2bef0ca26c2fd318d4251e3",
+  "test_rows": 12284,
+  "official_prediction_vectors": 1,
+  "reload_check": "same fitted model and inputs, exact equality only; not separately scored",
+  "local_prediction_file_sha256": "d24dd745414921aea75588b678a094c0cc9942ffc7ae2a25d90225a8ba4f3ba3"
+}
