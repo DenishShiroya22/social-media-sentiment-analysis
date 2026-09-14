@@ -61,3 +61,18 @@ The [pre-TEST procedure](FINAL_EVALUATION_PROTOCOL.md) was frozen in commit 7922
 - tests/: offline behavior and leakage-boundary checks.
 
 Historical English tweets may differ sharply from present-day brand comments. Sarcasm, missing conversational context, annotation ambiguity, class imbalance and domain shift remain. Usernames are unnecessary for sentiment modeling; future collection should respect platform terms and avoid unnecessary personal data. Predictions are fallible and should not be treated as objective psychological facts.
+
+## Experimental post-benchmark research
+
+After the one official TEST evaluation, a separate research track compares frozen TRAIN-only Logistic Regression and LinearSVC configurations with hard voting, TRAIN-CV-selected calibrated soft voting, out-of-fold stacking, and sparse XGBoost. This track trains on TRAIN (45,615 rows), selects settings with TRAIN-only CV, and compares fixed candidates on VALIDATION (2,000 rows). It produces **no new TEST score** and does not replace the official benchmark model.
+
+The [experimental comparison](reports/experimental/ensemble_summary.md), [machine-readable metrics](reports/experimental/ensemble_metrics.json), [XGBoost metrics](reports/experimental/xgboost_metrics.json), and [read-only results notebook](notebooks/05_ensemble_experiments.ipynb) document the methods and development evidence. New artifacts, if a candidate shows a meaningful, stable improvement over frozen LR on VALIDATION, live only in models/experimental. Their status is EXPERIMENTAL DEVELOPMENT MODEL. The official TweetEval TEST result above remains the sole official benchmark.
+
+With processed TRAIN and VALIDATION CSVs already available, reproduce this development work separately:
+
+    .\.venv\Scripts\python -m src.experimental.ensemble
+    .\.venv\Scripts\python -m src.experimental.xgboost_experiment
+    .\.venv\Scripts\python -m src.experimental.report
+    .\.venv\Scripts\python scripts\create_experimental_notebook.py
+
+The XGBoost search is intentionally CPU-intensive and is excluded from CI. The offline synthetic tests cover leakage boundaries without downloading data. Future assessment of an experimental model should use a newly collected, manually labeled brand-comment dataset.

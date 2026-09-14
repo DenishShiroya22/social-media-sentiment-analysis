@@ -1,0 +1,481 @@
+{
+  "status": "EXPERIMENTAL DEVELOPMENT MODEL \u2014 NO NEW TEST EVALUATION",
+  "cv": {
+    "source": "TRAIN only",
+    "n_splits": 3,
+    "shuffle": true,
+    "random_state": 42,
+    "scoring": "f1_macro",
+    "candidate_count": 10,
+    "fit_count": 30,
+    "feature_fitting": "within each TRAIN fold",
+    "resource_adjustment": "Initial 160-tree full-fold pilot exceeded two minutes; interrupted before any CV score or VALIDATION access. Final search uses 40-80 trees and 32 histogram bins.",
+    "fold_sparse_matrices": [
+      {
+        "fold": 1,
+        "fit_shape": [
+          30410,
+          186627
+        ],
+        "hold_shape": [
+          15205,
+          186627
+        ],
+        "fit_nnz": 6443886,
+        "hold_nnz": 3146231,
+        "format": "CSR",
+        "dense_conversion": false
+      },
+      {
+        "fold": 2,
+        "fit_shape": [
+          30410,
+          185636
+        ],
+        "hold_shape": [
+          15205,
+          185636
+        ],
+        "fit_nnz": 6428964,
+        "hold_nnz": 3158523,
+        "format": "CSR",
+        "dense_conversion": false
+      },
+      {
+        "fold": 3,
+        "fit_shape": [
+          30410,
+          186328
+        ],
+        "hold_shape": [
+          15205,
+          186328
+        ],
+        "fit_nnz": 6424981,
+        "hold_nnz": 3164257,
+        "format": "CSR",
+        "dense_conversion": false
+      }
+    ]
+  },
+  "search": [
+    {
+      "candidate": 0,
+      "params": {
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "n_estimators": 40,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "min_child_weight": 1,
+        "reg_lambda": 1,
+        "sample_weight_policy": "none"
+      },
+      "fold_scores": [
+        0.3962432279686916,
+        0.4008718587855045,
+        0.39753510060639313
+      ],
+      "fold_fit_seconds": [
+        19.44793970003957,
+        17.861737700004596,
+        18.095282699970994
+      ],
+      "fold_predict_seconds": [
+        0.7656705999979749,
+        0.7631601000321098,
+        0.7976284999749623
+      ],
+      "mean_cv_macro_f1": 0.3982167291201964,
+      "std_cv_macro_f1": 0.0019501314285127573,
+      "total_cv_fit_seconds": 55.40496010001516
+    },
+    {
+      "candidate": 1,
+      "params": {
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "n_estimators": 40,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "min_child_weight": 1,
+        "reg_lambda": 1,
+        "sample_weight_policy": "balanced"
+      },
+      "fold_scores": [
+        0.5238384433131165,
+        0.5213768148115442,
+        0.5272797309618545
+      ],
+      "fold_fit_seconds": [
+        20.438717200013343,
+        18.529986699984875,
+        18.69996340002399
+      ],
+      "fold_predict_seconds": [
+        0.7758608000003733,
+        0.7614730999921449,
+        0.7699947999790311
+      ],
+      "mean_cv_macro_f1": 0.5241649963621717,
+      "std_cv_macro_f1": 0.0024208927333780783,
+      "total_cv_fit_seconds": 57.66866730002221
+    },
+    {
+      "candidate": 2,
+      "params": {
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "n_estimators": 60,
+        "subsample": 0.8,
+        "colsample_bytree": 0.75,
+        "min_child_weight": 1,
+        "reg_lambda": 5,
+        "sample_weight_policy": "none"
+      },
+      "fold_scores": [
+        0.46566594407742307,
+        0.45034860818216,
+        0.45451520380074967
+      ],
+      "fold_fit_seconds": [
+        80.03389979997883,
+        81.87379619997228,
+        79.74602860002778
+      ],
+      "fold_predict_seconds": [
+        0.8277771000284702,
+        0.8350789000396617,
+        0.8257179000065662
+      ],
+      "mean_cv_macro_f1": 0.4568432520201109,
+      "std_cv_macro_f1": 0.006466325649899998,
+      "total_cv_fit_seconds": 241.6537245999789
+    },
+    {
+      "candidate": 3,
+      "params": {
+        "max_depth": 5,
+        "learning_rate": 0.05,
+        "n_estimators": 60,
+        "subsample": 0.8,
+        "colsample_bytree": 0.75,
+        "min_child_weight": 1,
+        "reg_lambda": 5,
+        "sample_weight_policy": "balanced"
+      },
+      "fold_scores": [
+        0.555336982160013,
+        0.5534399618361489,
+        0.5582924329830515
+      ],
+      "fold_fit_seconds": [
+        82.1124210000271,
+        85.73592669999925,
+        83.35314359999029
+      ],
+      "fold_predict_seconds": [
+        0.8285024999640882,
+        0.8140899000572972,
+        0.8230040000053123
+      ],
+      "mean_cv_macro_f1": 0.5556897923264045,
+      "std_cv_macro_f1": 0.001996659763707481,
+      "total_cv_fit_seconds": 251.20149130001664
+    },
+    {
+      "candidate": 4,
+      "params": {
+        "max_depth": 3,
+        "learning_rate": 0.1,
+        "n_estimators": 50,
+        "subsample": 0.8,
+        "colsample_bytree": 0.75,
+        "min_child_weight": 3,
+        "reg_lambda": 5,
+        "sample_weight_policy": "none"
+      },
+      "fold_scores": [
+        0.46671979508385436,
+        0.45769735557576197,
+        0.45596191873736314
+      ],
+      "fold_fit_seconds": [
+        24.819610300008208,
+        26.36947269999655,
+        24.82890690001659
+      ],
+      "fold_predict_seconds": [
+        0.7737058000057004,
+        0.7835335999843664,
+        0.8157205000170507
+      ],
+      "mean_cv_macro_f1": 0.46012635646565986,
+      "std_cv_macro_f1": 0.004715789779308253,
+      "total_cv_fit_seconds": 76.01798990002135
+    },
+    {
+      "candidate": 5,
+      "params": {
+        "max_depth": 3,
+        "learning_rate": 0.1,
+        "n_estimators": 50,
+        "subsample": 0.8,
+        "colsample_bytree": 0.75,
+        "min_child_weight": 3,
+        "reg_lambda": 5,
+        "sample_weight_policy": "balanced"
+      },
+      "fold_scores": [
+        0.5523500975666907,
+        0.5521399521919935,
+        0.5545597972213255
+      ],
+      "fold_fit_seconds": [
+        25.072346200002357,
+        26.865455299965106,
+        25.100869600020815
+      ],
+      "fold_predict_seconds": [
+        0.7740536999772303,
+        0.7771719999727793,
+        0.7927179000107571
+      ],
+      "mean_cv_macro_f1": 0.5530166156600033,
+      "std_cv_macro_f1": 0.0010945614854148788,
+      "total_cv_fit_seconds": 77.03867109998828
+    },
+    {
+      "candidate": 6,
+      "params": {
+        "max_depth": 5,
+        "learning_rate": 0.1,
+        "n_estimators": 40,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "min_child_weight": 3,
+        "reg_lambda": 1,
+        "sample_weight_policy": "none"
+      },
+      "fold_scores": [
+        0.48770821225244837,
+        0.47692181037377174,
+        0.4816009435018984
+      ],
+      "fold_fit_seconds": [
+        37.30282769998303,
+        36.15316260000691,
+        47.100672099972144
+      ],
+      "fold_predict_seconds": [
+        0.8020544999744743,
+        0.7976483999518678,
+        0.9626338999951258
+      ],
+      "mean_cv_macro_f1": 0.4820769887093728,
+      "std_cv_macro_f1": 0.004416377146617593,
+      "total_cv_fit_seconds": 120.55666239996208
+    },
+    {
+      "candidate": 7,
+      "params": {
+        "max_depth": 5,
+        "learning_rate": 0.1,
+        "n_estimators": 40,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "min_child_weight": 3,
+        "reg_lambda": 1,
+        "sample_weight_policy": "balanced"
+      },
+      "fold_scores": [
+        0.5672825322254956,
+        0.5648221909929892,
+        0.5649446427551484
+      ],
+      "fold_fit_seconds": [
+        38.07758759998251,
+        37.382950700004585,
+        59.69021020003129
+      ],
+      "fold_predict_seconds": [
+        0.798287799989339,
+        0.8114042999804951,
+        0.9559420000296086
+      ],
+      "mean_cv_macro_f1": 0.5656831219912112,
+      "std_cv_macro_f1": 0.0011320581350397533,
+      "total_cv_fit_seconds": 135.15074850001838
+    },
+    {
+      "candidate": 8,
+      "params": {
+        "max_depth": 7,
+        "learning_rate": 0.03,
+        "n_estimators": 80,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "min_child_weight": 3,
+        "reg_lambda": 5,
+        "sample_weight_policy": "none"
+      },
+      "fold_scores": [
+        0.46614956908851396,
+        0.44973380239945576,
+        0.4586118690570329
+      ],
+      "fold_fit_seconds": [
+        147.54300170001807,
+        145.5298561999807,
+        234.97893650003243
+      ],
+      "fold_predict_seconds": [
+        0.9527232000255026,
+        0.9165375999873504,
+        1.190566300007049
+      ],
+      "mean_cv_macro_f1": 0.4581650801816675,
+      "std_cv_macro_f1": 0.006709151174416471,
+      "total_cv_fit_seconds": 528.0517944000312
+    },
+    {
+      "candidate": 9,
+      "params": {
+        "max_depth": 7,
+        "learning_rate": 0.03,
+        "n_estimators": 80,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "min_child_weight": 3,
+        "reg_lambda": 5,
+        "sample_weight_policy": "balanced"
+      },
+      "fold_scores": [
+        0.5611002044225832,
+        0.557423234977196,
+        0.5605502238960501
+      ],
+      "fold_fit_seconds": [
+        155.65009370003827,
+        155.50676190003287,
+        241.1222275000182
+      ],
+      "fold_predict_seconds": [
+        0.905715600005351,
+        0.9552739000064321,
+        1.0535124000161886
+      ],
+      "mean_cv_macro_f1": 0.5596912210986099,
+      "std_cv_macro_f1": 0.0016193497522329768,
+      "total_cv_fit_seconds": 552.2790831000893
+    }
+  ],
+  "selected_candidate": 7,
+  "record": {
+    "model": "xgboost",
+    "cv_macro_f1": 0.5656831219912112,
+    "cv_std": 0.0011320581350397533,
+    "validation": {
+      "accuracy": 0.563,
+      "macro_precision": 0.5568992896977196,
+      "macro_recall": 0.5627294646281987,
+      "macro_f1": 0.5412094457632814,
+      "weighted_f1": 0.5672856954245391,
+      "per_class": {
+        "negative": {
+          "precision": 0.36475409836065575,
+          "recall": 0.5705128205128205,
+          "f1": 0.445
+        },
+        "neutral": {
+          "precision": 0.5704225352112676,
+          "recall": 0.6524741081703107,
+          "f1": 0.6086956521739131
+        },
+        "positive": {
+          "precision": 0.7355212355212355,
+          "recall": 0.4652014652014652,
+          "f1": 0.5699326851159312
+        }
+      },
+      "confusion_matrix": [
+        [
+          178,
+          103,
+          31
+        ],
+        [
+          196,
+          567,
+          106
+        ],
+        [
+          114,
+          324,
+          381
+        ]
+      ],
+      "classification_report": {
+        "negative": {
+          "precision": 0.36475409836065575,
+          "recall": 0.5705128205128205,
+          "f1-score": 0.445,
+          "support": 312.0
+        },
+        "neutral": {
+          "precision": 0.5704225352112676,
+          "recall": 0.6524741081703107,
+          "f1-score": 0.6086956521739131,
+          "support": 869.0
+        },
+        "positive": {
+          "precision": 0.7355212355212355,
+          "recall": 0.4652014652014652,
+          "f1-score": 0.5699326851159312,
+          "support": 819.0
+        },
+        "accuracy": 0.563,
+        "macro avg": {
+          "precision": 0.5568992896977196,
+          "recall": 0.5627294646281987,
+          "f1-score": 0.5412094457632814,
+          "support": 2000.0
+        },
+        "weighted avg": {
+          "precision": 0.605946176839504,
+          "recall": 0.563,
+          "f1-score": 0.5672856954245391,
+          "support": 2000.0
+        }
+      }
+    },
+    "fit_seconds": 68.96838600002229,
+    "predict_seconds": 0.1665876000188291,
+    "details": {
+      "params": {
+        "max_depth": 5,
+        "learning_rate": 0.1,
+        "n_estimators": 40,
+        "subsample": 0.8,
+        "colsample_bytree": 0.5,
+        "min_child_weight": 3,
+        "reg_lambda": 1,
+        "sample_weight_policy": "balanced"
+      },
+      "objective": "multi:softprob",
+      "num_class": 3,
+      "eval_metric": "mlogloss",
+      "tree_method": "hist",
+      "random_state": 42,
+      "xgboost_version": "3.2.0",
+      "max_bin": 32,
+      "sparse_input": true,
+      "dense_conversion": false,
+      "feature_shape": [
+        45615,
+        216107
+      ],
+      "feature_nnz": 9665271
+    }
+  }
+}

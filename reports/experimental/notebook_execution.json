@@ -1,0 +1,6 @@
+{
+  "notebook": "05_ensemble_experiments.ipynb",
+  "status": "passed",
+  "executed_code_cells": 2,
+  "data_scope": "persisted TRAIN-CV and VALIDATION aggregate reports only"
+}

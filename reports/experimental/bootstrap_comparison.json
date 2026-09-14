@@ -1,0 +1,11 @@
+{
+  "candidate": "stacking",
+  "baseline": "logistic_regression",
+  "difference_candidate_minus_lr": 0.00522008055456924,
+  "ci_95_percentile": [
+    -0.010895703213614435,
+    0.021093653601800124
+  ],
+  "draws": 2000,
+  "seed": 42
+}
