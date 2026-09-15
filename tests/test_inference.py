@@ -124,7 +124,17 @@ def test_application_start_hash_record_matches_frozen_artifacts():
     before = json.loads(
         (PROJECT_ROOT/'reports/application/official_hashes_before.json')
         .read_text(encoding='utf-8'))
-    actual = {
-        name: hashlib.sha256((PROJECT_ROOT/name).read_bytes()).hexdigest()
-        for name in before}
-    assert actual == before
+    after = json.loads(
+        (PROJECT_ROOT/'reports/application/official_hashes_after.json')
+        .read_text(encoding='utf-8'))
+    assert before == after
+    for name, expected in before.items():
+        content = (PROJECT_ROOT/name).read_bytes()
+        lf = content.replace(b'\r\n', b'\n')
+        # Git may materialize tracked text as LF or CRLF on different runners.
+        candidates = {
+            hashlib.sha256(content).hexdigest(),
+            hashlib.sha256(lf).hexdigest(),
+            hashlib.sha256(lf.replace(b'\n', b'\r\n')).hexdigest(),
+        }
+        assert expected in candidates
