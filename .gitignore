@@ -9,6 +9,11 @@ venv/
 data/.hf_cache/
 data/raw/*.csv
 data/processed/*.csv
+data/collected/
+data/analyzed/
+data/manifests/
+data/external_eval/*
+!data/external_eval/README.md
 *.tmp
 reports/.mpl_cache/
 reports/pytest_results.xml

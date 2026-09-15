@@ -1,0 +1,32 @@
+[
+  {
+    "id": "synthetic-1",
+    "title": "Battery feedback",
+    "selftext": "I love the battery life",
+    "created_utc": 1789401600,
+    "permalink": "/r/example/comments/synthetic1/battery_feedback/",
+    "score": 12,
+    "num_comments": 3,
+    "subreddit": "example"
+  },
+  {
+    "id": "synthetic-2",
+    "title": "Delivery experience",
+    "selftext": "The delivery was late",
+    "created_utc": 1789401660,
+    "permalink": "/r/example/comments/synthetic2/delivery_experience/",
+    "score": 2,
+    "num_comments": 1,
+    "subreddit": "example"
+  },
+  {
+    "id": "synthetic-3",
+    "title": "Product update",
+    "selftext": "The update is available today",
+    "created_utc": 1789401720,
+    "permalink": "/r/example/comments/synthetic3/product_update/",
+    "score": 4,
+    "num_comments": 0,
+    "subreddit": "example"
+  }
+]
