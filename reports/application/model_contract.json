@@ -1,0 +1,20 @@
+{
+  "status": "application inference foundation",
+  "final_model_path": "models/final/final_model.joblib",
+  "model_artifact_sha256": "a3e375cc0e75c68f2ac8de8a35d46369e566c3e0821d31c778018f4edc83451e",
+  "saved_pipeline_input": "clean_text",
+  "raw_application_preprocessing": "src.preprocessing.clean_text with DEFAULT_CONFIG, exactly once",
+  "pipeline_steps": [
+    "features",
+    "classifier"
+  ],
+  "classifier": "balanced Logistic Regression",
+  "classes": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "probability_support": "native predict_proba; outputs are not guaranteed calibrated",
+  "model_loading": "lazy, SHA-256 verified, cached per SentimentPredictor instance",
+  "test_policy": "no TweetEval TEST predictions or metrics"
+}

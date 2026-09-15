@@ -76,3 +76,27 @@ With processed TRAIN and VALIDATION CSVs already available, reproduce this devel
     .\.venv\Scripts\python scripts\create_experimental_notebook.py
 
 The XGBoost search is intentionally CPU-intensive and is excluded from CI. The offline synthetic tests cover leakage boundaries without downloading data. Future assessment of an experimental model should use a newly collected, manually labeled brand-comment dataset.
+
+## Application foundation
+
+The repository now includes a reusable backend foundation for bounded public-post sentiment analysis. It continues to use the immutable official combined word-and-character TF-IDF plus balanced Logistic Regression artifact. The application accepts raw text, applies the exact existing deterministic cleaner once, and sends cleaned batches to the fitted pipeline for negative, neutral, or positive predictions with model confidence and all three predicted probabilities.
+
+    Query → SocialConnector → normalized posts → collected JSONL
+          → SentimentPredictor → analyzed JSONL → run manifest + basic summary
+          → future analytics/dashboard
+
+Predict one text locally:
+
+    python -m src.inference --text "I love the battery life"
+
+With Reddit application credentials configured in the process environment, run a bounded public-submission search:
+
+    python -m src.app_pipeline --source reddit --query "Samsung Galaxy S26" --limit 50 --sort relevance --time-filter month
+
+Copy [.env.example](.env.example) only as a reference for REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET, and a descriptive REDDIT_USER_AGENT; keep actual values outside Git. PRAW runs read-only. Search defaults to 50 and caps at 500. Public author names are omitted unless --include-authors is explicitly requested.
+
+Collected posts, analyzed records, and run manifests are written beneath data/collected, data/analyzed, and data/manifests. These paths and .env are Git-ignored. The application stores no emails, private messages, phone numbers, or hidden profile information.
+
+See [APPLICATION.md](APPLICATION.md) for architecture, APIs, schemas, setup, error handling, storage, privacy, and limitations. A future external evaluation should follow [the brand-domain evaluation plan](docs/EXTERNAL_EVALUATION.md) before analytics, complaint extraction, or a Streamlit dashboard is built.
+
+The application model learned from historical English tweets. Modern brand comments may shift in language and topic; sarcasm and missing context remain difficult. Predicted probabilities are not guaranteed calibrated. Use aggregate output as decision support, not individual psychological inference or a replacement for human moderation. The post-benchmark stacking gain was small and uncertain, so it is not used for inference; XGBoost was substantially weaker. No new TweetEval TEST evaluation is part of this application layer.

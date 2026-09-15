@@ -1,0 +1,48 @@
+{
+  "status": "synthetic application smoke test; not an evaluation",
+  "model_artifact_sha256": "a3e375cc0e75c68f2ac8de8a35d46369e566c3e0821d31c778018f4edc83451e",
+  "results": [
+    {
+      "text": "I absolutely love this phone",
+      "clean_text": "i absolutely love this phone",
+      "sentiment": "positive",
+      "confidence": 0.9483664035797119,
+      "probabilities": {
+        "negative": 0.04404381290078163,
+        "neutral": 0.007589824963361025,
+        "positive": 0.9483664035797119
+      },
+      "model_version": "final-lr-7922527d9599",
+      "model_artifact_sha256": "a3e375cc0e75c68f2ac8de8a35d46369e566c3e0821d31c778018f4edc83451e",
+      "inference_timestamp": "2026-09-15T11:58:10.766294Z"
+    },
+    {
+      "text": "The product arrived today",
+      "clean_text": "the product arrived today",
+      "sentiment": "neutral",
+      "confidence": 0.5143807530403137,
+      "probabilities": {
+        "negative": 0.15930473804473877,
+        "neutral": 0.5143807530403137,
+        "positive": 0.3263145387172699
+      },
+      "model_version": "final-lr-7922527d9599",
+      "model_artifact_sha256": "a3e375cc0e75c68f2ac8de8a35d46369e566c3e0821d31c778018f4edc83451e",
+      "inference_timestamp": "2026-09-15T11:58:10.766294Z"
+    },
+    {
+      "text": "This app is terrible after the update",
+      "clean_text": "this app is terrible after the update",
+      "sentiment": "negative",
+      "confidence": 0.9320952296257019,
+      "probabilities": {
+        "negative": 0.9320952296257019,
+        "neutral": 0.05956625938415527,
+        "positive": 0.008338593877851963
+      },
+      "model_version": "final-lr-7922527d9599",
+      "model_artifact_sha256": "a3e375cc0e75c68f2ac8de8a35d46369e566c3e0821d31c778018f4edc83451e",
+      "inference_timestamp": "2026-09-15T11:58:10.766294Z"
+    }
+  ]
+}

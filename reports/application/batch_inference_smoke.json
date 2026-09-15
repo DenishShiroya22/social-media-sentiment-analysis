@@ -1,0 +1,9 @@
+{
+  "status": "synthetic throughput smoke test; not an evaluation",
+  "rows": 2000,
+  "seconds": 1.2449222999857739,
+  "rows_per_second": 1606.5259655344391,
+  "order_preserved": true,
+  "batch_api": true,
+  "model_artifact_sha256": "a3e375cc0e75c68f2ac8de8a35d46369e566c3e0821d31c778018f4edc83451e"
+}
