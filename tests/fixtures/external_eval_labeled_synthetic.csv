@@ -1,0 +1,4 @@
+sample_id,source,post_id,created_at,query,text,label,review_flag,notes
+synthetic-001,reddit,fixture-r1,2026-09-14T10:00:00Z,synthetic phone,This artificial phone is terrible,negative,,synthetic fixture only
+synthetic-002,youtube,fixture-y1,2026-09-15T10:00:00Z,synthetic phone,This artificial phone arrived today,neutral,,synthetic fixture only
+synthetic-003,reddit,fixture-r2,2026-09-16T10:00:00Z,synthetic phone,I love this artificial phone,positive,,synthetic fixture only

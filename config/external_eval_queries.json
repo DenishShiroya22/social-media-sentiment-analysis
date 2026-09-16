@@ -1,0 +1,29 @@
+{
+  "queries": [
+    "samsung galaxy",
+    "iphone",
+    "swiggy",
+    "zomato",
+    "nike",
+    "netflix"
+  ],
+  "target_total": 400,
+  "per_query_target": 80,
+  "sampling_seed": 42,
+  "max_per_context": 20,
+  "sources": {
+    "reddit": {
+      "enabled": true,
+      "per_query_limit": 20,
+      "sort": "relevance",
+      "time_filter": "year",
+      "include_comments": true,
+      "max_comments_per_submission": 10
+    },
+    "youtube": {
+      "enabled": true,
+      "max_videos_per_query": 5,
+      "max_comments_per_video": 20
+    }
+  }
+}

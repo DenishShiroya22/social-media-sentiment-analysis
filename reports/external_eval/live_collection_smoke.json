@@ -1,0 +1,14 @@
+{
+  "status": "skipped",
+  "reddit": {
+    "credentials_available": false,
+    "count": null,
+    "status": "skipped"
+  },
+  "youtube": {
+    "credentials_available": false,
+    "count": null,
+    "status": "skipped"
+  },
+  "reason": "Required API credentials were unavailable; no live records were requested, stored, or fabricated."
+}

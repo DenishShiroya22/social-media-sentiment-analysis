@@ -12,8 +12,9 @@ data/processed/*.csv
 data/collected/
 data/analyzed/
 data/manifests/
-data/external_eval/*
-!data/external_eval/README.md
+data/external_eval/raw/
+data/external_eval/prepared/
+data/external_eval/labels/
 *.tmp
 reports/.mpl_cache/
 reports/pytest_results.xml
