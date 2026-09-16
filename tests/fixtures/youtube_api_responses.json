@@ -1,0 +1,40 @@
+{
+  "search": {
+    "items": [
+      {"id": {"videoId": "video-one"}},
+      {"id": {"videoId": "video-two"}}
+    ]
+  },
+  "comments": {
+    "video-one": {
+      "items": [
+        {
+          "snippet": {
+            "topLevelComment": {
+              "id": "comment-one",
+              "snippet": {
+                "textOriginal": "I love this entirely synthetic phone",
+                "publishedAt": "2026-09-16T10:00:00Z",
+                "likeCount": 7,
+                "authorDisplayName": "unused-synthetic-author"
+              }
+            }
+          }
+        },
+        {
+          "snippet": {
+            "topLevelComment": {
+              "id": "comment-two",
+              "snippet": {
+                "textOriginal": "This artificial update is disappointing",
+                "publishedAt": "2026-09-16T11:00:00Z",
+                "likeCount": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    "video-two": {"items": []}
+  }
+}

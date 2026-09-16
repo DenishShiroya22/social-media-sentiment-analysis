@@ -1,0 +1,30 @@
+{
+  "submission": {
+    "id": "synthetic-submission",
+    "title": "Synthetic phone discussion",
+    "selftext": "An artificial post used only for tests",
+    "created_utc": 1789552800,
+    "permalink": "/r/example/comments/synthetic-submission/test/",
+    "subreddit": "example",
+    "score": 5,
+    "num_comments": 2
+  },
+  "comments": [
+    {
+      "id": "synthetic-comment-one",
+      "body": "Artificial positive comment",
+      "created_utc": 1789556400,
+      "permalink": "/r/example/comments/synthetic-submission/test/synthetic-comment-one/",
+      "parent_id": "t3_synthetic-submission",
+      "score": 3
+    },
+    {
+      "id": "synthetic-comment-two",
+      "body": "Artificial neutral comment",
+      "created_utc": 1789560000,
+      "permalink": "/r/example/comments/synthetic-submission/test/synthetic-comment-two/",
+      "parent_id": "t3_synthetic-submission",
+      "score": 1
+    }
+  ]
+}

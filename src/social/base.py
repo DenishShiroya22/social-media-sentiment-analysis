@@ -26,6 +26,10 @@ class ConnectorRequestError(ConnectorError):
     """Remote request or response processing failed."""
 
 
+class ConnectorContentUnavailableError(ConnectorError):
+    """Requested public content is unavailable or has access disabled."""
+
+
 class SocialConnector(ABC):
     """Small interface shared by future social-data connectors."""
 
