@@ -27,7 +27,8 @@ The modules have intentionally small responsibilities:
 - src.inference.SentimentPredictor validates and cleans raw application text, verifies and caches the final artifact, and performs batch prediction.
 - src.social.base.SocialConnector is the interface for bounded public-data connectors.
 - src.social.schemas defines platform-neutral collected and analyzed records.
-- src.social.reddit.RedditConnector performs read-only public submission search through PRAW.
+- src.social.reddit.RedditConnector performs read-only public submission search and optional bounded top-level comment collection through PRAW.
+- src.social.youtube.YouTubeConnector searches bounded public videos and retrieves bounded top-level comments through YouTube Data API v3.
 - src.storage.repository.JsonlRepository writes exclusive run-specific JSONL and manifest files.
 - src.app_pipeline connects collection, storage, inference, and the console summary.
 
@@ -74,9 +75,9 @@ Supported arguments:
 - sort: relevance, new, or top
 - time_filter: day, week, month, year, or all
 
-Each submission becomes one generic record. Text combines the title and non-deleted self-text. Engagement contains score and comment count; metadata contains subreddit and record type. Downstream code receives no PRAW objects. Authentication failures, rate limiting, and remote request failures raise application-specific connector errors. Individual malformed records are logged and skipped. An empty search returns an empty list and still produces an auditable empty run.
+Each submission becomes one generic record. External collection may also request a bounded number of top-level comments per submission. Submission text combines the title and non-deleted self-text. Engagement contains score and comment count; metadata contains subreddit and record type. Downstream code receives no PRAW objects. Authentication failures, rate limiting, and remote request failures raise application-specific connector errors. Individual malformed records are logged and skipped. An empty search returns an empty list and still produces an auditable empty run.
 
-This connector intentionally searches submissions only. It does not crawl comments, stream indefinitely, bypass API controls, or perform mass collection. Follow Reddit’s current developer terms and public-content policies for the intended use.
+The connector never streams indefinitely or recursively crawls massive threads. External collection defaults to at most 20 submissions and 10 top-level comments per submission for each query, with both limits configurable and bounded. It does not bypass API controls or perform mass collection. Follow Reddit’s current developer terms and public-content policies for the intended use.
 
 ## Application CLI
 
@@ -114,6 +115,29 @@ Invalid local inputs raise TypeError or ValueError. Missing or altered model art
 The application intentionally retains the official Logistic Regression model. Post-benchmark stacking reached VALIDATION macro-F1 0.6781 versus 0.6728 for LR, a difference of about +0.0052, but the paired bootstrap interval [-0.0109, +0.0211] crossed zero. XGBoost was substantially weaker. Neither replaces the completed official model.
 
 The model learned from historical English TweetEval posts. Modern brand and product comments can differ in vocabulary, platform behavior, topic mix, and class balance. Sarcasm, conversational context, ambiguous language, code-switching, and new products remain difficult. Confidence values are not reliability guarantees. Use predictions as aggregate decision support, not psychological inference, individual profiling, or a replacement for human moderation.
+
+## External collection and evaluation
+
+The external-domain workflow is separate from routine application inference:
+
+    public APIs → normalized private local records → exact deduplication
+        → seeded source/query-balanced sampling → blank labeling CSV
+        → human labeling → strict validation → frozen-model evaluation
+
+Edit `config/external_eval_queries.json` to choose 4–6 queries, source limits, a 300–500-row target, and context caps. Reddit requires the three existing environment variables. YouTube requires `YOUTUBE_API_KEY`. Both connectors omit authors in external storage. Raw, prepared, and label files remain under Git-ignored `data/external_eval/` paths.
+
+Run:
+
+    python -m src.external_eval.collect --config config/external_eval_queries.json
+    python -m src.external_eval.prepare --config config/external_eval_queries.json
+    python -m src.external_eval.labeling export
+
+At this point, stop for human labeling under `docs/EXTERNAL_LABELING_GUIDE.md`. The evaluator rejects blank or invalid labels before model loading:
+
+    python -m src.external_eval.labeling validate --file data/external_eval/labels/external_eval_labeled.csv --expected-min 300 --expected-max 500
+    python -m src.external_eval.evaluate --labels data/external_eval/labels/external_eval_labeled.csv
+
+Evaluation uses `SentimentPredictor`, makes no fit/tuning/threshold changes, and saves aggregate metrics, a negative/neutral/positive confusion matrix, a dataset summary, and a domain-gap comparison under `reports/external_eval/`. Raw text and row-level predictions are not placed in public reports. Read `docs/DATA_COLLECTION_POLICY.md` for the API-first and privacy rules and `docs/EXTERNAL_EVALUATION.md` for the full protocol.
 
 ## Next work
 

@@ -1,38 +1,60 @@
-# External brand-domain evaluation plan
+# External brand-domain evaluation workflow
 
-A future application evaluation must use a newly collected, manually labeled set of real public brand or product comments. It must remain separate from TweetEval TRAIN, VALIDATION, and the completed official TEST benchmark.
+This workflow measures how the frozen TweetEval-trained model transfers to current public brand/product discussions. It is separate from TweetEval TRAIN, VALIDATION, and TEST. It never retrains, tunes, recalibrates, or changes the official benchmark.
 
-## Proposed set
+## 1. Configure
 
-- Collect approximately 300–500 public comments through the application connectors.
-- Predefine a small set of brands, products, sources, dates, languages, and query rules.
-- Sample across queries and time windows rather than taking only highly ranked posts.
-- Remove exact duplicates and document each exclusion without selecting examples based on model output.
-- Keep source, source ID, collection date, public text, query, and only the minimal metadata needed for auditing.
-- Omit author identity unless a reviewed use case requires it.
-- Store the working data under data/external_eval, which Git ignores.
+Edit `config/external_eval_queries.json`. The tracked template targets 400 rows from six configurable queries, Reddit and YouTube, with sampling seed 42. Collection content can change as public feeds change; code, configuration, and sampling behavior are reproducible.
 
-## Labeling
+Set credentials only in the process environment. Reddit uses `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, and `REDDIT_USER_AGENT`. YouTube uses `YOUTUBE_API_KEY`.
 
-Create written negative, neutral, and positive guidelines with examples independent of model predictions. Use at least two human annotators where practical. Resolve disagreements through adjudication and report both initial agreement and final class counts. Mark genuinely ambiguous or unusable records before evaluation according to predefined rules.
+## 2. Collect
 
-Annotators must not see the model’s label, probability, TweetEval TEST result, or experimental model comparison while assigning labels. Do not manufacture labels or scores.
+```powershell
+python -m src.external_eval.collect --config config/external_eval_queries.json
+```
 
-## Evaluation protocol
+The API-first collector writes privacy-minimized JSONL under `data/external_eval/raw/` and a text-free run manifest under `data/external_eval/manifests/`. It makes bounded read-only calls and never fabricates records when a source fails.
 
-Freeze the collected IDs, labels, preprocessing contract, model artifact SHA-256, metrics, and evaluation script before predicting. Check that no item overlaps the benchmark by exact normalized text and source identifiers. Evaluate the existing application model once with:
+## 3. Prepare
 
-- accuracy;
-- macro precision, recall, and F1;
-- negative, neutral, and positive precision, recall, and F1;
-- confusion matrix;
-- class support;
-- a paired uncertainty analysis only when comparing a separately frozen candidate.
+```powershell
+python -m src.external_eval.prepare --config config/external_eval_queries.json
+```
 
-Document sampling limitations, annotation uncertainty, domain coverage, and missing context. Do not claim population-level performance from a small convenience sample.
+Preparation removes blank/deleted/removed/URL-only placeholders, deduplicates by source ID and exact normalized text, and records each count. It flags clearly non-Latin text for review rather than silently dropping it. Seeded round-robin sampling balances source/query strata and caps any one thread or video.
 
-## Privacy and publication
+## 4. Export and label
 
-Follow source terms and retention requirements. Avoid private or deleted content, emails, phone numbers, private messages, and hidden profile data. Prefer publishing aggregate results and labeling instructions; do not commit collected text to the public repository without a separate rights and privacy review.
+```powershell
+python -m src.external_eval.labeling export
+```
 
-This future work must not partition, relabel, or rerun the official TweetEval TEST split.
+This creates `data/external_eval/labels/external_eval_labeling.csv` with `sample_id`, `source`, `post_id`, `created_at`, `query`, `text`, blank `label`, `review_flag`, and `notes`. No username is included. Follow `docs/EXTERNAL_LABELING_GUIDE.md`, save the completed copy as `external_eval_labeled.csv`, and do not expose model output to annotators.
+
+STOP until human labeling is complete.
+
+## 5. Validate
+
+```powershell
+python -m src.external_eval.labeling validate --file data/external_eval/labels/external_eval_labeled.csv --expected-min 300 --expected-max 500
+```
+
+Validation requires complete labels from `negative`, `neutral`, and `positive`; nonempty text/source/query; unique sample IDs and platform IDs; and the requested row-count range.
+
+## 6. Evaluate once
+
+```powershell
+python -m src.external_eval.evaluate --labels data/external_eval/labels/external_eval_labeled.csv
+```
+
+The command validates labels before loading the frozen model, uses the exact production preprocessing and inference path, predicts once, and writes only aggregate outputs under `reports/external_eval/`:
+
+- `external_metrics.json`
+- `external_summary.md`
+- `external_confusion_matrix.png`
+- `dataset_summary.json`
+
+Metrics include accuracy, macro precision/recall/F1, weighted F1, per-class precision/recall/F1/support, and a confusion matrix ordered negative/neutral/positive with actual rows and predicted columns. The report compares accuracy, macro-F1, and per-class F1 with the historical TweetEval TEST metrics while stating that the distributions are not interchangeable.
+
+Poor results should be reported as possible domain shift, slang, product context, sarcasm, mixed sentiment, or platform differences. Strong results are promising only for this sampled dataset. Neither outcome changes the official benchmark or triggers retraining in this workflow.

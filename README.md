@@ -97,6 +97,23 @@ Copy [.env.example](.env.example) only as a reference for REDDIT_CLIENT_ID, REDD
 
 Collected posts, analyzed records, and run manifests are written beneath data/collected, data/analyzed, and data/manifests. These paths and .env are Git-ignored. The application stores no emails, private messages, phone numbers, or hidden profile information.
 
-See [APPLICATION.md](APPLICATION.md) for architecture, APIs, schemas, setup, error handling, storage, privacy, and limitations. A future external evaluation should follow [the brand-domain evaluation plan](docs/EXTERNAL_EVALUATION.md) before analytics, complaint extraction, or a Streamlit dashboard is built.
+See [APPLICATION.md](APPLICATION.md) for architecture, APIs, schemas, setup, error handling, storage, privacy, and limitations. Use [the external brand-domain workflow](docs/EXTERNAL_EVALUATION.md) and complete human labeling before analytics, complaint extraction, or a Streamlit dashboard is built.
 
 The application model learned from historical English tweets. Modern brand comments may shift in language and topic; sarcasm and missing context remain difficult. Predicted probabilities are not guaranteed calibrated. Use aggregate output as decision support, not individual psychological inference or a replacement for human moderation. The post-benchmark stacking gain was small and uncertain, so it is not used for inference; XGBoost was substantially weaker. No new TweetEval TEST evaluation is part of this application layer.
+
+## Real-world external evaluation
+
+The repository includes an API-first workflow for building a separate 300–500-row human-labeled brand/product evaluation set. It uses the existing read-only PRAW connector for bounded Reddit submissions and top-level comments, plus a bounded YouTube Data API v3 connector for public top-level comments. YouTube access uses `YOUTUBE_API_KEY`; all credentials remain in the process environment.
+
+    python -m src.external_eval.collect --config config/external_eval_queries.json
+    python -m src.external_eval.prepare --config config/external_eval_queries.json
+    python -m src.external_eval.labeling export
+
+Collection uses configurable queries, source limits, exact deduplication, language-review flags, and source/query-balanced sampling with seed 42. Real raw, prepared, and labeling files are Git-ignored. Author identities are omitted. No HTML scraping is implemented.
+
+The exported CSV deliberately has blank labels. Follow [the labeling guide](docs/EXTERNAL_LABELING_GUIDE.md), obtain human `negative`, `neutral`, or `positive` labels, and validate them before evaluation:
+
+    python -m src.external_eval.labeling validate --file data/external_eval/labels/external_eval_labeled.csv --expected-min 300 --expected-max 500
+    python -m src.external_eval.evaluate --labels data/external_eval/labels/external_eval_labeled.csv
+
+Evaluation refuses incomplete labels, uses the frozen final model through the production inference path, never trains or tunes, and writes aggregate-only reports under `reports/external_eval/`. External results measure domain transfer and do not replace or revise the official TweetEval TEST benchmark. See the [workflow](docs/EXTERNAL_EVALUATION.md) and [responsible collection policy](docs/DATA_COLLECTION_POLICY.md).
