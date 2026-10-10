@@ -1,0 +1,54 @@
+{
+  "configuration_sha256": "23db5660db1bff75c1e8c3d9f6e52b49f09782cc7a6511fcf6f1f890ade91456",
+  "deduplicated_count": 475,
+  "exact_text_duplicate_count": 3,
+  "id_duplicate_count": 0,
+  "output_paths": {
+    "manifest": "data/external_eval/manifests/collection_20261010T185744Z-21116a4c.json",
+    "preparation_manifest": "data/external_eval/manifests/preparation_20261010T185808Z-dd183ae5.json",
+    "prepared_jsonl": "data/external_eval/prepared/external_prepared_20261010T185808Z-dd183ae5.jsonl",
+    "raw_jsonl": "data/external_eval/raw/external_collection_20261010T185744Z-21116a4c.jsonl"
+  },
+  "prepared_count": 400,
+  "privacy": {
+    "author_identity_collected": false,
+    "private_content_collected": false
+  },
+  "queries": [
+    "Samsung Galaxy",
+    "iPhone",
+    "Zomato",
+    "Swiggy",
+    "Nike",
+    "Netflix"
+  ],
+  "removed_duplicate_count": 3,
+  "requested_counts": {
+    "youtube": {
+      "Netflix": 100,
+      "Nike": 100,
+      "Samsung Galaxy": 100,
+      "Swiggy": 100,
+      "Zomato": 100,
+      "iPhone": 100
+    }
+  },
+  "retrieved_counts": {
+    "youtube": {
+      "Netflix": 72,
+      "Nike": 81,
+      "Samsung Galaxy": 62,
+      "Swiggy": 65,
+      "Zomato": 98,
+      "iPhone": 100
+    }
+  },
+  "retrieved_total": 478,
+  "run_id": "20261010T185744Z-21116a4c",
+  "sampling_seed": 42,
+  "sources": [
+    "youtube"
+  ],
+  "status": "prepared_waiting_for_human_labeling",
+  "timestamp": "2026-10-10T18:57:44.694081Z"
+}

@@ -1,11 +1,11 @@
 {
   "queries": [
-    "samsung galaxy",
-    "iphone",
-    "swiggy",
-    "zomato",
-    "nike",
-    "netflix"
+    "Samsung Galaxy",
+    "iPhone",
+    "Zomato",
+    "Swiggy",
+    "Nike",
+    "Netflix"
   ],
   "target_total": 400,
   "per_query_target": 80,
@@ -13,7 +13,7 @@
   "max_per_context": 20,
   "sources": {
     "reddit": {
-      "enabled": true,
+      "enabled": false,
       "per_query_limit": 20,
       "sort": "relevance",
       "time_filter": "year",

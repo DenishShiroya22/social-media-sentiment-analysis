@@ -1,0 +1,32 @@
+{
+  "average_text_length": 63.095,
+  "configuration_sha256": "23db5660db1bff75c1e8c3d9f6e52b49f09782cc7a6511fcf6f1f890ade91456",
+  "content_filter_counts": {},
+  "deduplicated_count": 475,
+  "exact_text_duplicate_count": 3,
+  "human_labels_present": false,
+  "id_duplicate_count": 0,
+  "initial_count": 478,
+  "input_file": "data/external_eval/raw/external_collection_20261010T185744Z-21116a4c.jsonl",
+  "language_review_count": 38,
+  "median_text_length": 44.0,
+  "output_file": "data/external_eval/prepared/external_prepared_20261010T185808Z-dd183ae5.jsonl",
+  "prepared_count": 400,
+  "removed_duplicate_count": 3,
+  "rows_per_query": {
+    "Netflix": 69,
+    "Nike": 69,
+    "Samsung Galaxy": 62,
+    "Swiggy": 64,
+    "Zomato": 68,
+    "iPhone": 68
+  },
+  "rows_per_source": {
+    "youtube": 400
+  },
+  "run_id": "20261010T185808Z-dd183ae5",
+  "sampling_seed": 42,
+  "source_collection_run_id": "20261010T185744Z-21116a4c",
+  "status": "prepared_waiting_for_human_labeling",
+  "timestamp": "2026-10-10T18:58:08.438594Z"
+}

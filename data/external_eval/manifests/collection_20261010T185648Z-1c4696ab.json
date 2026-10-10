@@ -1,0 +1,39 @@
+{
+  "configuration_sha256": "11591751d3e4064274137c9fb728770f95242c44610b1d8e5d2182f3fa2c1b05",
+  "deduplicated_count": 10,
+  "exact_text_duplicate_count": 0,
+  "id_duplicate_count": 0,
+  "output_paths": {
+    "manifest": "data/external_eval/manifests/collection_20261010T185648Z-1c4696ab.json",
+    "preparation_manifest": "data/external_eval/manifests/preparation_20261010T185708Z-1a20c8e7.json",
+    "prepared_jsonl": "data/external_eval/prepared/external_prepared_20261010T185708Z-1a20c8e7.jsonl",
+    "raw_jsonl": "data/external_eval/raw/external_collection_20261010T185648Z-1c4696ab.jsonl"
+  },
+  "prepared_count": 10,
+  "privacy": {
+    "author_identity_collected": false,
+    "private_content_collected": false
+  },
+  "queries": [
+    "Samsung Galaxy S26"
+  ],
+  "removed_duplicate_count": 0,
+  "requested_counts": {
+    "youtube": {
+      "Samsung Galaxy S26": 10
+    }
+  },
+  "retrieved_counts": {
+    "youtube": {
+      "Samsung Galaxy S26": 10
+    }
+  },
+  "retrieved_total": 10,
+  "run_id": "20261010T185648Z-1c4696ab",
+  "sampling_seed": 42,
+  "sources": [
+    "youtube"
+  ],
+  "status": "prepared_waiting_for_human_labeling",
+  "timestamp": "2026-10-10T18:56:48.722611Z"
+}

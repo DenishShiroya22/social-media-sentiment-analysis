@@ -20,3 +20,4 @@ reports/.mpl_cache/
 reports/pytest_results.xml
 .pytest_tmp/
 data/processed/.cv_cache/
+.streamlit/secrets.toml

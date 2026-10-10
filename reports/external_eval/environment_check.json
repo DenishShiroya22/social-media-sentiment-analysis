@@ -1,0 +1,12 @@
+{
+  "status": "project_environment_verified",
+  "selected_interpreter": ".venv/Scripts/python.exe",
+  "python_version": "3.14.7",
+  "emoji_declared": true,
+  "emoji_version": "2.15.0",
+  "global_python_missing_emoji": true,
+  "requirements_synchronized": true,
+  "application_imports": "ok",
+  "offline_tests_passed": 190,
+  "offline_tests_failed": 0
+}

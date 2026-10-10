@@ -1,14 +1,18 @@
 {
-  "status": "skipped",
-  "reddit": {
-    "credentials_available": false,
-    "count": null,
-    "status": "skipped"
-  },
-  "youtube": {
-    "credentials_available": false,
-    "count": null,
-    "status": "skipped"
-  },
-  "reason": "Required API credentials were unavailable; no live records were requested, stored, or fabricated."
+  "status": "success",
+  "source": "youtube",
+  "query": "Samsung Galaxy S26",
+  "requested_maximum": 10,
+  "retrieved_count": 10,
+  "prepared_count": 10,
+  "video_count": 2,
+  "blank_text_count": 0,
+  "duplicate_id_count": 0,
+  "duplicate_text_count": 0,
+  "language_review_count": 0,
+  "average_text_length": 40.2,
+  "median_text_length": 36.5,
+  "errors": [],
+  "raw_content_published": false,
+  "usernames_published": false
 }
