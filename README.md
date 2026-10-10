@@ -103,17 +103,19 @@ The application model learned from historical English tweets. Modern brand comme
 
 ## Real-world external evaluation
 
-The repository includes an API-first workflow for building a separate 300–500-row human-labeled brand/product evaluation set. It uses the existing read-only PRAW connector for bounded Reddit submissions and top-level comments, plus a bounded YouTube Data API v3 connector for public top-level comments. YouTube access uses `YOUTUBE_API_KEY`; all credentials remain in the process environment.
+The repository includes an API-first workflow for building a separate 300–500-row human-labeled brand/product evaluation set. Reddit support remains available in code, but live Reddit access is currently unavailable and disabled in the tracked collection configuration. The completed collection used the bounded YouTube Data API v3 connector only. YouTube access uses `YOUTUBE_API_KEY`; credentials remain outside Git. On Windows, use the project `.venv` commands below because the global Python installation may not contain the declared project dependencies.
 
-    python -m src.external_eval.collect --config config/external_eval_queries.json
-    python -m src.external_eval.prepare --config config/external_eval_queries.json
-    python -m src.external_eval.labeling export
+    .\.venv\Scripts\python.exe -m src.external_eval.collect --config config/external_eval_queries.json
+    .\.venv\Scripts\python.exe -m src.external_eval.prepare --config config/external_eval_queries.json
+    .\.venv\Scripts\python.exe -m src.external_eval.labeling export
+
+Current checkpoint: one bounded YouTube collection retrieved 478 comments across six queries and prepared a deterministic 400-row sample after removing three exact-text duplicates. All 400 human-label cells remain blank, and 38 rows have a language-review flag. Safe aggregate details are in [the collection summary](reports/external_eval/collection_summary.json). External evaluation, analytics, topics, and the dashboard remain blocked until human labels are completed and validated.
 
 Collection uses configurable queries, source limits, exact deduplication, language-review flags, and source/query-balanced sampling with seed 42. Real raw, prepared, and labeling files are Git-ignored. Author identities are omitted. No HTML scraping is implemented.
 
 The exported CSV deliberately has blank labels. Follow [the labeling guide](docs/EXTERNAL_LABELING_GUIDE.md), obtain human `negative`, `neutral`, or `positive` labels, and validate them before evaluation:
 
-    python -m src.external_eval.labeling validate --file data/external_eval/labels/external_eval_labeled.csv --expected-min 300 --expected-max 500
-    python -m src.external_eval.evaluate --labels data/external_eval/labels/external_eval_labeled.csv
+    .\.venv\Scripts\python.exe -m src.external_eval.labeling validate --file data/external_eval/labels/external_eval_labeled.csv --expected-min 300 --expected-max 500
+    .\.venv\Scripts\python.exe -m src.external_eval.evaluate --labels data/external_eval/labels/external_eval_labeled.csv
 
 Evaluation refuses incomplete labels, uses the frozen final model through the production inference path, never trains or tunes, and writes aggregate-only reports under `reports/external_eval/`. External results measure domain transfer and do not replace or revise the official TweetEval TEST benchmark. See the [workflow](docs/EXTERNAL_EVALUATION.md) and [responsible collection policy](docs/DATA_COLLECTION_POLICY.md).

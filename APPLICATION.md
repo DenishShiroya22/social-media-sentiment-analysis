@@ -124,18 +124,20 @@ The external-domain workflow is separate from routine application inference:
         → seeded source/query-balanced sampling → blank labeling CSV
         → human labeling → strict validation → frozen-model evaluation
 
-Edit `config/external_eval_queries.json` to choose 4–6 queries, source limits, a 300–500-row target, and context caps. Reddit requires the three existing environment variables. YouTube requires `YOUTUBE_API_KEY`. Both connectors omit authors in external storage. Raw, prepared, and label files remain under Git-ignored `data/external_eval/` paths.
+The tracked `config/external_eval_queries.json` now uses six YouTube queries, a 400-row target, seed 42, and a 20-row per-video cap. Reddit remains supported in code but is disabled because live Reddit access is unavailable. YouTube requires `YOUTUBE_API_KEY` in the process environment. Both connectors omit authors in external storage. Raw, prepared, and label files remain under Git-ignored `data/external_eval/` paths. Use the project `.venv` interpreter on Windows; `.env` is ignored but is not loaded automatically by the application.
+
+The completed YouTube-only collection retrieved 478 rows and prepared 400 after removing three exact-text duplicates. The sample spans six queries and 28 video contexts; 38 rows require human language review. The blank local labeling CSV is the current stop point. See `reports/external_eval/collection_summary.json` for aggregate-only counts.
 
 Run:
 
-    python -m src.external_eval.collect --config config/external_eval_queries.json
-    python -m src.external_eval.prepare --config config/external_eval_queries.json
-    python -m src.external_eval.labeling export
+    .\.venv\Scripts\python.exe -m src.external_eval.collect --config config/external_eval_queries.json
+    .\.venv\Scripts\python.exe -m src.external_eval.prepare --config config/external_eval_queries.json
+    .\.venv\Scripts\python.exe -m src.external_eval.labeling export
 
 At this point, stop for human labeling under `docs/EXTERNAL_LABELING_GUIDE.md`. The evaluator rejects blank or invalid labels before model loading:
 
-    python -m src.external_eval.labeling validate --file data/external_eval/labels/external_eval_labeled.csv --expected-min 300 --expected-max 500
-    python -m src.external_eval.evaluate --labels data/external_eval/labels/external_eval_labeled.csv
+    .\.venv\Scripts\python.exe -m src.external_eval.labeling validate --file data/external_eval/labels/external_eval_labeled.csv --expected-min 300 --expected-max 500
+    .\.venv\Scripts\python.exe -m src.external_eval.evaluate --labels data/external_eval/labels/external_eval_labeled.csv
 
 Evaluation uses `SentimentPredictor`, makes no fit/tuning/threshold changes, and saves aggregate metrics, a negative/neutral/positive confusion matrix, a dataset summary, and a domain-gap comparison under `reports/external_eval/`. Raw text and row-level predictions are not placed in public reports. Read `docs/DATA_COLLECTION_POLICY.md` for the API-first and privacy rules and `docs/EXTERNAL_EVALUATION.md` for the full protocol.
 
