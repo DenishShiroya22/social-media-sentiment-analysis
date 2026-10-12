@@ -1,0 +1,1913 @@
+{
+  "confidence": {
+    "by_sentiment": {
+      "negative": {
+        "average": 0.6199466360337806,
+        "count": 66,
+        "maximum": 0.9265534281730652,
+        "median": 0.5732479095458984,
+        "minimum": 0.3598311245441437
+      },
+      "neutral": {
+        "average": 0.6380884973607825,
+        "count": 169,
+        "maximum": 0.9289010167121887,
+        "median": 0.6718290448188782,
+        "minimum": 0.3486713767051697
+      },
+      "positive": {
+        "average": 0.7515266857420405,
+        "count": 96,
+        "maximum": 0.9999401569366455,
+        "median": 0.7503455281257629,
+        "minimum": 0.43028900027275085
+      }
+    },
+    "calibration_warning": "Confidence is the model's maximum class score; it is not a calibrated certainty estimate.",
+    "overall": {
+      "average": 0.667371588711292,
+      "count": 331,
+      "maximum": 0.9999401569366455,
+      "median": 0.6723657846450806,
+      "minimum": 0.3486713767051697
+    }
+  },
+  "daily_trends": [
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2023-05-21",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2023-10-18",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-01-21",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2024-01-27",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-01-28",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-01-29",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-01-30",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2024-01-31",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2024-02-01",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-02-04",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2024-02-05",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-02-07",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-02-10",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-02-22",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-08-31",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2024-11-14",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-11-25",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-04-03",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-05-16",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-05-31",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-06-03",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-06-10",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-06-12",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-06-30",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-07-30",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-08-21",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2025-08-25",
+      "positive_count": 1,
+      "positive_percentage": 50.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-08-27",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-08-28",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-08-29",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-09-03",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-09-23",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-10-04",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-10-07",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-10-09",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 100.0,
+      "period": "2025-11-26",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-12-08",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-12-13",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-12-17",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-12-18",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-12-24",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-12-25",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-12-26",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2026-01-03",
+      "positive_count": 1,
+      "positive_percentage": 50.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-01-04",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 33.33333333333333,
+      "period": "2026-01-18",
+      "positive_count": 2,
+      "positive_percentage": 66.66666666666666,
+      "post_count": 3
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 66.66666666666666,
+      "period": "2026-01-19",
+      "positive_count": 1,
+      "positive_percentage": 33.33333333333333,
+      "post_count": 3
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 3,
+      "neutral_percentage": 75.0,
+      "period": "2026-02-13",
+      "positive_count": 1,
+      "positive_percentage": 25.0,
+      "post_count": 4
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-02-17",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-02-27",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-03-10",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-03-12",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-03-15",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-03-19",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-03-24",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-04-15",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2026-04-23",
+      "positive_count": 1,
+      "positive_percentage": 50.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-04-27",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-05-01",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-05-08",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-05-13",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-05-14",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-05-21",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 2,
+      "negative_percentage": 66.66666666666666,
+      "neutral_count": 1,
+      "neutral_percentage": 33.33333333333333,
+      "period": "2026-06-04",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 3
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 3,
+      "neutral_percentage": 60.0,
+      "period": "2026-06-05",
+      "positive_count": 2,
+      "positive_percentage": 40.0,
+      "post_count": 5
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2026-06-06",
+      "positive_count": 1,
+      "positive_percentage": 50.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 100.0,
+      "period": "2026-06-07",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-06-08",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 50.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2026-06-13",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-06-28",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 50.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2026-07-05",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 2,
+      "negative_percentage": 66.66666666666666,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-07-06",
+      "positive_count": 1,
+      "positive_percentage": 33.33333333333333,
+      "post_count": 3
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-07-07",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-07-19",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-07-25",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 100.0,
+      "period": "2026-07-26",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 100.0,
+      "period": "2026-07-28",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-08-01",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-08-10",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 2,
+      "negative_percentage": 33.33333333333333,
+      "neutral_count": 3,
+      "neutral_percentage": 50.0,
+      "period": "2026-08-11",
+      "positive_count": 1,
+      "positive_percentage": 16.666666666666664,
+      "post_count": 6
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 3,
+      "neutral_percentage": 75.0,
+      "period": "2026-08-12",
+      "positive_count": 1,
+      "positive_percentage": 25.0,
+      "post_count": 4
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-08-13",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 100.0,
+      "period": "2026-08-14",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-08-15",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 50.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-08-17",
+      "positive_count": 1,
+      "positive_percentage": 50.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-08-19",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2026-08-21",
+      "positive_count": 1,
+      "positive_percentage": 50.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-08-27",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-08-28",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2026-08-29",
+      "positive_count": 1,
+      "positive_percentage": 50.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 3,
+      "neutral_percentage": 100.0,
+      "period": "2026-08-30",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 3
+    },
+    {
+      "negative_count": 10,
+      "negative_percentage": 50.0,
+      "neutral_count": 4,
+      "neutral_percentage": 20.0,
+      "period": "2026-08-31",
+      "positive_count": 6,
+      "positive_percentage": 30.0,
+      "post_count": 20
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-09-01",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 20.0,
+      "neutral_count": 1,
+      "neutral_percentage": 20.0,
+      "period": "2026-09-02",
+      "positive_count": 3,
+      "positive_percentage": 60.0,
+      "post_count": 5
+    },
+    {
+      "negative_count": 2,
+      "negative_percentage": 50.0,
+      "neutral_count": 2,
+      "neutral_percentage": 50.0,
+      "period": "2026-09-03",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 4
+    },
+    {
+      "negative_count": 2,
+      "negative_percentage": 33.33333333333333,
+      "neutral_count": 1,
+      "neutral_percentage": 16.666666666666664,
+      "period": "2026-09-04",
+      "positive_count": 3,
+      "positive_percentage": 50.0,
+      "post_count": 6
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 25.0,
+      "neutral_count": 2,
+      "neutral_percentage": 50.0,
+      "period": "2026-09-05",
+      "positive_count": 1,
+      "positive_percentage": 25.0,
+      "post_count": 4
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 4,
+      "neutral_percentage": 100.0,
+      "period": "2026-09-06",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 4
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 33.33333333333333,
+      "neutral_count": 2,
+      "neutral_percentage": 66.66666666666666,
+      "period": "2026-09-07",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 3
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-09-08",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-09-09",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 100.0,
+      "period": "2026-09-11",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-09-12",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-09-13",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-09-18",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-09-20",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-09-22",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-09-24",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 5,
+      "negative_percentage": 45.45454545454545,
+      "neutral_count": 5,
+      "neutral_percentage": 45.45454545454545,
+      "period": "2026-09-30",
+      "positive_count": 1,
+      "positive_percentage": 9.090909090909092,
+      "post_count": 11
+    },
+    {
+      "negative_count": 3,
+      "negative_percentage": 37.5,
+      "neutral_count": 3,
+      "neutral_percentage": 37.5,
+      "period": "2026-10-01",
+      "positive_count": 2,
+      "positive_percentage": 25.0,
+      "post_count": 8
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-10-03",
+      "positive_count": 3,
+      "positive_percentage": 100.0,
+      "post_count": 3
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 16.666666666666664,
+      "neutral_count": 3,
+      "neutral_percentage": 50.0,
+      "period": "2026-10-05",
+      "positive_count": 2,
+      "positive_percentage": 33.33333333333333,
+      "post_count": 6
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-10-08",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 4,
+      "negative_percentage": 11.76470588235294,
+      "neutral_count": 18,
+      "neutral_percentage": 52.94117647058824,
+      "period": "2026-10-09",
+      "positive_count": 12,
+      "positive_percentage": 35.294117647058826,
+      "post_count": 34
+    },
+    {
+      "negative_count": 12,
+      "negative_percentage": 14.814814814814813,
+      "neutral_count": 43,
+      "neutral_percentage": 53.086419753086425,
+      "period": "2026-10-10",
+      "positive_count": 26,
+      "positive_percentage": 32.098765432098766,
+      "post_count": 81
+    }
+  ],
+  "generated_at": "2026-10-12T07:18:51.560542Z",
+  "model_artifact_sha256": "a3e375cc0e75c68f2ac8de8a35d46369e566c3e0821d31c778018f4edc83451e",
+  "model_version": "final-lr-7922527d9599",
+  "per_query": {
+    "Netflix": {
+      "average_confidence": 0.6429403537795657,
+      "confidence_caveat": "Model confidence is a relative score and is not guaranteed to be a calibrated probability.",
+      "confidence_rows": 63,
+      "median_confidence": 0.6409654021263123,
+      "positive_negative_ratio": 0.8571428571428571,
+      "sentiment_counts": {
+        "negative": 21,
+        "neutral": 24,
+        "positive": 18
+      },
+      "sentiment_percentages": {
+        "negative": 33.33333333333333,
+        "neutral": 38.095238095238095,
+        "positive": 28.57142857142857
+      },
+      "total_posts": 63
+    },
+    "Nike": {
+      "average_confidence": 0.6719462932259949,
+      "confidence_caveat": "Model confidence is a relative score and is not guaranteed to be a calibrated probability.",
+      "confidence_rows": 54,
+      "median_confidence": 0.6723657846450806,
+      "positive_negative_ratio": 0.7647058823529411,
+      "sentiment_counts": {
+        "negative": 17,
+        "neutral": 24,
+        "positive": 13
+      },
+      "sentiment_percentages": {
+        "negative": 31.48148148148148,
+        "neutral": 44.44444444444444,
+        "positive": 24.074074074074073
+      },
+      "total_posts": 54
+    },
+    "Samsung Galaxy": {
+      "average_confidence": 0.6630131434310567,
+      "confidence_caveat": "Model confidence is a relative score and is not guaranteed to be a calibrated probability.",
+      "confidence_rows": 55,
+      "median_confidence": 0.6799687743186951,
+      "positive_negative_ratio": 1.6,
+      "sentiment_counts": {
+        "negative": 10,
+        "neutral": 29,
+        "positive": 16
+      },
+      "sentiment_percentages": {
+        "negative": 18.181818181818183,
+        "neutral": 52.72727272727272,
+        "positive": 29.09090909090909
+      },
+      "total_posts": 55
+    },
+    "Swiggy": {
+      "average_confidence": 0.6598506727639366,
+      "confidence_caveat": "Model confidence is a relative score and is not guaranteed to be a calibrated probability.",
+      "confidence_rows": 51,
+      "median_confidence": 0.6586690545082092,
+      "positive_negative_ratio": 5.0,
+      "sentiment_counts": {
+        "negative": 3,
+        "neutral": 33,
+        "positive": 15
+      },
+      "sentiment_percentages": {
+        "negative": 5.88235294117647,
+        "neutral": 64.70588235294117,
+        "positive": 29.411764705882355
+      },
+      "total_posts": 51
+    },
+    "Zomato": {
+      "average_confidence": 0.7302421526266978,
+      "confidence_caveat": "Model confidence is a relative score and is not guaranteed to be a calibrated probability.",
+      "confidence_rows": 52,
+      "median_confidence": 0.7022415399551392,
+      "positive_negative_ratio": 6.0,
+      "sentiment_counts": {
+        "negative": 3,
+        "neutral": 31,
+        "positive": 18
+      },
+      "sentiment_percentages": {
+        "negative": 5.769230769230769,
+        "neutral": 59.61538461538461,
+        "positive": 34.61538461538461
+      },
+      "total_posts": 52
+    },
+    "iPhone": {
+      "average_confidence": 0.6431956179440022,
+      "confidence_caveat": "Model confidence is a relative score and is not guaranteed to be a calibrated probability.",
+      "confidence_rows": 56,
+      "median_confidence": 0.5990377962589264,
+      "positive_negative_ratio": 1.3333333333333333,
+      "sentiment_counts": {
+        "negative": 12,
+        "neutral": 28,
+        "positive": 16
+      },
+      "sentiment_percentages": {
+        "negative": 21.428571428571427,
+        "neutral": 50.0,
+        "positive": 28.57142857142857
+      },
+      "total_posts": 56
+    }
+  },
+  "prediction_basis": "frozen model predictions",
+  "privacy": "No row-level text or representative comments are stored here.",
+  "status": "aggregate analytics complete",
+  "summary": {
+    "average_confidence": 0.667371588711292,
+    "confidence_caveat": "Model confidence is a relative score and is not guaranteed to be a calibrated probability.",
+    "confidence_rows": 331,
+    "median_confidence": 0.6723657846450806,
+    "positive_negative_ratio": 1.4545454545454546,
+    "sentiment_counts": {
+      "negative": 66,
+      "neutral": 169,
+      "positive": 96
+    },
+    "sentiment_percentages": {
+      "negative": 19.939577039274926,
+      "neutral": 51.057401812688816,
+      "positive": 29.003021148036257
+    },
+    "total_posts": 331
+  },
+  "weekly_trends": [
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2023-05-15",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2023-10-16",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-01-15",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 50.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2024-01-22",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 3,
+      "negative_percentage": 60.0,
+      "neutral_count": 2,
+      "neutral_percentage": 40.0,
+      "period": "2024-01-29",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 5
+    },
+    {
+      "negative_count": 2,
+      "negative_percentage": 66.66666666666666,
+      "neutral_count": 1,
+      "neutral_percentage": 33.33333333333333,
+      "period": "2024-02-05",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 3
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-02-19",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-08-26",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2024-11-11",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2024-11-25",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-03-31",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-05-12",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-05-26",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-06-02",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2025-06-09",
+      "positive_count": 1,
+      "positive_percentage": 50.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-06-30",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-07-28",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-08-18",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 2,
+      "negative_percentage": 40.0,
+      "neutral_count": 2,
+      "neutral_percentage": 40.0,
+      "period": "2025-08-25",
+      "positive_count": 1,
+      "positive_percentage": 20.0,
+      "post_count": 5
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2025-09-01",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-09-22",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2025-09-29",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2025-10-06",
+      "positive_count": 1,
+      "positive_percentage": 50.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 100.0,
+      "period": "2025-11-24",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 100.0,
+      "period": "2025-12-08",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2025-12-15",
+      "positive_count": 1,
+      "positive_percentage": 50.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 66.66666666666666,
+      "period": "2025-12-22",
+      "positive_count": 1,
+      "positive_percentage": 33.33333333333333,
+      "post_count": 3
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 33.33333333333333,
+      "neutral_count": 1,
+      "neutral_percentage": 33.33333333333333,
+      "period": "2025-12-29",
+      "positive_count": 1,
+      "positive_percentage": 33.33333333333333,
+      "post_count": 3
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 33.33333333333333,
+      "period": "2026-01-12",
+      "positive_count": 2,
+      "positive_percentage": 66.66666666666666,
+      "post_count": 3
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 66.66666666666666,
+      "period": "2026-01-19",
+      "positive_count": 1,
+      "positive_percentage": 33.33333333333333,
+      "post_count": 3
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 3,
+      "neutral_percentage": 75.0,
+      "period": "2026-02-09",
+      "positive_count": 1,
+      "positive_percentage": 25.0,
+      "post_count": 4
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-02-16",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-02-23",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 3,
+      "neutral_percentage": 100.0,
+      "period": "2026-03-09",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 3
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-03-16",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-03-23",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-04-13",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2026-04-20",
+      "positive_count": 1,
+      "positive_percentage": 50.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-04-27",
+      "positive_count": 2,
+      "positive_percentage": 100.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-05-04",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 100.0,
+      "period": "2026-05-11",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 100.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-05-18",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 2,
+      "negative_percentage": 16.666666666666664,
+      "neutral_count": 7,
+      "neutral_percentage": 58.333333333333336,
+      "period": "2026-06-01",
+      "positive_count": 3,
+      "positive_percentage": 25.0,
+      "post_count": 12
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 33.33333333333333,
+      "neutral_count": 1,
+      "neutral_percentage": 33.33333333333333,
+      "period": "2026-06-08",
+      "positive_count": 1,
+      "positive_percentage": 33.33333333333333,
+      "post_count": 3
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 1,
+      "neutral_percentage": 100.0,
+      "period": "2026-06-22",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 50.0,
+      "neutral_count": 1,
+      "neutral_percentage": 50.0,
+      "period": "2026-06-29",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 2,
+      "negative_percentage": 50.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-07-06",
+      "positive_count": 2,
+      "positive_percentage": 50.0,
+      "post_count": 4
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 0,
+      "neutral_percentage": 0.0,
+      "period": "2026-07-13",
+      "positive_count": 1,
+      "positive_percentage": 100.0,
+      "post_count": 1
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 66.66666666666666,
+      "period": "2026-07-20",
+      "positive_count": 1,
+      "positive_percentage": 33.33333333333333,
+      "post_count": 3
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 33.33333333333333,
+      "neutral_count": 2,
+      "neutral_percentage": 66.66666666666666,
+      "period": "2026-07-27",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 3
+    },
+    {
+      "negative_count": 2,
+      "negative_percentage": 13.333333333333334,
+      "neutral_count": 10,
+      "neutral_percentage": 66.66666666666666,
+      "period": "2026-08-10",
+      "positive_count": 3,
+      "positive_percentage": 20.0,
+      "post_count": 15
+    },
+    {
+      "negative_count": 1,
+      "negative_percentage": 20.0,
+      "neutral_count": 2,
+      "neutral_percentage": 40.0,
+      "period": "2026-08-17",
+      "positive_count": 2,
+      "positive_percentage": 40.0,
+      "post_count": 5
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 4,
+      "neutral_percentage": 57.14285714285714,
+      "period": "2026-08-24",
+      "positive_count": 3,
+      "positive_percentage": 42.857142857142854,
+      "post_count": 7
+    },
+    {
+      "negative_count": 16,
+      "negative_percentage": 36.36363636363637,
+      "neutral_count": 15,
+      "neutral_percentage": 34.090909090909086,
+      "period": "2026-08-31",
+      "positive_count": 13,
+      "positive_percentage": 29.545454545454547,
+      "post_count": 44
+    },
+    {
+      "negative_count": 2,
+      "negative_percentage": 22.22222222222222,
+      "neutral_count": 6,
+      "neutral_percentage": 66.66666666666666,
+      "period": "2026-09-07",
+      "positive_count": 1,
+      "positive_percentage": 11.11111111111111,
+      "post_count": 9
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 100.0,
+      "period": "2026-09-14",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 0,
+      "negative_percentage": 0.0,
+      "neutral_count": 2,
+      "neutral_percentage": 100.0,
+      "period": "2026-09-21",
+      "positive_count": 0,
+      "positive_percentage": 0.0,
+      "post_count": 2
+    },
+    {
+      "negative_count": 8,
+      "negative_percentage": 36.36363636363637,
+      "neutral_count": 8,
+      "neutral_percentage": 36.36363636363637,
+      "period": "2026-09-28",
+      "positive_count": 6,
+      "positive_percentage": 27.27272727272727,
+      "post_count": 22
+    },
+    {
+      "negative_count": 17,
+      "negative_percentage": 13.934426229508196,
+      "neutral_count": 64,
+      "neutral_percentage": 52.459016393442624,
+      "period": "2026-10-05",
+      "positive_count": 41,
+      "positive_percentage": 33.60655737704918,
+      "post_count": 122
+    }
+  ]
+}

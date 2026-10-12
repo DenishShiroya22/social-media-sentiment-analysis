@@ -1,6 +1,6 @@
 # Social Media Sentiment Analysis
 
-This public project builds a reproducible sentiment-modeling foundation for future brand and product monitoring. It acquires the official Cardiff NLP TweetEval sentiment splits, validates and conservatively cleans them, compares nine classical TF-IDF baselines, and tunes the two leading linear pipelines using TRAIN-only cross-validation. Live collection, analytics and a dashboard remain future work.
+This public project provides a reproducible brand and product sentiment-monitoring workflow. It includes the completed Cardiff NLP TweetEval benchmark, bounded YouTube collection, a separately human-labeled external evaluation, aggregate analytics, interpretable topic summaries, and a local Streamlit dashboard.
 
 ## Official final benchmark result
 
@@ -22,7 +22,7 @@ Source: [Cardiff NLP TweetEval](https://huggingface.co/datasets/cardiffnlp/tweet
 
 Official split sizes: TRAIN 45,615; VALIDATION 2,000; TEST 12,284. Labels are negative, neutral and positive. No resplitting or oversampling occurs. The pipeline preserves original text, labels, order and split membership. It normalizes only known escaped punctuation such as literal backslash-u2019 and backslash-u002c, plus actual Unicode punctuation, while retaining contractions, emoji, hashtags and sentiment punctuation. See [data foundation](DATA_FOUNDATION.md).
 
-The completed sequence is data foundation → preprocessing → classical modeling → TRAIN-only CV tuning → VALIDATION selection → frozen procedure commit and CI → TRAIN+VALIDATION refit → one TEST evaluation. Next application work is a reusable inference service, responsible public social-media ingestion, aggregation, trend analysis and a dashboard.
+The completed sequence is data foundation → preprocessing → classical modeling → TRAIN-only CV tuning → VALIDATION selection → frozen procedure commit and CI → TRAIN+VALIDATION refit → one TEST evaluation → frozen inference → bounded external collection → human labeling → external evaluation → analytics and dashboard.
 
 ## Reproduce
 
@@ -53,10 +53,11 @@ The [pre-TEST procedure](FINAL_EVALUATION_PROTOCOL.md) was frozen in commit 7922
 
 ## Repository map and limits
 
-- src/: acquisition, validation, cleaning, feature extraction, modeling, tuning and evaluation.
+- src/: acquisition, validation, cleaning, feature extraction, modeling, inference, evaluation, and analytics.
+- app/: the local Streamlit monitoring dashboard and offline-testable helpers.
 - data/raw and data/processed: ignored split CSVs plus tracked provenance manifests.
 - notebooks/: executed data, preprocessing, model-development and read-only final-results notebooks.
-- reports/: executed data quality, baseline, tuning and final evaluation results.
+- reports/: executed data quality, benchmark, external evaluation, and aggregate analytics results.
 - models/candidates and models/final: development and final fitted artifacts with metadata and a model card.
 - tests/: offline behavior and leakage-boundary checks.
 
@@ -83,7 +84,7 @@ The repository now includes a reusable backend foundation for bounded public-pos
 
     Query → SocialConnector → normalized posts → collected JSONL
           → SentimentPredictor → analyzed JSONL → run manifest + basic summary
-          → future analytics/dashboard
+          → aggregate analytics/topics → local Streamlit dashboard
 
 Predict one text locally:
 
@@ -97,7 +98,7 @@ Copy [.env.example](.env.example) only as a reference for REDDIT_CLIENT_ID, REDD
 
 Collected posts, analyzed records, and run manifests are written beneath data/collected, data/analyzed, and data/manifests. These paths and .env are Git-ignored. The application stores no emails, private messages, phone numbers, or hidden profile information.
 
-See [APPLICATION.md](APPLICATION.md) for architecture, APIs, schemas, setup, error handling, storage, privacy, and limitations. Use [the external brand-domain workflow](docs/EXTERNAL_EVALUATION.md) and complete human labeling before analytics, complaint extraction, or a Streamlit dashboard is built.
+See [APPLICATION.md](APPLICATION.md) for architecture, APIs, schemas, setup, error handling, storage, privacy, and limitations. [DASHBOARD.md](DASHBOARD.md) documents the local monitoring interface.
 
 The application model learned from historical English tweets. Modern brand comments may shift in language and topic; sarcasm and missing context remain difficult. Predicted probabilities are not guaranteed calibrated. Use aggregate output as decision support, not individual psychological inference or a replacement for human moderation. The post-benchmark stacking gain was small and uncertain, so it is not used for inference; XGBoost was substantially weaker. No new TweetEval TEST evaluation is part of this application layer.
 
@@ -109,7 +110,7 @@ The repository includes an API-first workflow for building a separate 300–500-
     .\.venv\Scripts\python.exe -m src.external_eval.prepare --config config/external_eval_queries.json
     .\.venv\Scripts\python.exe -m src.external_eval.labeling export
 
-Current checkpoint: one bounded YouTube collection retrieved 478 comments across six queries and prepared a deterministic 400-row sample after removing three exact-text duplicates. All 400 human-label cells remain blank, and 38 rows have a language-review flag. Safe aggregate details are in [the collection summary](reports/external_eval/collection_summary.json). External evaluation, analytics, topics, and the dashboard remain blocked until human labels are completed and validated.
+One bounded YouTube collection retrieved 478 comments across six queries and prepared a deterministic 400-row sample after removing three exact-text duplicates. Human review identified 69 comments that required an unavailable language interpretation; those rows were preserved locally and excluded instead of being treated as neutral sentiment. The remaining 331 rows passed strict validation with 56 negative, 184 neutral, and 91 positive labels.
 
 Collection uses configurable queries, source limits, exact deduplication, language-review flags, and source/query-balanced sampling with seed 42. Real raw, prepared, and labeling files are Git-ignored. Author identities are omitted. No HTML scraping is implemented.
 
@@ -118,4 +119,14 @@ The exported CSV deliberately has blank labels. Follow [the labeling guide](docs
     .\.venv\Scripts\python.exe -m src.external_eval.labeling validate --file data/external_eval/labels/external_eval_labeled.csv --expected-min 300 --expected-max 500
     .\.venv\Scripts\python.exe -m src.external_eval.evaluate --labels data/external_eval/labels/external_eval_labeled.csv
 
-Evaluation refuses incomplete labels, uses the frozen final model through the production inference path, never trains or tunes, and writes aggregate-only reports under `reports/external_eval/`. External results measure domain transfer and do not replace or revise the official TweetEval TEST benchmark. See the [workflow](docs/EXTERNAL_EVALUATION.md) and [responsible collection policy](docs/DATA_COLLECTION_POLICY.md).
+Evaluation refuses incomplete labels, uses the frozen final model through the production inference path, never trains or tunes, and writes aggregate-only reports under `reports/external_eval/`. On the 331-row external set, accuracy is **0.5982** and macro-F1 is **0.5406**. Negative-class F1 is 0.2951, neutral F1 is 0.6742, and positive F1 is 0.6524. These domain-transfer results do not replace or revise the official TweetEval TEST benchmark. See the [external summary](reports/external_eval/external_summary.md), [workflow](docs/EXTERNAL_EVALUATION.md), and [responsible collection policy](docs/DATA_COLLECTION_POLICY.md).
+
+Generate aggregate model-prediction analytics from the private labeled file:
+
+    .\.venv\Scripts\python.exe -m src.analytics.report --input data/external_eval/labels/external_eval_labeled.csv
+
+Run the local dashboard:
+
+    .\.venv\Scripts\python.exe -m streamlit run app/streamlit_app.py
+
+The dashboard supports private local CSV/JSONL files and explicitly confirmed, bounded YouTube collection. It shows sentiment totals, percentages, per-query results, daily or weekly trends, TF-IDF terms, configurable product themes, and private representative comments. Tracked analytics reports contain aggregates only.

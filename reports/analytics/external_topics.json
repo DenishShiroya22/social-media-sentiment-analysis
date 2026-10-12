@@ -1,0 +1,245 @@
+{
+  "generated_at": "2026-10-12T07:18:51.560542Z",
+  "method": "Terms use mean TF-IDF over predicted sentiment subsets. Themes use configurable keyword matching and are descriptive, not definitive.",
+  "negative_terms": [
+    {
+      "document_frequency": 5,
+      "term": "type",
+      "tfidf_score": 0.05120079433283257
+    },
+    {
+      "document_frequency": 5,
+      "term": "video",
+      "tfidf_score": 0.05068784081342605
+    },
+    {
+      "document_frequency": 6,
+      "term": "tyler",
+      "tfidf_score": 0.04948257656153091
+    },
+    {
+      "document_frequency": 8,
+      "term": "like",
+      "tfidf_score": 0.049393212522463446
+    },
+    {
+      "document_frequency": 7,
+      "term": "shoes",
+      "tfidf_score": 0.04829695169736672
+    },
+    {
+      "document_frequency": 5,
+      "term": "don't",
+      "tfidf_score": 0.039095116885224566
+    },
+    {
+      "document_frequency": 6,
+      "term": "people",
+      "tfidf_score": 0.036028790885843535
+    },
+    {
+      "document_frequency": 4,
+      "term": "i'm",
+      "tfidf_score": 0.03542144244084285
+    },
+    {
+      "document_frequency": 3,
+      "term": "iphone",
+      "tfidf_score": 0.0328200521516083
+    },
+    {
+      "document_frequency": 6,
+      "term": "just",
+      "tfidf_score": 0.03194290704100562
+    },
+    {
+      "document_frequency": 2,
+      "term": "petrol",
+      "tfidf_score": 0.030303030303030304
+    },
+    {
+      "document_frequency": 3,
+      "term": "actual",
+      "tfidf_score": 0.027278411732279927
+    }
+  ],
+  "positive_terms": [
+    {
+      "document_frequency": 11,
+      "term": "good",
+      "tfidf_score": 0.07136488621177617
+    },
+    {
+      "document_frequency": 7,
+      "term": "nice",
+      "tfidf_score": 0.05681607757347703
+    },
+    {
+      "document_frequency": 8,
+      "term": "bro",
+      "tfidf_score": 0.041972116559506716
+    },
+    {
+      "document_frequency": 4,
+      "term": "thank",
+      "tfidf_score": 0.03585739133213567
+    },
+    {
+      "document_frequency": 6,
+      "term": "video",
+      "tfidf_score": 0.033317946690577194
+    },
+    {
+      "document_frequency": 5,
+      "term": "best",
+      "tfidf_score": 0.0309039112306288
+    },
+    {
+      "document_frequency": 4,
+      "term": "haaland",
+      "tfidf_score": 0.028113645922453565
+    },
+    {
+      "document_frequency": 6,
+      "term": "tyler",
+      "tfidf_score": 0.028090599176557894
+    },
+    {
+      "document_frequency": 3,
+      "term": "looks",
+      "tfidf_score": 0.027950548824773887
+    },
+    {
+      "document_frequency": 5,
+      "term": "love",
+      "tfidf_score": 0.02788020115138843
+    },
+    {
+      "document_frequency": 6,
+      "term": "pro",
+      "tfidf_score": 0.027830403506139224
+    },
+    {
+      "document_frequency": 4,
+      "term": "thanks",
+      "tfidf_score": 0.027567473621131332
+    }
+  ],
+  "prediction_basis": "frozen model predictions",
+  "privacy": "Only aggregate terms and theme counts are stored here.",
+  "status": "aggregate topic extraction complete",
+  "themes": [
+    {
+      "frequency": 9,
+      "sentiment_counts": {
+        "negative": 4,
+        "neutral": 3,
+        "positive": 2
+      },
+      "sentiment_percentages": {
+        "negative": 44.44444444444444,
+        "neutral": 33.33333333333333,
+        "positive": 22.22222222222222
+      },
+      "topic": "pricing"
+    },
+    {
+      "frequency": 7,
+      "sentiment_counts": {
+        "negative": 1,
+        "neutral": 6,
+        "positive": 0
+      },
+      "sentiment_percentages": {
+        "negative": 14.285714285714285,
+        "neutral": 85.71428571428571,
+        "positive": 0.0
+      },
+      "topic": "delivery"
+    },
+    {
+      "frequency": 5,
+      "sentiment_counts": {
+        "negative": 1,
+        "neutral": 2,
+        "positive": 2
+      },
+      "sentiment_percentages": {
+        "negative": 20.0,
+        "neutral": 40.0,
+        "positive": 40.0
+      },
+      "topic": "battery"
+    },
+    {
+      "frequency": 4,
+      "sentiment_counts": {
+        "negative": 2,
+        "neutral": 0,
+        "positive": 2
+      },
+      "sentiment_percentages": {
+        "negative": 50.0,
+        "neutral": 0.0,
+        "positive": 50.0
+      },
+      "topic": "design"
+    },
+    {
+      "frequency": 4,
+      "sentiment_counts": {
+        "negative": 1,
+        "neutral": 0,
+        "positive": 3
+      },
+      "sentiment_percentages": {
+        "negative": 25.0,
+        "neutral": 0.0,
+        "positive": 75.0
+      },
+      "topic": "customer support"
+    },
+    {
+      "frequency": 2,
+      "sentiment_counts": {
+        "negative": 0,
+        "neutral": 0,
+        "positive": 2
+      },
+      "sentiment_percentages": {
+        "negative": 0.0,
+        "neutral": 0.0,
+        "positive": 100.0
+      },
+      "topic": "performance"
+    },
+    {
+      "frequency": 1,
+      "sentiment_counts": {
+        "negative": 1,
+        "neutral": 0,
+        "positive": 0
+      },
+      "sentiment_percentages": {
+        "negative": 100.0,
+        "neutral": 0.0,
+        "positive": 0.0
+      },
+      "topic": "bugs"
+    },
+    {
+      "frequency": 1,
+      "sentiment_counts": {
+        "negative": 0,
+        "neutral": 1,
+        "positive": 0
+      },
+      "sentiment_percentages": {
+        "negative": 0.0,
+        "neutral": 100.0,
+        "positive": 0.0
+      },
+      "topic": "availability"
+    }
+  ]
+}

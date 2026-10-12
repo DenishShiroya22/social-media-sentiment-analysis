@@ -1,6 +1,6 @@
-# Application inference foundation
+# Application inference and analytics
 
-This layer turns a bounded public-data query into normalized records, frozen-model sentiment predictions, local JSONL files, and a small run summary. It does not retrain or tune the model, run benchmark evaluation, or build the dashboard.
+This layer turns bounded public comments into normalized records, frozen-model sentiment predictions, aggregate analytics, topic summaries, and a local Streamlit dashboard. It does not retrain or tune the model or rerun the official benchmark.
 
 ## Architecture
 
@@ -20,7 +20,7 @@ This layer turns a bounded public-data query into normalized records, frozen-mod
         ↓
     RunManifest + basic sentiment summary
         ↓
-    future analytics and dashboard
+    aggregate analytics, topics, and local dashboard
 
 The modules have intentionally small responsibilities:
 
@@ -31,6 +31,8 @@ The modules have intentionally small responsibilities:
 - src.social.youtube.YouTubeConnector searches bounded public videos and retrieves bounded top-level comments through YouTube Data API v3.
 - src.storage.repository.JsonlRepository writes exclusive run-specific JSONL and manifest files.
 - src.app_pipeline connects collection, storage, inference, and the console summary.
+- src.analytics provides aggregate summaries, confidence views, trends, and interpretable topic extraction.
+- app.streamlit_app provides the local dashboard while app.dashboard_helpers keeps data loading and analysis testable offline.
 
 ## Final model contract
 
@@ -126,7 +128,7 @@ The external-domain workflow is separate from routine application inference:
 
 The tracked `config/external_eval_queries.json` now uses six YouTube queries, a 400-row target, seed 42, and a 20-row per-video cap. Reddit remains supported in code but is disabled because live Reddit access is unavailable. YouTube requires `YOUTUBE_API_KEY` in the process environment. Both connectors omit authors in external storage. Raw, prepared, and label files remain under Git-ignored `data/external_eval/` paths. Use the project `.venv` interpreter on Windows; `.env` is ignored but is not loaded automatically by the application.
 
-The completed YouTube-only collection retrieved 478 rows and prepared 400 after removing three exact-text duplicates. The sample spans six queries and 28 video contexts; 38 rows require human language review. The blank local labeling CSV is the current stop point. See `reports/external_eval/collection_summary.json` for aggregate-only counts.
+The completed YouTube-only collection retrieved 478 rows and prepared 400 after removing three exact-text duplicates. Human review excluded 69 language-ineligible rows, leaving 331 validated labels: 56 negative, 184 neutral, and 91 positive. Frozen-model evaluation achieved 0.5982 accuracy and 0.5406 macro-F1. The result measures transfer to this sampled YouTube brand domain and does not change the official model.
 
 Run:
 
@@ -141,6 +143,16 @@ At this point, stop for human labeling under `docs/EXTERNAL_LABELING_GUIDE.md`. 
 
 Evaluation uses `SentimentPredictor`, makes no fit/tuning/threshold changes, and saves aggregate metrics, a negative/neutral/positive confusion matrix, a dataset summary, and a domain-gap comparison under `reports/external_eval/`. Raw text and row-level predictions are not placed in public reports. Read `docs/DATA_COLLECTION_POLICY.md` for the API-first and privacy rules and `docs/EXTERNAL_EVALUATION.md` for the full protocol.
 
-## Next work
+## Analytics and dashboard
 
-First create a new, manually labeled brand-domain evaluation set following docs/EXTERNAL_EVALUATION.md. After measuring real-world behavior, add aggregation and trend analysis, topic or complaint extraction, the Streamlit dashboard, and additional connectors. The official TweetEval TEST evaluation remains complete and must not be rerun.
+`src/analytics/` provides sentiment totals, percentages, positive/negative ratio, confidence summaries, per-query results, daily and weekly trends, TF-IDF terms, configurable topic themes, and local representative-comment selection. Generate aggregate tracked reports with:
+
+    .\.venv\Scripts\python.exe -m src.analytics.report --input data/external_eval/labels/external_eval_labeled.csv
+
+Start the local dashboard with:
+
+    .\.venv\Scripts\python.exe -m streamlit run app/streamlit_app.py
+
+The dashboard analyzes a previously collected local CSV/JSONL dataset or performs a small YouTube collection after the user checks the API-use confirmation. Live collection is capped at five videos and twenty comments per video. It reports missing credentials, quota or request failures, empty results, malformed files, and missing model artifacts without exposing secrets. Representative comments stay in the local session. See `DASHBOARD.md`.
+
+The official TweetEval TEST evaluation remains complete and must not be rerun. External results are measurement evidence, not a trigger for model changes.
