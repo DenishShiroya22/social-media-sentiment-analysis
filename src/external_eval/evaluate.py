@@ -170,6 +170,12 @@ def _summary_markdown(metrics: dict, comparison: dict, row_count: int) -> str:
         '', 'TweetEval TEST and the external brand/product sample come from '
         'different distributions and are not directly interchangeable. '
         'These results describe external-domain transfer only.', '',
+        'The gap can reflect a platform shift from historical tweets to YouTube '
+        'comments, newer language and slang, brand/product-specific vocabulary, '
+        'sarcasm, missing video or conversation context, and the external '
+        'sample\'s different class and query composition. In particular, a '
+        'large class-specific change should be interpreted as evidence about '
+        'this sample rather than a reason to alter the frozen model.', '',
     ])
     return '\n'.join(lines)
 

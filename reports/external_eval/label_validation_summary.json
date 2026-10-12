@@ -1,0 +1,18 @@
+{
+  "eligibility_decision": "The human annotator could not understand rows marked language_review; they were excluded rather than treated as neutral sentiment.",
+  "eligible_rows": 331,
+  "excluded_file_sha256": "b51e432ecba429ac7d5b2d7dec698babb4117f514f456089e74f1a4bc02f3719",
+  "generated_at": "2026-10-12T07:20:24.066768Z",
+  "label_counts": {
+    "negative": 56,
+    "neutral": 184,
+    "positive": 91
+  },
+  "labeled_file_sha256": "598d90fa3d8f691d7fac39cf4d961ebe055156d83bed16d3f6462c04f547efc1",
+  "language_ineligible_rows_excluded": 69,
+  "original_labeling_rows": 400,
+  "row_level_files_tracked": false,
+  "status": "human labels validated",
+  "unique_sample_ids": 331,
+  "unresolved_language_review_count": 0
+}

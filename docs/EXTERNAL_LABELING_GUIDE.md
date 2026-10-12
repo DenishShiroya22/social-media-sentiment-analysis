@@ -22,7 +22,7 @@ Label the sentiment expressed in each public brand/product comment. Use only `ne
 - **Negation:** apply the negation to the sentiment phrase, such as “not good” → negative.
 - **Profanity:** profanity alone is not automatically negative; use the target and expressed stance.
 - **Irrelevant comments:** use neutral and add `irrelevant` to `review_flag` or notes for later documented exclusion.
-- **Language uncertainty:** rows marked `language_review` need an English-language eligibility decision. Do not guess a translation.
+- **Language uncertainty:** rows marked `language_review` need an English-language eligibility decision. If the annotator can understand the row reliably, label it and remove `language_review`. If translation would be required, do not assign neutral as a substitute for sentiment; preserve the row in a private exclusion file and omit it from the evaluation CSV.
 - **Missing context:** use neutral and flag when a reply cannot be interpreted reliably without unavailable context.
 
 ## Workflow

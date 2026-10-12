@@ -1,0 +1,27 @@
+{
+  "average_text_length": 60.05438066465257,
+  "date_range": {
+    "maximum": "2026-10-10T18:56:25Z",
+    "minimum": "2023-05-21T09:46:40Z"
+  },
+  "duplicate_sample_id_count": 0,
+  "exact_text_duplicate_count": 0,
+  "label_distribution": {
+    "negative": 56,
+    "neutral": 184,
+    "positive": 91
+  },
+  "median_text_length": 42,
+  "rows_per_query": {
+    "Netflix": 63,
+    "Nike": 54,
+    "Samsung Galaxy": 55,
+    "Swiggy": 51,
+    "Zomato": 52,
+    "iPhone": 56
+  },
+  "rows_per_source": {
+    "youtube": 331
+  },
+  "total_rows": 331
+}

@@ -1,0 +1,90 @@
+{
+  "dataset_rows": 331,
+  "distribution_caveat": "TweetEval TEST and external brand-domain results are different distributions and are not directly interchangeable.",
+  "domain_gap_comparison": {
+    "accuracy": {
+      "difference": -0.024574004354152135,
+      "external_brand_domain": 0.5981873111782477,
+      "tweeteval_test": 0.6227613155323999
+    },
+    "macro_f1": {
+      "difference": -0.07934687025717002,
+      "external_brand_domain": 0.5405697824994062,
+      "tweeteval_test": 0.6199166527565763
+    },
+    "negative_f1": {
+      "difference": -0.34549404021923924,
+      "external_brand_domain": 0.29508196721311475,
+      "tweeteval_test": 0.640576007432354
+    },
+    "neutral_f1": {
+      "difference": 0.0552900257011647,
+      "external_brand_domain": 0.6742209631728046,
+      "tweeteval_test": 0.6189309374716399
+    },
+    "positive_f1": {
+      "difference": 0.05216340374656436,
+      "external_brand_domain": 0.6524064171122995,
+      "tweeteval_test": 0.6002430133657352
+    }
+  },
+  "generated_at": "2026-10-12T07:06:57.252808Z",
+  "labels_file_sha256": "598d90fa3d8f691d7fac39cf4d961ebe055156d83bed16d3f6462c04f547efc1",
+  "metrics": {
+    "accuracy": 0.5981873111782477,
+    "confusion_matrix": [
+      [
+        18,
+        34,
+        4
+      ],
+      [
+        34,
+        119,
+        31
+      ],
+      [
+        14,
+        16,
+        61
+      ]
+    ],
+    "confusion_matrix_axes": {
+      "columns": "predicted",
+      "rows": "actual"
+    },
+    "confusion_matrix_order": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "macro_f1": 0.5405697824994062,
+    "macro_precision": 0.5374286504094196,
+    "macro_recall": 0.5461657907310081,
+    "per_class": {
+      "negative": {
+        "f1": 0.29508196721311475,
+        "precision": 0.2727272727272727,
+        "recall": 0.32142857142857145,
+        "support": 56
+      },
+      "neutral": {
+        "f1": 0.6742209631728046,
+        "precision": 0.7041420118343196,
+        "recall": 0.6467391304347826,
+        "support": 184
+      },
+      "positive": {
+        "f1": 0.6524064171122995,
+        "precision": 0.6354166666666666,
+        "recall": 0.6703296703296703,
+        "support": 91
+      }
+    },
+    "weighted_f1": 0.6040792487762832
+  },
+  "model_artifact_sha256": "a3e375cc0e75c68f2ac8de8a35d46369e566c3e0821d31c778018f4edc83451e",
+  "model_version": "final-lr-7922527d9599",
+  "status": "external domain evaluation complete",
+  "training_or_tuning_performed": false
+}
